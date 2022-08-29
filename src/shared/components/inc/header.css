@@ -1,0 +1,28 @@
+#header {
+  padding: 10px 0;
+}
+#header .container .row > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.header-btn {
+  justify-content: center;
+}
+.header-btn-group {
+  background: #f3f3f3;
+  border-radius: 7px;
+  padding: 5px;
+  max-width: max-content;
+}
+.header-btn-group .btn-active {
+  background: #fe0000 !important;
+  color: #fff;
+}
+.header-links {
+  justify-content: space-between;
+}
+.header-btn-group .btn {
+  height: unset;
+  padding: 10px 20px;
+}

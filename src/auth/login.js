@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Input from "../shared/components/form/input";
-import Button from "../shared/components/form/button";
+import Input from "../shared/components/form-elements/input";
+import Button from "../shared/components/form-elements/button";
 import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import {
@@ -66,7 +66,12 @@ const LoginForm = () => {
           />
         </div>
         <div className="form-group">
-          <Button type="submit" className="btn-info" text="Login" />
+          <Button
+            type="submit"
+            className="btn-info"
+            text="Login"
+            disable={formState.isValid}
+          />
         </div>
       </div>
     </form>
