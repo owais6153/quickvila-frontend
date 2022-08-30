@@ -9,6 +9,7 @@ export const AppContext = createContext({
   },
   searchHandler: () => {},
   cart: {},
+  addToCart: () => {},
 });
 
 export const AppProvider = ({ children }) => {
@@ -16,7 +17,7 @@ export const AppProvider = ({ children }) => {
   const searchHandler = (value) => {
     navigate(`/search/${value}`);
   };
-  const [cart] = useCart();
+  const [cart, addToCart] = useCart();
 
   return (
     <AppContext.Provider
@@ -27,6 +28,7 @@ export const AppProvider = ({ children }) => {
         },
         searchHandler,
         cart,
+        addToCart,
       }}
     >
       {children}

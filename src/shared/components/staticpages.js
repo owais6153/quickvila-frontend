@@ -5,7 +5,12 @@ class StaticPage extends Component {
     super(props);
   }
   componentDidMount() {
-    this.props.onPageLoad(false);
+    if (this.props.onPageLoad) {
+      this.props.onPageLoad(false);
+    }
+    if (this.props.getData) {
+      this.props.getData();
+    }
   }
   render() {
     return <React.Fragment>{this.props.children}</React.Fragment>;

@@ -26,3 +26,19 @@
   height: unset;
   padding: 10px 20px;
 }
+.header-links span {
+  position: relative;
+  cursor: pointer;
+}
+span.cart-count {
+  font-size: 10px;
+  background: #fe0000;
+  color: #fff;
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  border-radius: 100%;
+}

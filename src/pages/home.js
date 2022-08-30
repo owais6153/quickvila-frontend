@@ -1,23 +1,24 @@
 import { useState, useEffect } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
+import StaticPage from "../shared/components/staticpages";
 import Banner from "../components/sections/banner";
 import { homeUrl } from "../shared/helper";
 const Home = () => {
   const [products, setProducts] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  useEffect(() => {
-    const fetchPlaces = async () => {
+  const getData = () => {
+    const fetchData = async () => {
       try {
         const responseData = await sendRequest(apiUrl("products"));
         setProducts(responseData.products);
       } catch (err) {}
     };
-    fetchPlaces();
-  }, [sendRequest]);
+    fetchData();
+  };
 
   return (
-    <div>
+    <StaticPage getData={getData}>
       <Banner />
       <section className="home-sec-one">
         <div className="container">
@@ -123,7 +124,7 @@ const Home = () => {
         <div className="container">
           <div className="row RRone">
             <div className="col-md-6">
-              <h3>All Stores</h3>
+              <h3>All Products</h3>
             </div>
             <div className="col-md-6">
               <a href="#">See All</a>
@@ -136,77 +137,30 @@ const Home = () => {
             </div>
           </div>
           <div className="row twoS-two">
-            <div className="col-md-3">
-              <div className="prd-cBox">
-                <div className="wishlist-icon">
-                  <img src={homeUrl("images/Vector.png")} />
-                </div>
-                <div className="figure">
-                  <img src={homeUrl("images/Card 1.png")} />
-                </div>
-                <div className="ctn-p">
-                  <h3>Ultrices habitasse</h3>
-                  <div className="innerctn">
-                    <h4>$70.00</h4>
-                    <h5>$95.00</h5>
+            {products &&
+              products.map((product) => {
+                return (
+                  <div className="col-md-3">
+                    <div className="prd-cBox">
+                      <div className="wishlist-icon">
+                        <img src={homeUrl("images/Vector.png")} />
+                      </div>
+                      <div className="figure">
+                        <img
+                          src={`http://localhost/trikaro/public/${product.image}`}
+                        />
+                      </div>
+                      <div className="ctn-p">
+                        <h3>{product.name}</h3>
+                        <div className="innerctn">
+                          <h4>$70.00</h4>
+                          <h5>$95.00</h5>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-3">
-              <div className="prd-cBox">
-                <div className="wishlist-icon">
-                  <img src={homeUrl("images/Vector.png")} />
-                </div>
-                <div className="figure">
-                  <img src={homeUrl("images/Card 1.png")} />
-                </div>
-                <div className="ctn-p">
-                  <h3>Ultrices habitasse</h3>
-                  <div className="innerctn">
-                    <h4>$70.00</h4>
-                    <h5>$95.00</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-3">
-              <div className="prd-cBox">
-                <div className="wishlist-icon">
-                  <img src={homeUrl("images/Vector.png")} />
-                </div>
-                <div className="figure">
-                  <img src={homeUrl("images/Card 1.png")} />
-                </div>
-                <div className="ctn-p">
-                  <h3>Ultrices habitasse</h3>
-                  <div className="innerctn">
-                    <h4>$70.00</h4>
-                    <h5>$95.00</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-3">
-              <div className="prd-cBox">
-                <div className="wishlist-icon">
-                  <img src={homeUrl("images/Vector.png")} />
-                </div>
-                <div className="figure">
-                  <img src={homeUrl("images/Card 1.png")} />
-                </div>
-                <div className="ctn-p">
-                  <h3>Ultrices habitasse</h3>
-                  <div className="innerctn">
-                    <h4>$70.00</h4>
-                    <h5>$95.00</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
+                );
+              })}
           </div>
         </div>
       </section>
@@ -393,7 +347,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </div>
+    </StaticPage>
   );
 };
 export default Home;

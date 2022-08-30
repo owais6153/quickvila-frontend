@@ -20,10 +20,6 @@ const SearchForm = (props) => {
     false
   );
 
-  useEffect(() => {
-    console.log(term);
-  }, [term]);
-
   const app = useContext(AppContext);
   const submitHandler = (e) => {
     e.preventDefault();
