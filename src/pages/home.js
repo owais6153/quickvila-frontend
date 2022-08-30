@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import StaticPage from "../shared/components/staticpages";
 import Banner from "../components/sections/banner";
 import { homeUrl } from "../shared/helper";
+import  AddToCartButton from "../components/product/add-to-cart";
+
 const Home = () => {
   const [products, setProducts] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+ 
+
   const getData = () => {
     const fetchData = async () => {
       try {
@@ -140,21 +144,22 @@ const Home = () => {
             {products &&
               products.map((product) => {
                 return (
-                  <div className="col-md-3">
+                  <div key={product.id} className="col-md-3">
                     <div className="prd-cBox">
                       <div className="wishlist-icon">
                         <img src={homeUrl("images/Vector.png")} />
                       </div>
                       <div className="figure">
                         <img
-                          src={`http://localhost/trikaro/public/${product.image}`}
+                          src={`${product.image}`}
                         />
                       </div>
                       <div className="ctn-p">
                         <h3>{product.name}</h3>
                         <div className="innerctn">
-                          <h4>$70.00</h4>
-                          <h5>$95.00</h5>
+                          <h4>{product.price}</h4>
+                          {product.sale_price && <h5>$95.00</h5>}
+                                     <AddToCartButton product={product}/>              
                         </div>
                       </div>
                     </div>
