@@ -4,12 +4,11 @@ import { apiUrl } from "../shared/helper";
 import StaticPage from "../shared/components/staticpages";
 import Banner from "../components/sections/banner";
 import { homeUrl } from "../shared/helper";
-import  AddToCartButton from "../components/product/add-to-cart";
+import AddToCartButton from "../components/product/add-to-cart";
 
 const Home = () => {
   const [products, setProducts] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
- 
 
   const getData = () => {
     const fetchData = async () => {
@@ -150,16 +149,14 @@ const Home = () => {
                         <img src={homeUrl("images/Vector.png")} />
                       </div>
                       <div className="figure">
-                        <img
-                          src={`${product.image}`}
-                        />
+                        <img src={`${product.image}`} />
                       </div>
                       <div className="ctn-p">
                         <h3>{product.name}</h3>
                         <div className="innerctn">
                           <h4>{product.price}</h4>
                           {product.sale_price && <h5>$95.00</h5>}
-                                     <AddToCartButton product={product}/>              
+                          <AddToCartButton product={product} />
                         </div>
                       </div>
                     </div>
@@ -409,23 +406,23 @@ const Home = () => {
             <div className="col-md-4">
               <ul className="ul-Sicons">
                 <li>
-                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
                 </li>
                 <li>
-                  <i class="fa fa-youtube-square" aria-hidden="true"></i>
+                  <i class="fa fa-youtube-play" aria-hidden="true"></i>
                 </li>
                 <li>
-                  <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
                 </li>
                 <li>
-                  <i class="fa fa-pinterest-square" aria-hidden="true"></i>
+                  <i class="fa fa-pinterest-p" aria-hidden="true"></i>
                 </li>
               </ul>
             </div>
           </div>
           <div className="container">
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-md-4">
                 <h3>
                   <img src={homeUrl("images/Vecto.png")} />
                   Signup For Newsletter
@@ -457,7 +454,7 @@ const Home = () => {
                   <li>privacy and security</li>
                 </ul>
               </div>
-              <div className="col-md-3 last">
+              <div className="col-md-2 last">
                 <h3>gallery</h3>
                 <div className="footer-gallery">
                   <img src={homeUrl("images/Rectangle 24.png")} />

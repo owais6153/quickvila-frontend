@@ -1,4 +1,3 @@
-
 .form-control:focus,
 .btn,
 .form-control {
@@ -192,7 +191,9 @@ section.home-sec-one .col-md-6:nth-child(2) a:nth-child(1) {
 }
 
 .row.twoS-two .figure img {
-  width: 306px;
+  width: 100%;
+  object-fit: cover;
+  height: 339px;
 }
 
 section.home-sec-two {
@@ -437,4 +438,253 @@ section.home-Sec-five .col-md-6:nth-child(2) a:nth-child(1) {
   text-decoration-line: underline;
   color: #737373;
   margin-right: 35px;
+}
+section.home-Sec-five .col-md-6 {
+  margin-top: 60px;
+}
+
+.testimonial-box {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.testimonial-figure {
+  display: flex;
+}
+
+.testimonial-figure img {
+  width: 58px;
+  height: 58px;
+}
+
+.T-fig-ctn {
+  margin-left: 15px;
+  margin-top: 8px;
+  position: relative;
+}
+
+.T-fig-ctn h4 {
+  font-size: 22px;
+  line-height: 22px;
+  color: #232f3e;
+  font-weight: 700;
+}
+
+.T-fig-ctn h5 {
+  font-size: 12px;
+  line-height: 22px;
+  color: #232f3e;
+}
+
+.testimonial-box p {
+  font-size: 18px;
+  line-height: 26px;
+  color: #737373;
+}
+
+.T-fig-ctn img {
+  position: absolute;
+  right: -350px;
+  top: -30px;
+  width: 100%;
+  height: 80px;
+}
+
+.vid-box {
+  position: relative;
+}
+
+.vid-box img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.vid-butn {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+
+.vid-butn img {
+}
+
+footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+footer h3 {
+  font-size: 25px;
+  line-height: 19px;
+  color: #040404;
+  font-weight: 700;
+  text-transform: capitalize;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+footer h3 img {
+  margin-right: 20px;
+  margin-top: 12px;
+}
+
+footer .col-md-4 h3:before {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: #fe0000;
+  position: absolute;
+  bottom: -6px;
+  left: 46px;
+}
+
+footer .col-md-4 p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #737373;
+}
+
+footer .col-md-2 {
+  padding-left: 40px;
+}
+
+footer .col-md-2 h3:before {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: #fe0000;
+  position: absolute;
+  bottom: -22px;
+}
+
+footer .col-md-2 ul {
+  padding-left: 0px;
+  list-style: none;
+}
+
+footer .col-md-2 li {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 43px;
+  color: #737373;
+  text-transform: capitalize;
+}
+
+.col-md-3.last h3:before {
+  bottom: -21px;
+  width: 43px;
+  left: 2px;
+}
+
+.footer-gallery {
+  display: flex;
+}
+
+.footer-gallery img {
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.row.foot-Rone {
+  background: #040404;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 60px;
+}
+
+.row.foot-Rone .col-md-4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul.ul-N li {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-left: 50px;
+}
+
+ul.ul-N {
+  padding-left: 0px;
+  list-style: none;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+ul.ul-Sicons {
+  padding-right: 0px;
+  list-style: none;
+  display: flex;
+  margin-bottom: 0px;
+}
+
+ul.ul-Sicons li {
+  margin-left: 15px;
+}
+
+ul.ul-Sicons li i {
+  width: 40px;
+  padding: 8px 0px;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: #fe0000;
+  text-align: center;
+  border-radius: 6px;
+}
+.row.twoS-two .figure {
+  position: relative;
+  display: block;
+}
+form.baner-form {
+  background-color: #ffffff;
+  width: 84%;
+  padding: 11px 15px;
+  border-radius: 8px;
+}
+
+form.baner-form input#email {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #737373;
+  padding: 13px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd9d9;
+  width: 80%;
+  margin-right: 10px;
+  position: relative;
+}
+
+form.baner-form input[type="submit"] {
+  font-size: 14px;
+  line-height: 16px;
+  background: #fe0000;
+  border-radius: 8px;
+  border: #fe0000;
+  padding: 12px 23px;
+  color: #ffffff;
+  text-transform: capitalize;
+}
+
+form.baner-form {
+  position: relative;
+}
+
+.ser-icon {
+  position: absolute;
+  top: 31%;
+  right: 26%;
 }

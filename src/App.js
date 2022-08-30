@@ -6,6 +6,7 @@ import Header from "./shared/components/inc/header";
 import Home from "./pages/home";
 import Search from "./pages/search";
 import PageNotFound from "./pages/404";
+import ProductInner from "./pages/product-inner";
 import Cart from "./pages/cart";
 import "./App.css";
 
@@ -18,7 +19,7 @@ const App = () => {
           <Route path="/" exact element={<Home />} />
           <Route path="/search/:term" exact element={<Search />} />
           <Route path="/products" exact element={<h1>Product Page</h1>} />
-          <Route path="/products/:pid" exact element={<h1>Product Page</h1>} />
+          <Route path="/products/:pid" exact element={<ProductInner />} />
           <Route path="/store" exact element={<h1>Product Page</h1>} />
           <Route path="/store/:sid" exact element={<h1>Product Page</h1>} />
           <Route path="/cart" exact element={<Cart />} />

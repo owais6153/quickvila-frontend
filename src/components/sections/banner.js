@@ -23,6 +23,18 @@ const Banner = () => {
               <br />
               quis vel.
             </p>
+            <form className="baner-form">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your full address"
+              />
+              <input type="submit" value="search" />
+              <div className="ser-icon">
+                <img src={homeUrl("images/Vectory (1).png")} />
+              </div>
+            </form>
           </Col>
         </Row>
       </Container>
