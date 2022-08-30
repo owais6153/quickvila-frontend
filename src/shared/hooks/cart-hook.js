@@ -15,25 +15,27 @@ const cartReducer = (state, action) => {
         (product) => product.id === action.product.id
       );
 
+      const qty = (action.product.qty) ? action.product.qty : 1;
       if (inCart) {
         return {
           ...state,
-          products: state.products.map((product) =>
-            product.id === action.product.id
+          products: state.products.map((product) =>{
+            let pqty = (product.qty) ? action.product.qty : 1;
+            return (product.id === action.product.id
               ? {
                   ...product,
-                  qty: product.qty + 1,
+                  qty: pqty + 1,
                 }
-              : product
-          ),
-          count: state.count + action.product.qty,
-          total: state.total + action.product.qty * action.product.price,
+              : product)
+              }),
+          count: state.count + qty,
+          total: state.total + qty * action.product.price,
         };
       } else {
         return {
           ...state,
-          count: state.count + action.product.qty,
-          total: state.total + action.product.qty * action.product.price,
+          count: state.count + qty,
+          total: state.total + qty * action.product.price,
           products: [...state.products, action.product],
         };
       }
@@ -73,7 +75,7 @@ export const useCart = () => {
   const addToCart = useCallback((product) => {
     dispatch({
       type: "ADD_TO_CART",
-      product: { name: "New Shoes", price: 10, qty: 1, id: 3 },
+      product: product,
     });
   }, []);
 
