@@ -336,10 +336,29 @@ const Home = () => {
                   Egestas nunc tempor gravida velit.”
                 </p>
                 <div className="testimonial-figure">
-                  <img src={homeUrl("images/Ellipse 5.png")} />
+                  <img src={homeUrl("images/Image.png")} />
                   <div className="T-fig-ctn">
-                    <h3>Mike Taylor</h3>
-                    <h5></h5>
+                    <h4>Mike Taylor</h4>
+                    <h5>Lorem ipsum dolor</h5>
+                    <img src={homeUrl("images/Vector (1).png")} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="testimonial-box">
+                <p>
+                  “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+                  libero cras quis eu pretium tincidunt. Odio eget felis morbi
+                  tristique auctor porttitor orci tempor gravida pellentesque.
+                  Egestas nunc tempor gravida velit.”
+                </p>
+                <div className="testimonial-figure">
+                  <img src={homeUrl("images/Image.png")} />
+                  <div className="T-fig-ctn">
+                    <h4>Mike Taylor</h4>
+                    <h5>Lorem ipsum dolor</h5>
+                    <img src={homeUrl("images/Vector (1).png")} />
                   </div>
                 </div>
               </div>
@@ -347,6 +366,103 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section className="homesec-six">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="vid-box">
+                <img src={homeUrl("images/Rectangle 10.png")} />
+                <div className="vid-butn">
+                  <img src={homeUrl("images/Group 16.png")} />
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="vid-box">
+                <img src={homeUrl("images/Rectangle 10.png")} />
+                <div className="vid-butn">
+                  <img src={homeUrl("images/Group 16.png")} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div className="container-fluid">
+          <div className="row foot-Rone">
+            <div className="col-md-4">
+              <img src={homeUrl("images/Trikro-White 1.png")} />
+            </div>
+            <div className="col-md-4">
+              <ul className="ul-N">
+                <li>Returns</li>
+                <li>Privacy</li>
+                <li>FAQs</li>
+              </ul>
+            </div>
+            <div className="col-md-4">
+              <ul className="ul-Sicons">
+                <li>
+                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <i class="fa fa-youtube-square" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <i class="fa fa-pinterest-square" aria-hidden="true"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3">
+                <h3>
+                  <img src={homeUrl("images/Vecto.png")} />
+                  Signup For Newsletter
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Lectus integer fusce turpis vel tortor ornare.
+                </p>
+              </div>
+              <div className="col-md-2">
+                <h3>About Us</h3>
+                <ul>
+                  <li>our story</li>
+                  <li>our team</li>
+                  <li>blogs</li>
+                </ul>
+              </div>
+              <div className="col-md-2">
+                <h3>help</h3>
+                <ul>
+                  <li>FAQs</li>
+                  <li>feadback</li>
+                </ul>
+              </div>
+              <div className="col-md-2">
+                <h3>privacy</h3>
+                <ul>
+                  <li>term of use</li>
+                  <li>privacy and security</li>
+                </ul>
+              </div>
+              <div className="col-md-3 last">
+                <h3>gallery</h3>
+                <div className="footer-gallery">
+                  <img src={homeUrl("images/Rectangle 24.png")} />
+                  <img src={homeUrl("images/Rectangle 25.png")} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </StaticPage>
   );
 };
