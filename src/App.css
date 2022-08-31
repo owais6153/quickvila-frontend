@@ -13,6 +13,27 @@
   font-size: 14px;
   line-height: 16px;
 }
+.form-group {
+  margin-bottom: 10px;
+}
+.text-right {
+  text-align: right;
+}
+.form-group p.error-text {
+  color: #fe0000;
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+.modal 
+.btn-group {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.btn-group button {
+    padding: 20px 20px;
+    font-size: 21px;
+}
 .bg-primary,
 .btn-primary,
 .theme-primary {
@@ -215,7 +236,9 @@ section.home-sec-two {
   left: 250px;
   top: 20px;
 }
-
+.wishlist-icon img{
+  cursor: pointer;
+}
 .ctn-p {
   padding-top: 20px;
 }

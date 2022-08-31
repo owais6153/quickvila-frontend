@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
-import { apiUrl, homeUrl } from "../shared/helper";
+import { apiUrl } from "../shared/helper";
 import StaticPage from "../shared/components/staticpages";
 import Banner from "../components/sections/banner";
 import StoreSlider from "../components/sections/store-slider";
@@ -10,7 +10,7 @@ import Testimonials from "../components/sections/testimonials";
 import Videos from "../components/sections/videos";
 const Home = () => {
   const [products, setProducts] = useState();
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { sendRequest } = useHttpClient();
 
   const getData = () => {
     const fetchData = async () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { validate } from "../../util/validation";
 const inputReducer = (state, action) => {
   switch (action.type) {
@@ -80,7 +80,7 @@ const Input = (props) => {
           onBlur={touchHandler}
           className={`form-control ${props.className || false} ${
             !inputState.isValid &&
-            props.type != "search" &&
+            props.type !== "search" &&
             inputState.isTouched &&
             "form-control--invalid"
           }`}
@@ -91,7 +91,7 @@ const Input = (props) => {
         />
         {!inputState.isValid &&
           inputState.isTouched &&
-          props.type != "search" && (
+          props.type !== "search" && (
             <p className="error-text">{props.errorText}</p>
           )}
       </React.Fragment>

@@ -2,11 +2,17 @@ import { AppContext } from "../../shared/context/app-context";
 import { useContext } from "react";
 
 const AddToCartButton = (props) => {
-    const {addToCart} = useContext(AppContext);
+    const {addToCart, isLogin, toggleLoginModal} = useContext(AppContext);
 
-    const onClickHandler = () => {
-        addToCart(props.product);
-    }
+    const onClickHandler = (e) => {
+        e.stopPropagation();  
+        e.preventDefault()
+        if(!isLogin){
+            toggleLoginModal();
+        }else{
+            addToCart(props.product);
+        }
+      }
     return (
         <button className="btn btn-primary" onClick={onClickHandler}>Add To Cart</button>
     );

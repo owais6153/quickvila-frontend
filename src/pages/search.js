@@ -8,7 +8,7 @@ const Search = () => {
 
   const [stores, setStores] = useState();
   const [products, setProducts] = useState();
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
   useEffect(() => {
     const fetchPlaces = async () => {
       try {

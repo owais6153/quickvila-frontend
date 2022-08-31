@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
 class StaticPage extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   componentDidMount() {
     if (this.props.onPageLoad) {
       this.props.onPageLoad(false);

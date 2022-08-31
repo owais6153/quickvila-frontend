@@ -10,12 +10,12 @@ import Icon from "../font-awesome-icon";
 import Loader from "../loader";
 import SearchForm from "../../../components/forms/search-form";
 import HeaderCartDropdown from "./header-cart-dropdown";
+
 import "./header.css";
 const Header = (props) => {
-  const { isLoading, setIsLoading } = useLoading(true);
-  const { cart } = useContext(AppContext);
+  const { isLoading } = useLoading(true);
+  const { cart, isLogin, toggleLoginModal } = useContext(AppContext);
   const [dropdown, setDropdown] = useState(false);
-
   const cartToggler = () => {
     setDropdown(!dropdown);
   };
@@ -42,9 +42,10 @@ const Header = (props) => {
         </Col>
         <Col md={1}></Col>
         <Col md={2} className="header-links">
-          <Link to="/cart">
+          {isLogin ? <Link to="/cart">
             <Icon url={homeUrl("images/account.png")}></Icon>
-          </Link>
+          </Link> : <span onClick={toggleLoginModal}><Icon url={homeUrl("images/account.png")} /></span>}
+
           <Link to="/cart">
             <Icon url={homeUrl("images/Vector.png")}></Icon>
           </Link>

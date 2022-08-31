@@ -6,7 +6,7 @@ const Footer = () => {
     <Container fluid>
       <Row className="foot-Rone">
         <Col md={4}>
-          <img src={homeUrl("images/Trikro-White 1.png")} />
+          <img src={homeUrl("images/Trikro-White 1.png")} alt="Trikaro Logo" />
         </Col>
         <Col md={4}>
           <ul className="ul-N">
@@ -36,7 +36,7 @@ const Footer = () => {
         <Row>
           <Col md={4}>
             <h3>
-              <img src={homeUrl("images/Vecto.png")} />
+              <img src={homeUrl("images/Vecto.png")} alt="Newsletter Icon"/>
               Signup For Newsletter
             </h3>
             <p>
@@ -69,8 +69,8 @@ const Footer = () => {
           <Col md={2} className="last">
             <h3>gallery</h3>
             <div className="footer-gallery">
-              <img src={homeUrl("images/Rectangle 24.png")} />
-              <img src={homeUrl("images/Rectangle 25.png")} />
+              <img src={homeUrl("images/Rectangle 24.png")} alt="gallery-1" />
+              <img src={homeUrl("images/Rectangle 25.png")} alt="gallery-2"/>
             </div>
           </Col>
         </Row>

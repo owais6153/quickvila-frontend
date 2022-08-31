@@ -3,7 +3,7 @@ import StaticPage from "../shared/components/staticpages";
 import { useLoading } from "../shared/hooks/loader-hook";
 
 const PageNotFound = () => {
-  const { isLoading, setIsLoading } = useLoading(true);
+  const { setIsLoading } = useLoading(true);
   const onPageLoad = (value) => {
     setIsLoading(value);
   };

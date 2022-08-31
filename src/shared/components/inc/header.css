@@ -29,6 +29,9 @@
 .header-links {
   justify-content: space-between;
 }
+.header-links i{
+  cursor: pointer;
+}
 .header-btn-group .btn {
   height: unset;
   padding: 10px 20px;
@@ -71,21 +74,16 @@ span.cart-count {
   overflow-y: scroll;
 }
 
-@keyframes cartDropdown {
-  from {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
+
 .cart-dropdown .cart-products img {
   width: 50px;
   height: 50px;
 }
-
+.cart-products h3 {
+  font-size: 17px;
+  margin-bottom: 0px;
+  font-weight: 600;
+}
 .cart-dropdown .cart-products .cart-product {
   display: flex;
   flex-wrap: wrap;
@@ -107,4 +105,15 @@ span.cart-count {
 }
 .cart-dropdown .cart-products .cart-product p .price {
   color: #fe0000;
+  margin-right: 10px;
+}
+@keyframes cartDropdown {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }

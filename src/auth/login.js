@@ -9,8 +9,8 @@ import {
 } from "../shared/util/validation";
 
 const LoginForm = () => {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [formState, inputHandler, setFormData] = useForm(
+  const {  sendRequest } = useHttpClient();
+  const [formState, inputHandler] = useForm(
     {
       email: {
         value: "",
@@ -42,7 +42,11 @@ const LoginForm = () => {
 
   return (
     <form id="loginForm" onSubmit={submitHandler} className="row">
-      <div className="col-md-6">
+      <div className="col-md-10" style={{margin: 'auto', padding: '40px 0px'}}>
+        <div className="btn-group">
+          <button className="btn btn-primary">Login</button>
+          <button className="btn">Signup</button>
+        </div>
         <div className="form-group">
           <Input
             type="text"
@@ -65,10 +69,14 @@ const LoginForm = () => {
             errorText="Please enter a valid password, at least 6 characters."
           />
         </div>
+        
+        <div className="text-right" style={{marginBottom: '30px'}}>
+        <a>Forget Password?</a>
+        </div>
         <div className="form-group">
           <Button
             type="submit"
-            className="btn-info"
+            className="btn-primary w-100"
             text="Login"
             disable={formState.isValid}
           />
