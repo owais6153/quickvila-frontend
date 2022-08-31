@@ -1,5 +1,12 @@
 #header {
   padding: 10px 0;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+  border: 1px solid whitesmoke;
+  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.05));
 }
 #header .container .row > div {
   display: flex;
@@ -26,10 +33,10 @@
   height: unset;
   padding: 10px 20px;
 }
-.header-links span {
+.header-links .cart-dropdown {
   position: relative;
 }
-.cart-icon{
+.cart-icon {
   cursor: pointer;
 }
 span.cart-count {
@@ -44,54 +51,60 @@ span.cart-count {
   text-align: center;
   border-radius: 100%;
 }
-span.cart-dropdown .cart-products {
-  width: 300px;
+
+.header-cart {
+  width: 350px;
+  animation: cartDropdown 0.3s forwards;
   position: absolute;
   right: 0;
   background: #fff;
   border: 1px solid whitesmoke;
+  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.05));
   padding: 20px;
   transition: 0.3s;
-  max-height: 300px;
-  animation: cartDropdown .3s forwards;
-  overflow-y: scroll;
   opacity: 0;
   top: 40px;
-  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.05));
+  transform: translateX(60px);
+}
+.cart-dropdown .cart-products {
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
-@keyframes cartDropdown{
-  from{  
+@keyframes cartDropdown {
+  from {
     opacity: 0;
+    transform: translateX(60px);
   }
-  to{
+  to {
     opacity: 1;
+    transform: translateX(0px);
   }
 }
-span.cart-dropdown .cart-products img {
+.cart-dropdown .cart-products img {
   width: 50px;
   height: 50px;
 }
 
-span.cart-dropdown .cart-products .cart-product {
+.cart-dropdown .cart-products .cart-product {
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 10px;
 }
 
-span.cart-dropdown .cart-products .cart-product > div {
+.cart-dropdown .cart-products .cart-product > div {
   padding-left: 10px;
 }
 
-span.cart-dropdown .cart-products .cart-product > div h3 {
+.cart-dropdown .cart-products .cart-product > div h3 {
   font-size: 19px;
   margin-bottom: 0px;
 }
 
-span.cart-dropdown .cart-products .cart-product p {
+.cart-dropdown .cart-products .cart-product p {
   font-size: 16px;
   margin-bottom: 15px;
 }
-span.cart-dropdown .cart-products .cart-product p .price {
+.cart-dropdown .cart-products .cart-product p .price {
   color: #fe0000;
 }

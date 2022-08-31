@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import { AppProvider } from "./shared/context/app-context";
 import { LoadingProvider } from "./shared/context/loader-context";
 import Header from "./shared/components/inc/header";
+import Footer from "./shared/components/inc/footer";
+
 import Home from "./pages/home";
 import Search from "./pages/search";
 import PageNotFound from "./pages/404";
@@ -31,6 +33,7 @@ const App = () => {
           {/* This should be last route of the app */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <Footer />
       </AppProvider>
     </LoadingProvider>
   );

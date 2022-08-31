@@ -1,4 +1,8 @@
 html,
+body {
+  overflow-x: hidden;
+}
+html,
 body,
 h1,
 h2,
@@ -12,6 +16,9 @@ p,
 div,
 section {
   font-family: "Gilroy";
+}
+a {
+  text-decoration: none;
 }
 /* width */
 ::-webkit-scrollbar {

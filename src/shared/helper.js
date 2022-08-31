@@ -7,3 +7,6 @@ export const apiUrl = (path = "") => {
 export const appName = () => {
   return `${process.env.REACT_APP_MY_APP}`;
 };
+export const Currency = () => {
+  return <span>$</span>;
+};

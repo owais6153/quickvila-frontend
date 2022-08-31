@@ -1,8 +1,7 @@
-import  React from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
 import { AppContext } from "../../context/app-context";
 import { useLoading } from "../../hooks/loader-hook";
 import { homeUrl } from "../../helper";
@@ -10,6 +9,7 @@ import Logo from "./logo";
 import Icon from "../font-awesome-icon";
 import Loader from "../loader";
 import SearchForm from "../../../components/forms/search-form";
+import HeaderCartDropdown from "./header-cart-dropdown";
 import "./header.css";
 const Header = (props) => {
   const { isLoading, setIsLoading } = useLoading(true);
@@ -18,7 +18,7 @@ const Header = (props) => {
 
   const cartToggler = () => {
     setDropdown(!dropdown);
-  }
+  };
 
   const content = (
     <Container>
@@ -48,32 +48,13 @@ const Header = (props) => {
           <Link to="/cart">
             <Icon url={homeUrl("images/Vector.png")}></Icon>
           </Link>
-          <span className="cart-dropdown" >
+          <div className="cart-dropdown">
             <div className="cart-icon" onClick={cartToggler}>
-            <Icon url={homeUrl("images/cart.png")}></Icon>
-            <span className="cart-count"> {cart.count}</span>
-
+              <Icon url={homeUrl("images/cart.png")}></Icon>
+              <span className="cart-count"> {cart.count}</span>
             </div>
-            {dropdown && <div className="cart-products">
-              {cart.products && cart.products.map((product)=>{
-               return (
-               <div className="cart-product" key={product.id}>
-                    <img src={product.image} alt={product.name} />
-                    <div>
-                      <h3>{product.name}</h3>
-                      <p ><span className="price">{product.price}</span> Qty: {product.qty}</p>                      
-                    </div>
-                </div>
-                )
-              }) }
-              {cart.products.length > 0 && <div>
-              <button className="btn btn-primary">Cart</button>
-              <button className="btn btn-primary">Checkout</button>
-              </div>}   
-              {cart.products.length == 0 && <h3>No Products In Cart</h3>}
-            </div>}
-            
-          </span>
+            {dropdown && <HeaderCartDropdown cart={cart} />}
+          </div>
         </Col>
       </Row>
     </Container>
