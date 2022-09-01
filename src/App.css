@@ -7,11 +7,21 @@
   background: #f3f3f3;
   color: #737373;
   outline: none;
+  box-shadow: none;
   padding: 15px 20px;
   font-family: "Gilroy";
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
+}
+.form-control:focus ,
+.btn-primary:focus,
+.btn:focus{
+  outline: none;
+  box-shadow: none;
+}
+.btn-primary:focus{
+  background-color: #fe0000;
 }
 .form-group {
   margin-bottom: 10px;

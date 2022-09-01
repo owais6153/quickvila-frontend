@@ -46,9 +46,11 @@ const Header = (props) => {
             <Icon url={homeUrl("images/account.png")}></Icon>
           </Link> : <span onClick={toggleLoginModal}><Icon url={homeUrl("images/account.png")} /></span>}
 
-          <Link to="/cart">
-            <Icon url={homeUrl("images/Vector.png")}></Icon>
-          </Link>
+          {isLogin ? <Link to="/cart">
+          <Icon url={homeUrl("images/Vector.png")}></Icon>
+          </Link> : <span onClick={toggleLoginModal}><Icon url={homeUrl("images/Vector.png")} /></span>}
+
+    
           <div className="cart-dropdown">
             <div className="cart-icon" onClick={cartToggler}>
               <Icon url={homeUrl("images/cart.png")}></Icon>
