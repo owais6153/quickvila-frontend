@@ -3,6 +3,12 @@ import { useState, useCallback, useRef, useEffect } from "react";
 
 export const useHttpClient = () => {
   const [error, setError] = useState();
+
+  const setTheErrors = (val) => {
+    setError(() => {
+      return val;
+    });
+  };
   const { isLoading, setIsLoading } = useLoading(true);
 
   const activeHttpRequests = useRef([]);
@@ -12,7 +18,7 @@ export const useHttpClient = () => {
       setIsLoading(true);
       const httpAbortCtrl = new AbortController();
       activeHttpRequests.current.push(httpAbortCtrl);
-
+      var responseData;
       try {
         const response = await fetch(url, {
           method,
@@ -21,22 +27,25 @@ export const useHttpClient = () => {
           signal: httpAbortCtrl.signal,
         });
 
-        const responseData = await response.json();
+        responseData = await response.json();
 
         activeHttpRequests.current = activeHttpRequests.current.filter(
           (reqCtrl) => reqCtrl !== httpAbortCtrl
         );
 
         if (!response.ok) {
-          throw new Error(responseData.message);
+          throw new Error(response.message);
         }
 
         setIsLoading(false);
         return responseData;
       } catch (err) {
-        setError(err.message);
+        if (responseData.errors && responseData.status != 200) {
+          setTheErrors(responseData.errors);
+        } else {
+          setTheErrors(err.message);
+        }
         setIsLoading(false);
-        throw err;
       }
     },
     []

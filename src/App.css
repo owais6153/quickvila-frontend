@@ -14,13 +14,16 @@
   font-size: 14px;
   line-height: 16px;
 }
-.form-control:focus ,
+.form-control--invalid {
+  border: solid 1px #fe0000;
+}
+.form-control:focus,
 .btn-primary:focus,
-.btn:focus{
+.btn:focus {
   outline: none;
   box-shadow: none;
 }
-.btn-primary:focus{
+.btn-primary:focus {
   background-color: #fe0000;
 }
 .form-group {
@@ -34,15 +37,14 @@
   font-size: 12px;
   margin-bottom: 0px;
 }
-.modal 
-.btn-group {
-    width: 100%;
-    margin-bottom: 30px;
+.modal .btn-group {
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .btn-group button {
-    padding: 20px 20px;
-    font-size: 21px;
+  padding: 20px 20px;
+  font-size: 21px;
 }
 .bg-primary,
 .btn-primary,
@@ -246,7 +248,7 @@ section.home-sec-two {
   left: 250px;
   top: 20px;
 }
-.wishlist-icon img{
+.wishlist-icon img {
   cursor: pointer;
 }
 .ctn-p {

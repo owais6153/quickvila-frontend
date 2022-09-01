@@ -7,3 +7,7 @@ Checkout Process - 2 day
 Scrapper - 1day
 Newsletter 1-day
 Send Notifications - 1day
+
+---Rider - 3 days
+Responsive
+Testing

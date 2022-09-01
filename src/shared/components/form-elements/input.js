@@ -7,7 +7,7 @@ const inputReducer = (state, action) => {
         ...state,
         value: action.val,
         isValid: !action.validators
-          ? true
+          ? { isValid: true, errors: [] }
           : validate(action.val, action.validators),
       };
     case "TOUCH": {
@@ -56,8 +56,8 @@ const Input = (props) => {
           onChange={changeHandler}
           onBlur={touchHandler}
           placeholder={props.placeholder}
-          className={`form-control ${props.className || false} ${
-            !inputState.isValid &&
+          className={`form-control ${props.className || undefined} ${
+            !inputState.isValid.isValid &&
             inputState.isTouched &&
             "form-control--invalid"
           }`}
@@ -66,9 +66,14 @@ const Input = (props) => {
           id={props.id}
           value={inputState.value}
         />
-        {!inputState.isValid && inputState.isTouched && (
-          <p className="error-text">{props.errorText}</p>
-        )}
+        {!inputState.isValid.isValid &&
+          inputState.isTouched &&
+          inputState.isValid.errors &&
+          inputState.isValid.errors.map((error, index) => {
+            <p className="error-text" key={index}>
+              {error}
+            </p>;
+          })}
       </React.Fragment>
     );
   } else {
@@ -78,8 +83,8 @@ const Input = (props) => {
           type={props.type}
           onChange={changeHandler}
           onBlur={touchHandler}
-          className={`form-control ${props.className || false} ${
-            !inputState.isValid &&
+          className={`form-control ${props.className || undefined} ${
+            !inputState.isValid.isValid &&
             props.type !== "search" &&
             inputState.isTouched &&
             "form-control--invalid"
@@ -89,11 +94,16 @@ const Input = (props) => {
           name={props.name}
           id={props.id}
         />
-        {!inputState.isValid &&
+        {!inputState.isValid.isValid &&
           inputState.isTouched &&
-          props.type !== "search" && (
-            <p className="error-text">{props.errorText}</p>
-          )}
+          inputState.isValid.errors &&
+          inputState.isValid.errors.map((error, index) => {
+            return (
+              <p className="error-text" key={index}>
+                {error}
+              </p>
+            );
+          })}
       </React.Fragment>
     );
   }

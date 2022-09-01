@@ -1,12 +1,14 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../hooks/cart-hook";
+import { useAuth } from "../hooks/auth-hook";
 import ModalPopup from "../components/modal";
 import LoginForm from "../../auth/login";
 export const AppContext = createContext({
   auth: {
     _token: "",
-    _user: {},
+    login: () => {},
+    logout: () => {},
   },
   isLogin: false,
   toggleLoginModal: () => {},
@@ -21,20 +23,22 @@ export const AppProvider = ({ children }) => {
     navigate(`/search/${value}`);
   };
   const [cart, addToCart] = useCart();
+  const { token, login, logout, userId } = useAuth();
 
-  const [loginModal, setLoginModal] = useState(false); 
+  const [loginModal, setLoginModal] = useState(false);
   const toggleLoginModal = () => {
     setLoginModal(!loginModal);
-  }
+  };
 
   return (
     <AppContext.Provider
       value={{
-        isLogin: false,
+        isLogin: !!token,
         toggleLoginModal,
         auth: {
-          _token: "",
-          _user: {},
+          _token: token,
+          login,
+          logout,
         },
         searchHandler,
         cart,
@@ -42,7 +46,12 @@ export const AppProvider = ({ children }) => {
       }}
     >
       {children}
-      <ModalPopup size="md" title="Login" show={loginModal} onHide={toggleLoginModal}>
+      <ModalPopup
+        size="md"
+        title="Login"
+        show={loginModal}
+        onHide={toggleLoginModal}
+      >
         <LoginForm />
       </ModalPopup>
     </AppContext.Provider>
