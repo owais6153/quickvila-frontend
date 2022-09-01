@@ -21,6 +21,9 @@ section {
 a {
   text-decoration: none;
 }
+#root {
+  min-height: 100vh;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

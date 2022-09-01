@@ -138,9 +138,11 @@ const LoginForm = () => {
             />
           </div>
         )}
-        <div className="text-right" style={{ marginBottom: "30px" }}>
-          <a>Forget Password?</a>
-        </div>
+        {isLoginMode && (
+          <div className="text-right" style={{ marginBottom: "30px" }}>
+            <a>Forget Password?</a>
+          </div>
+        )}
         <div className="form-group">
           <Button
             type="submit"
