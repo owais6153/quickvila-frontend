@@ -194,14 +194,11 @@ section.home-sec-one .col-md-6:nth-child(2) a:nth-child(1) {
   color: #000000;
 }
 
-.col-md-4 {
-}
-
 .c-box .ctn p:nth-child(1) {
   margin-right: auto;
 }
 
-.row.RRtwo .brand {
+.c-box .brand {
   position: absolute;
   top: 157px;
   left: 50%;
@@ -211,7 +208,7 @@ section.home-sec-one .col-md-6:nth-child(2) a:nth-child(1) {
   transform: translateX(-50%);
 }
 
-.row.RRtwo .brand img {
+.c-box .brand img {
   object-fit: cover;
   border-radius: 100px;
   background: #ffffff;
@@ -230,9 +227,6 @@ section.home-sec-one .col-md-6:nth-child(2) a:nth-child(1) {
 
 .row.twoS-two {
   margin-top: 60px;
-}
-
-.row.twoS-two .figure {
 }
 
 .row.twoS-two .figure img {

@@ -44,9 +44,17 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #ff0000;
 }
-.modal{
+.modal {
   z-index: 998;
 }
-.modal-backdrop{
+.modal-backdrop {
   z-index: 997;
+}
+.react-multi-carousel-list.container {
+  overflow: visible;
+  width: 200%;
+  padding-top: 40px;
+}
+.carouselItem {
+  padding-right: 30px;
 }

@@ -6,7 +6,7 @@ import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AppContext } from "../shared/context/app-context";
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE } from "../shared/util/validation";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const { sendRequest, error, clearError } = useHttpClient();
@@ -35,7 +35,6 @@ const LoginForm = () => {
     setLoginMode(false);
   };
 
-  
   const submitHandler = async (event) => {
     event.preventDefault();
     if (!formState.isValid) {
@@ -56,23 +55,21 @@ const LoginForm = () => {
             "Content-Type": "application/json",
           }
         );
-
+        if (responseData.status === 200) {
+          auth.login(responseData.userId, responseData.token);
+          toast.success("Successfully Login", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       } catch (err) {}
-      if (responseData.status === 200) {
-        auth.login(responseData.userId, responseData.token);
-        toast.success('Successfully Login', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-      });
-      }
     }
   };
-
 
   return (
     <form id="loginForm" onSubmit={submitHandler} className="row">
