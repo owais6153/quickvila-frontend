@@ -1,6 +1,7 @@
 import { AppContext } from "../../shared/context/app-context";
 import { useContext } from "react";
 import { homeUrl } from "../../shared/helper";
+import { toast } from 'react-toastify';
 
 const AddToWishlistButton = (props) => {
     const {isLogin, toggleLoginModal} = useContext(AppContext);
@@ -9,6 +10,17 @@ const AddToWishlistButton = (props) => {
       e.preventDefault()
       if(!isLogin){
         toggleLoginModal();
+      }
+      else{
+        toast.success(`Product added to Wishlist!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
       }
     }
     return (       

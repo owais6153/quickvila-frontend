@@ -1,8 +1,17 @@
+import React from "react";
 import { createPortal } from "react-dom";
 import { homeUrl } from "../../helper";
 import { Container, Row, Col } from "react-bootstrap";
+import { AppContext } from "../../context/app-context";
+import { useContext } from "react";
+import ModalPopup from "../modal.js";
+import LoginForm from "../../../auth/login";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const Footer = () => {
+  const {toggleLoginModal, loginModal, isLogin} = useContext(AppContext);
   const content = (
+  <React.Fragment>
     <Container fluid>
       <Row className="foot-Rone">
         <Col md={4}>
@@ -76,6 +85,27 @@ const Footer = () => {
         </Row>
       </Container>
     </Container>
+    {!isLogin && 
+    <ModalPopup
+      size="md"
+      title="Login"
+      show={loginModal}
+      onHide={toggleLoginModal}
+      >
+        <LoginForm />
+      </ModalPopup>}
+      <ToastContainer 
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover/>
+    </React.Fragment>
+    
   );
   return createPortal(content, document.getElementById("footer"));
 };

@@ -1,10 +1,30 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { homeUrl } from "../../shared/helper";
+import { toast } from 'react-toastify';
 const Banner = () => {
   const BackgroundStyle = {
     backgroundImage: `url('${homeUrl("images/Banner.png")}')`,
     minHeight: "620px",
   };
+  const getUserLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        console.log(position);
+      },
+      function(error) {
+        toast.error(`You have rejected your location permisssion`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+       
+      }
+    );
+  }
   return (
     <section style={BackgroundStyle} className="center">
       <Container>
@@ -31,9 +51,9 @@ const Banner = () => {
                 placeholder="Enter your full address"
               />
               <input type="submit" value="search" />
-              <div className="ser-icon">
+              {"geolocation" in navigator && <div className="ser-icon" onClick={getUserLocation}>
                 <img src={homeUrl("images/Vectory (1).png")} />
-              </div>
+              </div>}
             </form>
           </Col>
         </Row>

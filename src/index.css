@@ -44,3 +44,9 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #ff0000;
 }
+.modal{
+  z-index: 998;
+}
+.modal-backdrop{
+  z-index: 997;
+}

@@ -1,21 +1,21 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { AppProvider } from "./shared/context/app-context";
-import { LoadingProvider } from "./shared/context/loader-context";
 import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
-
+import { useLoading } from "./shared/hooks/loader-hook";
 import Home from "./pages/home";
 import Search from "./pages/search";
 import PageNotFound from "./pages/404";
 import ProductInner from "./pages/product-inner";
 import Cart from "./pages/cart";
+import Loader from "./shared/components/loader";
 import "./App.css";
 
 const App = () => {
+  const { isLoading } = useLoading(true);
   return (
-    <LoadingProvider>
-      <AppProvider>
+      <React.Fragment>        
+        {isLoading && <Loader />}
         <Header />
         <Routes>
           <Route path="/" exact element={<Home />} />
@@ -34,8 +34,7 @@ const App = () => {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
-      </AppProvider>
-    </LoadingProvider>
+     </React.Fragment>
   );
 };
 

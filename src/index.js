@@ -4,12 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-
+import { AppProvider } from "./shared/context/app-context";
+import { LoadingProvider } from "./shared/context/loader-context";
+import "react-multi-carousel/lib/styles.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <LoadingProvider>
+      <AppProvider>
       <App />
+      </AppProvider>
+    </LoadingProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

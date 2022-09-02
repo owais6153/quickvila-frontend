@@ -3,17 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../context/app-context";
-import { useLoading } from "../../hooks/loader-hook";
 import { homeUrl } from "../../helper";
 import Logo from "./logo";
 import Icon from "../font-awesome-icon";
-import Loader from "../loader";
 import SearchForm from "../../../components/forms/search-form";
 import HeaderCartDropdown from "./header-cart-dropdown";
 
 import "./header.css";
 const Header = (props) => {
-  const { isLoading } = useLoading(true);
   const { cart, isLogin, toggleLoginModal } = useContext(AppContext);
   const [dropdown, setDropdown] = useState(false);
   const cartToggler = () => {
@@ -22,7 +19,6 @@ const Header = (props) => {
 
   const content = (
     <Container>
-      {isLoading && <Loader />}
       <Row>
         <Col md={1} className="header-brand">
           <Link to="/">
