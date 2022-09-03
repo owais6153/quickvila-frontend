@@ -25,12 +25,12 @@ const Home = () => {
   return (
     <StaticPage getData={getData}>
       <Banner />
-      <StoreSlider />
+      <StoreSlider title="All Stores" url="#"/>
       {products && (
-        <ProductSlider products={products} title="Top Selling Products" />
+        <ProductSlider products={products} title="Top Selling Products" url="#"/>
       )}
       {products && (
-        <ProductSlider products={products} title="Featured Products" />
+        <ProductSlider products={products} title="Featured Products" url="#"/>
       )}
       <AdvBanners />
       <Testimonials />

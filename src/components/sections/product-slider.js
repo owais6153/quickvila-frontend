@@ -1,36 +1,75 @@
-import { Container, Row, Col } from "react-bootstrap";
 import ProductItem from "../product/item";
-import Icon from "../../shared/components/font-awesome-icon";
+import CarouselButtonGroup from "../../shared/components/carousel-button-group";
+import HeadingRow from "../../shared/components/heading-row";
+import Carousel from "react-multi-carousel";
 
 const ProductSlider = (props) => {
   return (
-    <section className="home-sec-two">
-      <Container>
-        <Row className="RRone">
-          <Col md={6}>
-            <h3>{props.title ? props.title : "All Products"}</h3>
-          </Col>
-          <Col md={6}>
-            <a href="#">See All</a>
-            <a href="#">
-              <Icon icon="fa fa-chevron-left" />
-            </a>
-            <a href="#">
-              <Icon icon="fa fa-chevron-right" />
-            </a>
-          </Col>
-        </Row>
-        <Row className="twoS-two">
+    <section className="home-sec-two container slider-section">
+        <HeadingRow title={props.title} url={props.url}/>
+        <Carousel
+        customButtonGroup={<CarouselButtonGroup/>}
+        additionalTransfrom={0}
+        arrows={false}
+        partialVisible={true}
+        autoPlaySpeed={3000}
+        centerMode={false}
+        className=""
+        containerClass="container"
+        dotListClass=""
+        draggable={false}
+        focusOnSelect={false}
+        infinite={false}
+        itemClass="carouselItem"
+        keyBoardControl
+        minimumTouchDrag={80}
+        pauseOnHover
+        renderArrowsWhenDisabled={true}
+        renderButtonGroupOutside={true}
+        renderDotsOutside={false}
+        responsive={{
+          desktop: {
+            breakpoint: {
+              max: 3000,
+              min: 1024,
+            },
+            items: 4,
+            partialVisibilityGutter: 30,
+          },
+          mobile: {
+            breakpoint: {
+              max: 464,
+              min: 0,
+            },
+            items: 1,
+            partialVisibilityGutter: 0,
+          },
+          tablet: {
+            breakpoint: {
+              max: 1024,
+              min: 464,
+            },
+            items: 2,
+            partialVisibilityGutter: 0,
+          },
+        }}
+        rewind={false}
+        rewindWithAnimation={false}
+        rtl={false}
+        shouldResetAutoplay
+        showDots={false}
+        sliderClass=""
+        slidesToSlide={0}
+        itemAriaLabel="Store Slider"
+        ariaLabel="Store Slider"
+      >
           {props.products &&
             props.products.map((product) => {
               return (
-                <Col key={product.id} md={3}>
                   <ProductItem key={product.id} product={product} />
-                </Col>
               );
             })}
-        </Row>
-      </Container>
+      </Carousel>
     </section>
   );
 };

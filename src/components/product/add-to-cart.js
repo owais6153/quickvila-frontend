@@ -3,12 +3,12 @@ import { useContext } from "react";
 import { toast } from 'react-toastify';
 
 const AddToCartButton = (props) => {
-    const {addToCart, isLogin, toggleLoginModal} = useContext(AppContext);
+    const {addToCart, isLogin, toggleLoginModal, auth} = useContext(AppContext);
 
     const onClickHandler = (e) => {
         e.stopPropagation();  
         e.preventDefault()
-        if(!isLogin){
+        if(!isLogin || !auth.verified){
             toggleLoginModal();
         }else{
             addToCart(props.product);

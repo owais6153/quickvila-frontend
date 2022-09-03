@@ -8,6 +8,7 @@ export const AppContext = createContext({
     _token: "",
     login: () => {},
     logout: () => {},
+    verified: false,
   },
   isLogin: false,
   toggleLoginModal: () => {},
@@ -38,6 +39,7 @@ export const AppProvider = ({ children }) => {
         loginModal,
         auth: {
           _token: token,
+          verified: false,
           login,
           logout,
         },

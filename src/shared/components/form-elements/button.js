@@ -1,7 +1,7 @@
 const Button = (props) => {
   return (
-    <button {...props} className={`btn ${props.className}`} type={props.type}>
-      {props.children || props.text}
+    <button onClick={props.onClick} className={`btn ${props.className}`} type={props.type} disabled={props.disabled}>
+      {props.children ? props.children : props.text}
     </button>
   );
 };

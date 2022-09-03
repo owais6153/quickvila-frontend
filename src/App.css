@@ -98,9 +98,24 @@ section.home-sec-one {
   padding-top: 60px;
 }
 
-section.home-sec-one .col-md-6:nth-child(2) {
+.slider-section .col-md-6:nth-child(2) {
   display: flex;
   justify-content: flex-end;
+  padding-right: 61px;
+  padding-top: 14px;
+}
+.btn-crousel-group button {
+  background: no-repeat;
+  border-radius: 100%;
+  display: inline-flex;
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  color: #D9D9D9;
+  align-items: center;
+  border: solid 3px #D9D9D9;
+  outline: none;
+  box-shadow: none;
 }
 
 section.home-sec-one .col-md-6 h3 {
@@ -122,7 +137,16 @@ section.home-sec-one .col-md-6 h3:before {
 }
 
 .row.RRone {
-  border-bottom: 3px solid #f3f3f3;
+  position: relative;
+}
+.RRone.row::before {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: #f3f3f3;
+  position: absolute;
+  bottom: -2px;
+  margin: 0 12px;
 }
 
 section.home-sec-one .col-md-6:nth-child(2) a:nth-child(1) {
@@ -229,7 +253,7 @@ section.home-sec-one .col-md-6:nth-child(2) a:nth-child(1) {
   margin-top: 60px;
 }
 
-.row.twoS-two .figure img {
+.prd-cBox > img {
   width: 100%;
   object-fit: cover;
   height: 339px;
@@ -251,7 +275,7 @@ section.home-sec-two {
 .prd-cBox .wishlist-icon {
   position: absolute;
   z-index: 999;
-  left: 250px;
+  right: 20px;
   top: 20px;
 }
 .wishlist-icon img {
@@ -259,6 +283,7 @@ section.home-sec-two {
 }
 .ctn-p {
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .ctn-p h3 {
@@ -321,9 +346,6 @@ section.home-sec-two .col-md-6 h3:before {
   background: #fe0000;
 }
 
-section.home-sec-two .row.RRone {
-  border-bottom: 3px solid #f3f3f3;
-}
 
 section.home-sec-two .col-md-6:nth-child(2) a:nth-child(1) {
   font-style: normal;
@@ -357,9 +379,6 @@ section.home-sec-three .col-md-6 h3:before {
   background: #fe0000;
 }
 
-section.home-sec-three .row.RRone {
-  border-bottom: 3px solid #f3f3f3;
-}
 
 section.home-sec-three .col-md-6:nth-child(2) a:nth-child(1) {
   font-style: normal;
@@ -468,9 +487,7 @@ section.home-Sec-five .col-md-6 h3:before {
   background: #fe0000;
 }
 
-.row.RRone {
-  border-bottom: 3px solid #f3f3f3;
-}
+
 
 section.home-Sec-five .col-md-6:nth-child(2) a:nth-child(1) {
   font-style: normal;
@@ -546,9 +563,6 @@ section.home-Sec-five .col-md-6 {
   position: absolute;
   top: 45%;
   left: 45%;
-}
-
-.vid-butn img {
 }
 
 footer {
@@ -696,7 +710,7 @@ form.baner-form {
   border-radius: 8px;
 }
 
-form.baner-form input#email {
+form.baner-form input#address {
   font-style: normal;
   font-weight: 400;
   font-size: 12px;

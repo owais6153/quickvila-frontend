@@ -54,7 +54,16 @@ a {
   overflow: visible;
   width: 200%;
   padding-top: 40px;
+  margin: 0 -15px;
 }
 .carouselItem {
   padding-right: 30px;
+}
+.btn-crousel-group {
+  position: absolute;
+  top: 64px;
+  right: 0;
+}
+.slider-section {
+  position: relative;
 }

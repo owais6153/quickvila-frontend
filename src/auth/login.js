@@ -7,11 +7,12 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 import { AppContext } from "../shared/context/app-context";
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE } from "../shared/util/validation";
 import { toast } from "react-toastify";
+import { apiUrl } from "../shared/helper";
 
 const LoginForm = () => {
   const { sendRequest, error, clearError } = useHttpClient();
   const { auth } = useContext(AppContext);
-  const [formState, inputHandler] = useForm(
+  const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
         value: "",
@@ -28,10 +29,46 @@ const LoginForm = () => {
   const [isLoginMode, setLoginMode] = useState(true);
   const setModeLogin = () => {
     clearError();
+    setFormData(
+      {
+        email: {
+          value: "",
+          isValid: false,
+        },
+        password: {
+          value: "",
+          isValid: false,
+        },
+        name: undefined,
+        confirm_password: undefined
+      },
+      formState.inputs.email.isValid && formState.inputs.email
+    );
     setLoginMode(true);
   };
   const setSignupMode = () => {
     clearError();
+    setFormData(
+      {
+        email: {
+          value: "",
+          isValid: false,
+        },
+        password: {
+          value: "",
+          isValid: false,
+        },
+        name: {
+          value: "",
+          isValid: false,
+        },
+        confirm_password: {
+          value: "",
+          isValid: false,
+        },
+      },
+      false
+    );
     setLoginMode(false);
   };
 
@@ -40,17 +77,30 @@ const LoginForm = () => {
     if (!formState.isValid) {
       return;
     }
+    var url, data;
     if (isLoginMode) {
+      url = apiUrl('authenticate');
+      data =  JSON.stringify({
+        email: formState.inputs.email.value,
+        password: formState.inputs.password.value,
+      })
+    }
+    else{      
+      url = apiUrl('register');
+      data =  JSON.stringify({
+        email: formState.inputs.email.value,
+        password: formState.inputs.password.value,
+        confirm_password: formState.inputs.confirm_password.value,
+        name: formState.inputs.name.value,
+      })
+    }
       clearError();
       var responseData;
       try {
         responseData = await sendRequest(
-          `${process.env.REACT_APP_API_URL}authenticate`,
+          url,
           "POST",
-          JSON.stringify({
-            email: formState.inputs.email.value,
-            password: formState.inputs.password.value,
-          }),
+          data,
           {
             "Content-Type": "application/json",
           }
@@ -68,7 +118,6 @@ const LoginForm = () => {
           });
         }
       } catch (err) {}
-    }
   };
 
   return (
@@ -136,7 +185,7 @@ const LoginForm = () => {
           <div className="form-group">
             <Input
               type="password"
-              id="password"
+              id="confirm_password"
               name="confirm_password"
               placeholder="Confirm Password"
               onInput={inputHandler}
@@ -157,7 +206,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             className="btn-primary w-100"
-            text="Login"
+            text= {isLoginMode ? 'Login' : 'Signup'}
             disable={formState.isValid}
           />
         </div>

@@ -44,9 +44,9 @@ const Banner = () => {
             </p>
             <form className="baner-form">
               <input
-                type="email"
-                id="email"
-                name="email"
+                type="text"
+                id="address"
+                name="address"
                 placeholder="Enter your full address"
               />
               <input type="submit" value="search" />

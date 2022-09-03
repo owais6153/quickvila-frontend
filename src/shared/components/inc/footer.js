@@ -6,10 +6,11 @@ import { AppContext } from "../../context/app-context";
 import { useContext } from "react";
 import ModalPopup from "../modal.js";
 import LoginForm from "../../../auth/login";
+import Verify from "../../../auth/verify";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const Footer = () => {
-  const {toggleLoginModal, loginModal, isLogin} = useContext(AppContext);
+  const {toggleLoginModal, loginModal, isLogin, auth} = useContext(AppContext);
   const content = (
   <React.Fragment>
     <Container fluid>
@@ -94,6 +95,16 @@ const Footer = () => {
       >
         <LoginForm />
       </ModalPopup>}
+      {isLogin && !auth.verified && 
+    <ModalPopup
+      size="md"
+      title="Login"
+      show={loginModal}
+      onHide={toggleLoginModal}
+      >
+        <Verify />
+      </ModalPopup>}
+      
       <ToastContainer 
 position="top-right"
 autoClose={5000}

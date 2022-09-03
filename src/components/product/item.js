@@ -8,9 +8,7 @@ const ProductItem = ({ product }) => {
     <Link to={`/products/${product.id}`}>
       <div className="prd-cBox">
         <AddToWishlistButton/>
-        <div className="figure">
-          <img src={`${product.image}`} />
-        </div>
+          <img src={`${product.image}`} alt={product.name} className="w-100"/>
         <div className="ctn-p text-center">
           <h3>{product.name}</h3>
           <div className="innerctn ">
@@ -25,7 +23,6 @@ const ProductItem = ({ product }) => {
               </h5>
             )}
           </div>
-          <AddToCartButton product={product} />
         </div>
       </div>
     </Link>

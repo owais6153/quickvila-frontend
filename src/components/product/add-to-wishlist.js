@@ -4,11 +4,11 @@ import { homeUrl } from "../../shared/helper";
 import { toast } from 'react-toastify';
 
 const AddToWishlistButton = (props) => {
-    const {isLogin, toggleLoginModal} = useContext(AppContext);
+    const {isLogin, toggleLoginModal, auth} = useContext(AppContext);
     const onWishListHandler = (e) => {
       e.stopPropagation();  
       e.preventDefault()
-      if(!isLogin){
+      if(!isLogin || !auth.verified){
         toggleLoginModal();
       }
       else{

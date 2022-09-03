@@ -11,7 +11,7 @@ import HeaderCartDropdown from "./header-cart-dropdown";
 
 import "./header.css";
 const Header = (props) => {
-  const { cart, isLogin, toggleLoginModal } = useContext(AppContext);
+  const { cart, isLogin, toggleLoginModal,auth } = useContext(AppContext);
   const [dropdown, setDropdown] = useState(false);
   const cartToggler = () => {
     setDropdown(!dropdown);
@@ -38,7 +38,7 @@ const Header = (props) => {
         </Col>
         <Col md={1}></Col>
         <Col md={2} className="header-links">
-          {isLogin ? (
+          {isLogin && auth.verified ? (
             <Link to="/cart">
               <Icon url={homeUrl("images/account.png")}></Icon>
             </Link>
@@ -48,7 +48,7 @@ const Header = (props) => {
             </span>
           )}
 
-          {isLogin ? (
+          {isLogin && auth.verified ? (
             <Link to="/cart">
               <Icon url={homeUrl("images/Vector.png")}></Icon>
             </Link>

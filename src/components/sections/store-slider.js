@@ -1,45 +1,31 @@
-import { Container, Row, Col } from "react-bootstrap";
 import StoreItem from "../store/item";
-import Icon from "../../shared/components/font-awesome-icon";
 import Carousel from "react-multi-carousel";
+import HeadingRow from "../../shared/components/heading-row";
+import CarouselButtonGroup from "../../shared/components/carousel-button-group";
+
 const StoreSlider = (props) => {
   return (
-    <section className="home-sec-one">
-      <Container>
-        <Row className="RRone">
-          <Col md={6}>
-            <h3>All Stores</h3>
-          </Col>
-          <Col md={6}>
-            <a href="#">See All</a>
-            <a href="#">
-              <Icon icon="fa fa-chevron-left" />
-            </a>
-            <a href="#">
-              <Icon icon="fa fa-chevron-right" />
-            </a>
-          </Col>
-        </Row>
-      </Container>
-
+    <section className="home-sec-one slider-section container">
+      <HeadingRow title="All Stores" url="#"/>
       <Carousel
+        customButtonGroup={<CarouselButtonGroup/>}
         additionalTransfrom={0}
-        arrows
+        arrows={false}
         partialVisible={true}
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
         containerClass="container"
         dotListClass=""
-        draggable
+        draggable={false}
         focusOnSelect={false}
         infinite={false}
         itemClass="carouselItem"
         keyBoardControl
         minimumTouchDrag={80}
         pauseOnHover
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
+        renderArrowsWhenDisabled={true}
+        renderButtonGroupOutside={true}
         renderDotsOutside={false}
         responsive={{
           desktop: {
@@ -48,7 +34,7 @@ const StoreSlider = (props) => {
               min: 1024,
             },
             items: 3,
-            partialVisibilityGutter: 50,
+            partialVisibilityGutter: 30,
           },
           mobile: {
             breakpoint: {
