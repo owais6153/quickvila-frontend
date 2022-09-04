@@ -1,35 +1,15 @@
-import Input from "../shared/components/form-elements/input";
-import Button from "../shared/components/form-elements/button";
-const Verify = () => {    
-    const InputHandler= () => {
-
-    }
-    return(<form id="loginForm"  className="row">
+const Verify = () => {
+  return (
+    <form id="loginForm" className="row">
       <div
         className="col-md-10"
         style={{ margin: "auto", padding: "40px 0px" }}
       >
-        <h3>Please Verfiy Your Account</h3>
-          <div className="form-group">
-            <Input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              onInput={InputHandler}
-              validators={[]}
-            />
-          </div>
-
-        <div className="form-group">
-          <Button
-            type="submit"
-            className="btn-primary w-100"
-            text="Verify"
-          />
-        </div>
-        <div className="text-right">Resend Email</div>
+        <h3>Verify Email</h3>
+        <p>We've send you a code on your email!</p>
+        Does'nt get the email <a href="#">Resend Email</a>
       </div>
-    </form>);
-}
+    </form>
+  );
+};
 export default Verify;

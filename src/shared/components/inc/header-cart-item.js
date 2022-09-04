@@ -1,16 +1,16 @@
 import { Currency } from "../../helper";
-const HeaderCartItem = ({ product }) => {
+const HeaderCartItem = ({ item }) => {
   return (
     <div className="cart-product">
-      <img src={product.image} alt={product.name} />
+      <img src={item.product.image} alt={item.product.name} />
       <div>
-        <h3>{product.name}</h3>
+        <h3>{item.product.name}</h3>
         <p>
           <span className="price mr-3">
             <Currency />
-            {product.price}
+            {item.product.price}
           </span>
-          Qty: {product.qty}
+          Qty: {item.qty}
         </p>
       </div>
     </div>

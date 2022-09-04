@@ -6,9 +6,9 @@ import Carousel from "react-multi-carousel";
 const ProductSlider = (props) => {
   return (
     <section className="home-sec-two container slider-section">
-        <HeadingRow title={props.title} url={props.url}/>
-        <Carousel
-        customButtonGroup={<CarouselButtonGroup/>}
+      <HeadingRow title={props.title} url={props.url} />
+      <Carousel
+        customButtonGroup={<CarouselButtonGroup />}
         additionalTransfrom={0}
         arrows={false}
         partialVisible={true}
@@ -34,7 +34,7 @@ const ProductSlider = (props) => {
               min: 1024,
             },
             items: 4,
-            partialVisibilityGutter: 30,
+            partialVisibilityGutter: 5,
           },
           mobile: {
             breakpoint: {
@@ -63,12 +63,10 @@ const ProductSlider = (props) => {
         itemAriaLabel="Store Slider"
         ariaLabel="Store Slider"
       >
-          {props.products &&
-            props.products.map((product) => {
-              return (
-                  <ProductItem key={product.id} product={product} />
-              );
-            })}
+        {props.products &&
+          props.products.map((product) => {
+            return <ProductItem key={product.id} product={product} />;
+          })}
       </Carousel>
     </section>
   );

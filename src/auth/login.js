@@ -40,7 +40,7 @@ const LoginForm = () => {
           isValid: false,
         },
         name: undefined,
-        confirm_password: undefined
+        confirm_password: undefined,
       },
       formState.inputs.email.isValid && formState.inputs.email
     );
@@ -79,45 +79,43 @@ const LoginForm = () => {
     }
     var url, data;
     if (isLoginMode) {
-      url = apiUrl('authenticate');
-      data =  JSON.stringify({
+      url = apiUrl("authenticate");
+      data = JSON.stringify({
         email: formState.inputs.email.value,
         password: formState.inputs.password.value,
-      })
-    }
-    else{      
-      url = apiUrl('register');
-      data =  JSON.stringify({
+      });
+    } else {
+      url = apiUrl("register");
+      data = JSON.stringify({
         email: formState.inputs.email.value,
         password: formState.inputs.password.value,
         confirm_password: formState.inputs.confirm_password.value,
         name: formState.inputs.name.value,
-      })
+      });
     }
-      clearError();
-      var responseData;
-      try {
-        responseData = await sendRequest(
-          url,
-          "POST",
-          data,
-          {
-            "Content-Type": "application/json",
-          }
+    clearError();
+    var responseData;
+    try {
+      responseData = await sendRequest(url, "POST", data, {
+        "Content-Type": "application/json",
+      });
+      if (responseData.status === 200) {
+        auth.login(
+          responseData.userId,
+          responseData.token,
+          responseData.verified
         );
-        if (responseData.status === 200) {
-          auth.login(responseData.userId, responseData.token);
-          toast.success("Successfully Login", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
-      } catch (err) {}
+        toast.success("Successfully Login", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (err) {}
   };
 
   return (
@@ -206,7 +204,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             className="btn-primary w-100"
-            text= {isLoginMode ? 'Login' : 'Signup'}
+            text={isLoginMode ? "Login" : "Signup"}
             disable={formState.isValid}
           />
         </div>

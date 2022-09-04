@@ -1,15 +1,13 @@
-import { homeUrl } from "../../shared/helper";
-
 const StoreItem = (props) => {
   return (
     <div className="c-box">
       <div className="brand">
         <a>
-          <img src={homeUrl("images/Ellipse 5.png")} />
+          <img src={props.store.logo} alt={props.store.name} />
         </a>
       </div>
       <div className="figure">
-        <img src={homeUrl("images/Card 1.png")} />
+        <img src={props.store.cover} alt={props.store.name} />
       </div>
       <div className="ctn">
         <p>
@@ -18,12 +16,14 @@ const StoreItem = (props) => {
           <span>followers</span>
         </p>
         <p>
-          100+
+          {props.store.products_count > 100
+            ? "100+"
+            : props.store.products_count}
           <br /> <span>Products</span>
         </p>
       </div>
       <h4>
-        <a>chanel</a>
+        <a>{props.store.name}</a>
       </h4>
     </div>
   );

@@ -8,13 +8,19 @@ import Logo from "./logo";
 import Icon from "../font-awesome-icon";
 import SearchForm from "../../../components/forms/search-form";
 import HeaderCartDropdown from "./header-cart-dropdown";
-
+import Dropdown from "react-bootstrap/Dropdown";
 import "./header.css";
+
 const Header = (props) => {
-  const { cart, isLogin, toggleLoginModal,auth } = useContext(AppContext);
+  const { cart, isLogin, toggleLoginModal, auth, logout } =
+    useContext(AppContext);
+  const [cartdropdown, setCartDropdown] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const cartToggler = () => {
+  const dropdownToggler = () => {
     setDropdown(!dropdown);
+  };
+  const cartToggler = () => {
+    setCartDropdown(!cartdropdown);
   };
 
   const content = (
@@ -39,9 +45,18 @@ const Header = (props) => {
         <Col md={1}></Col>
         <Col md={2} className="header-links">
           {isLogin && auth.verified ? (
-            <Link to="/cart">
-              <Icon url={homeUrl("images/account.png")}></Icon>
-            </Link>
+            <Dropdown id={`dropdown-variants-`}>
+              <span onClick={dropdownToggler}>
+                <Icon url={homeUrl("images/account.png")} />
+              </span>
+              {dropdown && (
+                <Dropdown.Menu show>
+                  <Dropdown.Item eventKey="1" onClick={logout}>
+                    Logout
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              )}
+            </Dropdown>
           ) : (
             <span onClick={toggleLoginModal}>
               <Icon url={homeUrl("images/account.png")} />
@@ -61,9 +76,9 @@ const Header = (props) => {
           <div className="cart-dropdown">
             <div className="cart-icon" onClick={cartToggler}>
               <Icon url={homeUrl("images/cart.png")}></Icon>
-              <span className="cart-count"> {cart.count}</span>
+              <span className="cart-count"> {cart.count || 0}</span>
             </div>
-            {dropdown && <HeaderCartDropdown cart={cart} />}
+            {cartdropdown && <HeaderCartDropdown cart={cart} />}
           </div>
         </Col>
       </Row>

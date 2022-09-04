@@ -10,13 +10,16 @@ import Testimonials from "../components/sections/testimonials";
 import Videos from "../components/sections/videos";
 const Home = () => {
   const [products, setProducts] = useState();
+  const [stores, setStores] = useState();
+
   const { sendRequest } = useHttpClient();
 
   const getData = () => {
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl("products"));
+        const responseData = await sendRequest(apiUrl("home"));
         setProducts(responseData.products);
+        setStores(responseData.stores);
       } catch (err) {}
     };
     fetchData();
@@ -25,12 +28,18 @@ const Home = () => {
   return (
     <StaticPage getData={getData}>
       <Banner />
-      <StoreSlider title="All Stores" url="#"/>
-      {products && (
-        <ProductSlider products={products} title="Top Selling Products" url="#"/>
+      {stores && (
+        <StoreSlider title="All Stores" url="/stores" stores={stores} />
       )}
       {products && (
-        <ProductSlider products={products} title="Featured Products" url="#"/>
+        <ProductSlider
+          products={products}
+          title="Top Selling Products"
+          url="#"
+        />
+      )}
+      {products && (
+        <ProductSlider products={products} title="Featured Products" url="#" />
       )}
       <AdvBanners />
       <Testimonials />

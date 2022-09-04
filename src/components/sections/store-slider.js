@@ -6,9 +6,9 @@ import CarouselButtonGroup from "../../shared/components/carousel-button-group";
 const StoreSlider = (props) => {
   return (
     <section className="home-sec-one slider-section container">
-      <HeadingRow title="All Stores" url="#"/>
+      <HeadingRow title="All Stores" url="#" />
       <Carousel
-        customButtonGroup={<CarouselButtonGroup/>}
+        customButtonGroup={<CarouselButtonGroup />}
         additionalTransfrom={0}
         arrows={false}
         partialVisible={true}
@@ -63,10 +63,12 @@ const StoreSlider = (props) => {
         itemAriaLabel="Store Slider"
         ariaLabel="Store Slider"
       >
-        <StoreItem ariaLabel="product-slieder" />
-        <StoreItem ariaLabel="product-slieder" />
-        <StoreItem ariaLabel="product-slieder" />
-        <StoreItem ariaLabel="product-slieder" />
+        {props.stores &&
+          props.stores.map((store) => {
+            return (
+              <StoreItem ariaLabel={store.name} key={store.id} store={store} />
+            );
+          })}
       </Carousel>
     </section>
   );

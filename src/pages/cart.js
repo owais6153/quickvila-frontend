@@ -5,7 +5,7 @@ const Cart = () => {
   return (
     <div>
       <button onClick={addToCart}>Click</button>
-      <h1>Total: {cart.total}</h1>
+      <h1>CART: {cart.total}</h1>
       <h1>count: {cart.count}</h1>
 
       <ul>

@@ -24,6 +24,9 @@ a {
 #root {
   min-height: 100vh;
 }
+a {
+  color: #fc0000;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -51,10 +54,11 @@ a {
   z-index: 997;
 }
 .react-multi-carousel-list.container {
-  overflow: visible;
-  width: 200%;
-  padding-top: 40px;
   margin: 0 -15px;
+}
+.react-multi-carousel-list {
+  overflow: visible !important;
+  padding-top: 40px;
 }
 .carouselItem {
   padding-right: 30px;

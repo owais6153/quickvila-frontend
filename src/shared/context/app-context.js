@@ -1,20 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../hooks/cart-hook";
+import { useHttpClient } from "../hooks/http-hook";
 import { useAuth } from "../hooks/auth-hook";
+import { apiUrl } from "../helper";
 
 export const AppContext = createContext({
   auth: {
-    _token: "",
+    _token: null,
+    userId: null,
+    verified: false,
     login: () => {},
     logout: () => {},
-    verified: false,
   },
   isLogin: false,
-  toggleLoginModal: () => {},
-  loginModal : false,
-  searchHandler: () => {},
+  loginModal: false,
   cart: {},
+  setCart: () => {},
+  toggleLoginModal: () => {},
+  searchHandler: () => {},
   addToCart: () => {},
 });
 
@@ -23,29 +26,46 @@ export const AppProvider = ({ children }) => {
   const searchHandler = (value) => {
     navigate(`/search/${value}`);
   };
-  const [cart, addToCart] = useCart();
-  const { token, login, logout, userId } = useAuth();
-
+  const [cart, setCart] = useState({});
+  const { sendRequest } = useHttpClient();
+  const { token, login, logout, userId, verified } = useAuth();
   const [loginModal, setLoginModal] = useState(false);
   const toggleLoginModal = () => {
     setLoginModal(!loginModal);
   };
 
+  useEffect(() => {
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const responseData = await sendRequest(apiUrl(`cart`), "GET", null, {
+            Authorization: `Bearer ${token}`,
+          });
+          if (responseData.status == 200) {
+            setCart(responseData.cart);
+          }
+        } catch (err) {}
+      };
+      fetchData();
+    }
+  }, [token]);
+
   return (
     <AppContext.Provider
       value={{
         isLogin: !!token,
-        toggleLoginModal,
         loginModal,
         auth: {
+          verified,
+          userId,
           _token: token,
-          verified: false,
           login,
           logout,
         },
-        searchHandler,
         cart,
-        addToCart,
+        setCart,
+        searchHandler,
+        toggleLoginModal,
       }}
     >
       {children}

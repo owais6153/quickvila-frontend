@@ -4,16 +4,23 @@ const HeaderCartDropdown = ({ cart }) => {
   return (
     <div className="header-cart">
       <div className="cart-products">
-        {cart.products &&
-          cart.products.map((product) => {
-            return <HeaderCartItem key={product.id} product={product} />;
+        {cart.items &&
+          cart.items.map((item) => {
+            return <HeaderCartItem key={item.id} item={item} />;
           })}
-        {cart.products.length === 0 && <h3>No Products In Cart</h3>}
+        {(cart.count && cart.count === 0) || !cart.count ? (
+          <h3>No Products In Cart</h3>
+        ) : undefined}
       </div>
-      {cart.products.length > 0 && (
+      {cart.count && cart.count > 0 && (
         <div className="header-cart-actions">
-          <h5>Total: <Currency/>{cart.total}</h5>
-          <button className="btn btn-primary">Cart</button>
+          <h5>
+            Total: <Currency />
+            {cart.total}
+          </h5>
+          <button className="btn btn-primary" style={{ marginRight: "10px" }}>
+            Cart
+          </button>
           <button className="btn btn-primary">Checkout</button>
         </div>
       )}
