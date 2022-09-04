@@ -63,11 +63,3 @@ a {
 .carouselItem {
   padding-right: 30px;
 }
-.btn-crousel-group {
-  position: absolute;
-  top: 64px;
-  right: 0;
-}
-.slider-section {
-  position: relative;
-}

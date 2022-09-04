@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect, useContext } from "react";
-import { useHttpClient } from "./http-hook";
 import { AppContext } from "../context/app-context";
 
 let logoutTimer;
@@ -10,7 +9,6 @@ export const useAuth = () => {
   const [userId, setUserId] = useState(false);
   const [verified, setVerified] = useState(false);
   const { cart, setCart } = useContext(AppContext);
-  const { sendRequest } = useHttpClient();
 
   const login = useCallback((uid, token, verified, expirationDate) => {
     setToken(token);
@@ -31,6 +29,7 @@ export const useAuth = () => {
   }, []);
 
   const logout = useCallback(() => {
+    setCart({});
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);

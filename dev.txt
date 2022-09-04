@@ -1,5 +1,5 @@
 Complete Login Functionality - 2 days
-Complete Cart Functionality - 1 day
+Complete Cart Functionality - 1 day //Done
 Start Wishlist Functionality - 2 day
 Store Following - 1 day
 Dynamic Pages

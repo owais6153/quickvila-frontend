@@ -41,5 +41,39 @@ export const useCart = () => {
     } catch (err) {}
   }, []);
 
-  return [cart, addToCart, emptyCart];
+  const updateItem = useCallback(async (item, operation) => {
+    try {
+      const responseData = await sendRequest(
+        apiUrl(`cart/update/${item.id}/${operation}`),
+        "PUT",
+        {},
+        {
+          Authorization: `Bearer ${auth._token}`,
+        }
+      );
+      if (responseData.status == 200) {
+        setCart(responseData.cart);
+      }
+      return responseData;
+    } catch (err) {}
+  }, []);
+
+  const removeItem = useCallback(async (item) => {
+    try {
+      const responseData = await sendRequest(
+        apiUrl(`cart/remove/${item.id}`),
+        "DELETE",
+        {},
+        {
+          Authorization: `Bearer ${auth._token}`,
+        }
+      );
+      if (responseData.status == 200) {
+        setCart(responseData.cart);
+      }
+      return responseData;
+    } catch (err) {}
+  }, []);
+
+  return [cart, addToCart, emptyCart, updateItem, removeItem];
 };

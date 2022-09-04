@@ -9,6 +9,7 @@ import Search from "./pages/Search";
 import Store from "./pages/Store";
 import PageNotFound from "./pages/404";
 import ProductInner from "./pages/Product-inner";
+import StoreInner from "./pages/Store-inner";
 import Cart from "./pages/Cart";
 import "./App.css";
 
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/products" exact element={<h1>Product Page</h1>} />
         <Route path="/products/:pid" exact element={<ProductInner />} />
         <Route path="/stores" exact element={<Store />} />
-        <Route path="/stores/:sid" exact element={<h1>Product Page</h1>} />
+        <Route path="/stores/:sid" exact element={<StoreInner />} />
         <Route path="/cart" exact element={<Cart />} />
         <Route path="/checkout" exact element={<h1>PageCart</h1>} />
         <Route path="/account" exact element={<h1>PageCart</h1>} />

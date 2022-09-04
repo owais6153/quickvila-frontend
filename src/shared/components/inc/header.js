@@ -4,16 +4,18 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../context/app-context";
 import { homeUrl } from "../../helper";
+import { apiUrl } from "../../helper";
+import { toast } from "react-toastify";
 import Logo from "./logo";
 import Icon from "../font-awesome-icon";
 import SearchForm from "../../../components/forms/search-form";
 import HeaderCartDropdown from "./header-cart-dropdown";
 import Dropdown from "react-bootstrap/Dropdown";
 import "./header.css";
-
+import { useHttpClient } from "../../hooks/http-hook";
 const Header = (props) => {
-  const { cart, isLogin, toggleLoginModal, auth, logout } =
-    useContext(AppContext);
+  const { cart, isLogin, toggleLoginModal, auth } = useContext(AppContext);
+  const { sendRequest } = useHttpClient();
   const [cartdropdown, setCartDropdown] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const dropdownToggler = () => {
@@ -21,6 +23,29 @@ const Header = (props) => {
   };
   const cartToggler = () => {
     setCartDropdown(!cartdropdown);
+  };
+
+  const logoutHandler = () => {
+    const logout = async () => {
+      try {
+        const responseData = await sendRequest(apiUrl(`logout`), "GET", null, {
+          Authorization: `Bearer ${auth._token}`,
+        });
+        if (responseData.status == 200) {
+          auth.logout();
+          toast.success(`Logout Successfully`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      } catch (err) {}
+    };
+    logout();
   };
 
   const content = (
@@ -51,9 +76,7 @@ const Header = (props) => {
               </span>
               {dropdown && (
                 <Dropdown.Menu show>
-                  <Dropdown.Item eventKey="1" onClick={logout}>
-                    Logout
-                  </Dropdown.Item>
+                  <a onClick={logoutHandler}>Logout</a>
                 </Dropdown.Menu>
               )}
             </Dropdown>
@@ -76,9 +99,11 @@ const Header = (props) => {
           <div className="cart-dropdown">
             <div className="cart-icon" onClick={cartToggler}>
               <Icon url={homeUrl("images/cart.png")}></Icon>
-              <span className="cart-count"> {cart.count || 0}</span>
+              <span className="cart-count">
+                {isLogin && cart.count ? cart.count : 0}
+              </span>
             </div>
-            {cartdropdown && <HeaderCartDropdown cart={cart} />}
+            {cartdropdown && <HeaderCartDropdown cart={cart} login={isLogin} />}
           </div>
         </Col>
       </Row>
