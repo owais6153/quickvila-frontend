@@ -8,44 +8,20 @@ const CartItem = ({ item }) => {
   const removeItemHandler = async () => {
     const responseData = await removeItem(item);
     if (responseData.status == 200) {
-      toast.success(`Item Removed`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success(`Item Removed`);
     }
   };
   const increment = async () => {
     const responseData = await updateItem(item, "increment");
     if (responseData.status == 200) {
-      toast.success(`Item quantity updated`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success(`Item quantity updated`);
     }
   };
   const decrement = async () => {
     if (item.qty != 1) {
       const responseData = await updateItem(item, "decrement");
       if (responseData.status == 200) {
-        toast.success(`Item quantity updated`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(`Item quantity updated`);
       }
     }
   };

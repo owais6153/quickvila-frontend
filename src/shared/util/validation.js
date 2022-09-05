@@ -1,6 +1,8 @@
 const VALIDATOR_TYPE_REQUIRE = "REQUIRE";
 const VALIDATOR_TYPE_MINLENGTH = "MINLENGTH";
 const VALIDATOR_TYPE_MAXLENGTH = "MAXLENGTH";
+const VALIDATOR_TYPE_PASSWORD = "PASSWORD";
+const VALIDATOR_TYPE_CONFIRM_PASSWORD = "CONFIRM_PASSWORD";
 const VALIDATOR_TYPE_MIN = "MIN";
 const VALIDATOR_TYPE_MAX = "MAX";
 const VALIDATOR_TYPE_EMAIL = "EMAIL";
@@ -38,7 +40,14 @@ export const VALIDATOR_EMAIL = (errorText) => ({
   type: VALIDATOR_TYPE_EMAIL,
   errorText,
 });
-
+export const VALIDATOR_PASSWORD = () => ({
+  type: VALIDATOR_TYPE_PASSWORD,
+});
+export const VALIDATOR_CONFIRM_PASSWORD = (pwd, errorText) => ({
+  type: VALIDATOR_TYPE_CONFIRM_PASSWORD,
+  errorText,
+  pwd,
+});
 export const validate = (value, validators) => {
   let isValid = true;
   let errors = [];
@@ -66,6 +75,20 @@ export const validate = (value, validators) => {
     if (validator.type === VALIDATOR_TYPE_EMAIL) {
       isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
       if (!isValid) errors.push(validator.errorText);
+    }
+    if (validator.type === VALIDATOR_TYPE_CONFIRM_PASSWORD) {
+      isValid = isValid && validator.pwd === value;
+      if (!isValid) errors.push(validator.errorText);
+    }
+    if (validator.type === VALIDATOR_TYPE_PASSWORD) {
+      if (isValid && value.trim().length < 8) {
+        errors.push("Password length should be minmimum 8");
+        isValid = false;
+      }
+      if (isValid && value.trim().length > 16) {
+        errors.push("Password length should be maximum 16");
+        isValid = false;
+      }
     }
   }
   return { isValid, errors };

@@ -13,9 +13,7 @@ const Search = () => {
     const fetchPlaces = async () => {
       try {
         setProducts();
-        const responseData = await sendRequest(
-          apiUrl(`products?search=${term}`)
-        );
+        const responseData = await sendRequest(apiUrl(`search/${term}`));
         setProducts(responseData.products);
       } catch (err) {}
     };

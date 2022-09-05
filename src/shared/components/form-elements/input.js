@@ -83,6 +83,7 @@ const Input = (props) => {
           type={props.type}
           onChange={changeHandler}
           onBlur={touchHandler}
+          onInput={props.checkMaxLimit}
           className={`form-control ${props.className || undefined} ${
             !inputState.isValid.isValid &&
             props.type !== "search" &&

@@ -1,20 +1,21 @@
-import HeaderCartItem from "./header-cart-item";
-import { Currency } from "../../helper";
+import CartBoxItem from "./cart-box-item";
+import { Currency } from "../../shared/helper";
 import { Link } from "react-router-dom";
-const HeaderCartDropdown = ({ cart, login }) => {
+import "./cart-box.css";
+const CartBox = ({ cart, login, actions }) => {
   return (
-    <div className="header-cart">
+    <div className="cart-box">
       {cart.items && login && cart.count > 0 && (
         <div className="cart-products">
           {cart.items.map((item) => {
-            return <HeaderCartItem key={item.id} item={item} />;
+            return <CartBoxItem key={item.id} item={item} />;
           })}
         </div>
       )}
       {(cart.count && cart.count === 0) || !cart.count || !login ? (
         <h3>No Products In Cart</h3>
       ) : undefined}
-      {cart.items && cart.count > 0 && login && (
+      {cart.items && cart.count > 0 && login && actions && (
         <div className="header-cart-actions">
           <h5>
             Total: <Currency />
@@ -27,11 +28,12 @@ const HeaderCartDropdown = ({ cart, login }) => {
           >
             Cart
           </Link>
-
-          <button className="btn btn-primary">Checkout</button>
+          <Link to="/checkout" className="btn btn-primary">
+            Checkout
+          </Link>
         </div>
       )}
     </div>
   );
 };
-export default HeaderCartDropdown;
+export default CartBox;

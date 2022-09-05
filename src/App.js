@@ -11,6 +11,7 @@ import PageNotFound from "./pages/404";
 import ProductInner from "./pages/Product-inner";
 import StoreInner from "./pages/Store-inner";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 import "./App.css";
 
 const App = () => {
@@ -22,12 +23,11 @@ const App = () => {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/search/:term" exact element={<Search />} />
-        <Route path="/products" exact element={<h1>Product Page</h1>} />
         <Route path="/products/:pid" exact element={<ProductInner />} />
         <Route path="/stores" exact element={<Store />} />
         <Route path="/stores/:sid" exact element={<StoreInner />} />
         <Route path="/cart" exact element={<Cart />} />
-        <Route path="/checkout" exact element={<h1>PageCart</h1>} />
+        <Route path="/checkout" exact element={<Checkout />} />
         <Route path="/account" exact element={<h1>PageCart</h1>} />
         <Route path="/account/orders" exact element={<h1>PageCart</h1>} />
         <Route path="/account/whishlist" exact element={<h1>PageCart</h1>} />

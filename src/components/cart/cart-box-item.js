@@ -1,6 +1,6 @@
-import { Currency } from "../../helper";
+import { Currency } from "../../shared/helper";
 import { Link } from "react-router-dom";
-const HeaderCartItem = ({ item }) => {
+const CartBoxItem = ({ item }) => {
   return (
     <Link to={`/products/${item.product.id}`}>
       <div className="cart-product">
@@ -19,4 +19,4 @@ const HeaderCartItem = ({ item }) => {
     </Link>
   );
 };
-export default HeaderCartItem;
+export default CartBoxItem;

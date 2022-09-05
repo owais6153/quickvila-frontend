@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import Logo from "./logo";
 import Icon from "../font-awesome-icon";
 import SearchForm from "../../../components/forms/search-form";
-import HeaderCartDropdown from "./header-cart-dropdown";
+import CartBox from "../../../components/cart/cart-box";
 import Dropdown from "react-bootstrap/Dropdown";
 import "./header.css";
 import { useHttpClient } from "../../hooks/http-hook";
@@ -33,15 +33,7 @@ const Header = (props) => {
         });
         if (responseData.status == 200) {
           auth.logout();
-          toast.success(`Logout Successfully`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toast.success(`Logout Successfully`);
         }
       } catch (err) {}
     };
@@ -103,7 +95,11 @@ const Header = (props) => {
                 {isLogin && cart.count ? cart.count : 0}
               </span>
             </div>
-            {cartdropdown && <HeaderCartDropdown cart={cart} login={isLogin} />}
+            {cartdropdown && (
+              <div className="header-cart">
+                <CartBox cart={cart} login={isLogin} actions />
+              </div>
+            )}
           </div>
         </Col>
       </Row>

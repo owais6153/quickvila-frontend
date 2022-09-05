@@ -1,13 +1,22 @@
-Complete Login Functionality - 2 days
-Complete Cart Functionality - 1 day //Done
-Start Wishlist Functionality - 2 day
-Store Following - 1 day
+Frontend error handling
+backend errros in json
+    404, throttle
+Emails
+Location Stores
+Checkout
+Paypal
+Store Following
 Dynamic Pages
-Checkout Process - 2 day
-Scrapper - 1day
-Newsletter 1-day
-Send Notifications - 1day
-
----Rider - 3 days
+Scrapper
+Emails
+Basic Curd backend
+Store Manager Backend
+Riders according to location
 Responsive
 Testing
+
+---
+Newsletter
+Store Frontend
+Rider Frontend
+Wishlist

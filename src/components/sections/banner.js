@@ -12,15 +12,7 @@ const Banner = () => {
         console.log(position);
       },
       function (error) {
-        toast.error(`Error: ${error.message}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.error(`Error: ${error.message}`);
       }
     );
   };

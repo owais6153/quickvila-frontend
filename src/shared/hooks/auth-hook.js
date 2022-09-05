@@ -13,14 +13,14 @@ export const useAuth = () => {
   const login = useCallback((uid, token, verified, expirationDate) => {
     setToken(token);
     setUserId(uid);
-    setVerified(true);
+    setVerified(verified);
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
     localStorage.setItem(
       "userData",
       JSON.stringify({
-        verified: true,
+        verified: verified,
         userId: uid,
         token: token,
         expiration: tokenExpirationDate.toISOString(),

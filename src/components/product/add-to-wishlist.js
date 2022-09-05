@@ -11,15 +11,7 @@ const AddToWishlistButton = (props) => {
     if (!isLogin || !auth.verified) {
       toggleLoginModal();
     } else {
-      toast.success(`Product added to Wishlist!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success(`Product added to Wishlist!`);
     }
   };
   return (

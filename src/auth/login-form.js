@@ -5,11 +5,16 @@ import Alert from "../shared/components/alert";
 import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AppContext } from "../shared/context/app-context";
-import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE } from "../shared/util/validation";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_REQUIRE,
+  VALIDATOR_PASSWORD,
+  VALIDATOR_CONFIRM_PASSWORD,
+} from "../shared/util/validation";
 import { toast } from "react-toastify";
 import { apiUrl } from "../shared/helper";
 
-const LoginForm = () => {
+const LoginForm = ({ swithHandler }) => {
   const { sendRequest, error, clearError } = useHttpClient();
   const { auth } = useContext(AppContext);
   const [formState, inputHandler, setFormData] = useForm(
@@ -105,15 +110,7 @@ const LoginForm = () => {
           responseData.token,
           responseData.verified
         );
-        toast.success("Successfully Login", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success("Successfully Login");
       }
     } catch (err) {}
   };
@@ -172,11 +169,7 @@ const LoginForm = () => {
             name="password"
             placeholder="Password"
             onInput={inputHandler}
-            validators={[
-              VALIDATOR_REQUIRE(
-                "Please enter a valid password, at least 6 characters."
-              ),
-            ]}
+            validators={[VALIDATOR_PASSWORD()]}
           />
         </div>
         {!isLoginMode && (
@@ -188,8 +181,9 @@ const LoginForm = () => {
               placeholder="Confirm Password"
               onInput={inputHandler}
               validators={[
-                VALIDATOR_REQUIRE(
-                  "Please enter a valid password, at least 6 characters."
+                VALIDATOR_CONFIRM_PASSWORD(
+                  formState.inputs.password.value,
+                  "Confirm Password should be same as password."
                 ),
               ]}
             />
@@ -197,7 +191,9 @@ const LoginForm = () => {
         )}
         {isLoginMode && (
           <div className="text-right" style={{ marginBottom: "30px" }}>
-            <a>Forget Password?</a>
+            <a href="#" onClick={swithHandler}>
+              Forget Password?
+            </a>
           </div>
         )}
         <div className="form-group">

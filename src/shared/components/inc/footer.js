@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { AppContext } from "../../context/app-context";
 import { useContext } from "react";
 import ModalPopup from "../modal.js";
-import LoginForm from "../../../auth/login";
+import Auth from "../../../auth/auth";
 import Verify from "../../../auth/verify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -101,7 +101,7 @@ const Footer = () => {
           show={loginModal}
           onHide={toggleLoginModal}
         >
-          <LoginForm />
+          <Auth />
         </ModalPopup>
       )}
       {isLogin && !auth.verified && (
@@ -116,7 +116,7 @@ const Footer = () => {
       )}
 
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

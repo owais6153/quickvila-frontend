@@ -17,7 +17,7 @@ const Videos = (props) => {
         className=""
         containerClass="col-md-8"
         dotListClass=""
-        draggable={false}
+        draggable={true}
         focusOnSelect={false}
         infinite={false}
         itemClass="carouselItem"
