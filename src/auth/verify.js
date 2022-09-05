@@ -95,7 +95,7 @@ const Verify = () => {
             disable={formState.isValid}
           />
         </div>
-        Does'nt get the code{" "}
+        Does'nt get the code
         <a href="#" onClick={resendCode}>
           Resend Email
         </a>

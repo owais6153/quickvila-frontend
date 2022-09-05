@@ -1,22 +1,33 @@
+-------
+PHASE 1
+-------
 Frontend error handling
 backend errros in json
     404, throttle
-Emails
+Pagination
 Location Stores
+Dynamic Pages
 Checkout
 Paypal
 Store Following
-Dynamic Pages
+Responsive
+
+-------
+PHASE 2
+-------
+Basic Curd backend
+Store Manager Backend with API
+Riders according to location
+
+-------
+PHASE 3
+-------
 Scrapper
 Emails
-Basic Curd backend
-Store Manager Backend
-Riders according to location
-Responsive
+Newsletter
 Testing
 
 ---
-Newsletter
 Store Frontend
 Rider Frontend
 Wishlist

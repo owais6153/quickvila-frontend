@@ -91,7 +91,7 @@ const ForgetForm = ({ swithHandler }) => {
         "Content-Type": "application/json",
       };
     } else if (step == 3) {
-      url = apiUrl("forget/update-pwd");
+      url = apiUrl("forget/update");
       data = JSON.stringify({
         email: formState.inputs.email.value,
         new_password: formState.inputs.password.value,
@@ -99,6 +99,7 @@ const ForgetForm = ({ swithHandler }) => {
       });
       headers = {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       };
     }
     var responseData;
@@ -126,7 +127,14 @@ const ForgetForm = ({ swithHandler }) => {
         className="col-md-10"
         style={{ margin: "auto", padding: "40px 0px" }}
       >
-        <h3 style={{ marginBottom: "20px" }}>Forget Password</h3>
+        <h3>Forget Password</h3>
+        {step == 1 && (
+          <p>
+            You can always change your password by verifying your email by code
+          </p>
+        )}
+        {step == 2 && <p>We've send you a 6 digits code on your email!</p>}
+        {step == 3 && <p>Create your new password</p>}
         {error && <Alert type="danger" error={error} />}
         <div className="form-group">
           {step == 1 && (
@@ -164,7 +172,7 @@ const ForgetForm = ({ swithHandler }) => {
             />
           )}
         </div>
-        {step == 3 && (
+        {step == 3 && formState.inputs.password && (
           <div className="form-group">
             <Input
               type="password"
@@ -172,7 +180,12 @@ const ForgetForm = ({ swithHandler }) => {
               name="confirm_password"
               placeholder="Confirm Password"
               onInput={inputHandler}
-              validators={[]}
+              validators={[
+                VALIDATOR_CONFIRM_PASSWORD(
+                  formState.inputs.password.value,
+                  "Password should be same as password"
+                ),
+              ]}
             />
           </div>
         )}
