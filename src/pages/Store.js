@@ -9,11 +9,13 @@ const Store = () => {
   const { sendRequest } = useHttpClient();
 
   const [stores, setStores] = useState(false);
+  const [pages, setPages] = useState(false);
   const getData = () => {
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl("home"));
-        setStores(responseData.stores);
+        const responseData = await sendRequest(apiUrl("stores"));
+        setStores(responseData.stores.data);
+        setPages(responseData.stores.links);
       } catch (err) {}
     };
     fetchData();
