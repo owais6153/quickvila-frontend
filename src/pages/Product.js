@@ -4,22 +4,22 @@ import { apiUrl } from "../shared/helper";
 import { Container, Row, Col } from "react-bootstrap";
 import HeadingRow from "../shared/components/heading-row";
 import StaticPage from "../shared/components/staticpages";
-import StoreItem from "../components/store/item";
+import ProductItem from "../components/product/item";
 import Pagination from "../shared/components/pagination";
-const Store = () => {
+const Product = () => {
   const { sendRequest } = useHttpClient();
 
-  const [stores, setStores] = useState(false);
+  const [products, setProducts] = useState(false);
   const [currentPage, setCurrentPages] = useState(1);
   const [pagination, setPagination] = useState(false);
 
   const getData = () => {
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl("stores"));
-        setStores(responseData.stores.data);
-        setPagination(responseData.stores.links);
-        setCurrentPages(responseData.stores.current_page);
+        const responseData = await sendRequest(apiUrl("products"));
+        setProducts(responseData.products.data);
+        setPagination(responseData.products.links);
+        setCurrentPages(responseData.products.current_page);
       } catch (err) {}
     };
     fetchData();
@@ -39,10 +39,10 @@ const Store = () => {
 
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl(`stores?page=${page}`));
-        setStores(responseData.stores.data);
-        setPagination(responseData.stores.links);
-        setCurrentPages(responseData.stores.current_page);
+        const responseData = await sendRequest(apiUrl(`products?page=${page}`));
+        setProducts(responseData.products.data);
+        setPagination(responseData.products.links);
+        setCurrentPages(responseData.products.current_page);
       } catch (err) {}
     };
     fetchData();
@@ -52,17 +52,17 @@ const Store = () => {
     <StaticPage getData={getData}>
       <section className="no-banner">
         <Container>
-          <HeadingRow lg title="All Stores" />
-          <Row className="stores-list">
-            {stores &&
-              stores.map((store) => {
+          <HeadingRow lg title="All Products" />
+          <Row className="products-list">
+            {products &&
+              products.map((product) => {
                 return (
-                  <Col md={4} key={store.id}>
-                    <StoreItem store={store} />
+                  <Col md={3} key={product.id}>
+                    <ProductItem product={product} />
                   </Col>
                 );
               })}
-            {!stores && <h3>No Store Found</h3>}
+            {!products && <h3>No Product Found</h3>}
           </Row>
           {pagination && (
             <Pagination links={pagination} onPageChange={chanePage} />
@@ -72,4 +72,4 @@ const Store = () => {
     </StaticPage>
   );
 };
-export default Store;
+export default Product;

@@ -35,11 +35,15 @@ const Home = () => {
         <ProductSlider
           products={products}
           title="Top Selling Products"
-          url="#"
+          url="/products"
         />
       )}
       {products && (
-        <ProductSlider products={products} title="Featured Products" url="#" />
+        <ProductSlider
+          products={products}
+          title="Featured Products"
+          url="/products"
+        />
       )}
       <AdvBanners />
       <Testimonials />

@@ -12,7 +12,7 @@ const Banner = () => {
         console.log(position);
       },
       function (error) {
-        toast.error(`Error: ${error.message}`);
+        toast.error(`${error.message}, Please reset your location permission`);
       }
     );
   };

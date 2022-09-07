@@ -206,6 +206,7 @@ section.no-banner .RRone.row {
   bottom: -22px;
   background: #fe0000;
 }
+.products-list.row .col-md-3,
 .stores-list.row .col-md-4 {
   margin-bottom: 30px;
 }
@@ -499,9 +500,10 @@ section.home-Sec-five {
   top: 45%;
   left: 45%;
 }
-
+section.homesec-Six {
+  padding-bottom: 60px;
+}
 footer {
-  padding-top: 60px;
   padding-bottom: 60px;
 }
 

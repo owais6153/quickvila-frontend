@@ -7,6 +7,7 @@ import Loader from "./shared/components/loader";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Store from "./pages/Store";
+import Product from "./pages/Product";
 import PageNotFound from "./pages/404";
 import ProductInner from "./pages/Product-inner";
 import StoreInner from "./pages/Store-inner";
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/search/:term" exact element={<Search />} />
+        <Route path="/products/" exact element={<Product />} />
         <Route path="/products/:pid" exact element={<ProductInner />} />
         <Route path="/stores" exact element={<Store />} />
         <Route path="/stores/:sid" exact element={<StoreInner />} />
