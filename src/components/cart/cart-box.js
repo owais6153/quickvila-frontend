@@ -15,12 +15,20 @@ const CartBox = ({ cart, login, actions }) => {
       {(cart.count && cart.count === 0) || !cart.count || !login ? (
         <h3>No Products In Cart</h3>
       ) : undefined}
-      {cart.items && cart.count > 0 && login && actions && (
         <div className="header-cart-actions">
+          <h6>
+            Delivery: <Currency />
+            {cart.total}
+          </h6>
+          <h6>
+            Tax: <Currency />
+            {cart.total}
+          </h6>
           <h5>
             Total: <Currency />
             {cart.total}
           </h5>
+      {cart.items && cart.count > 0 && login && actions && (<div>
           <Link
             to="/cart"
             className="btn btn-primary"
@@ -31,8 +39,8 @@ const CartBox = ({ cart, login, actions }) => {
           <Link to="/checkout" className="btn btn-primary">
             Checkout
           </Link>
+      </div>)}
         </div>
-      )}
     </div>
   );
 };

@@ -650,7 +650,7 @@ ul.ul-Sicons li i {
 form.baner-form {
   background-color: #ffffff;
   width: 84%;
-  padding: 11px 15px;
+  padding: 10px;
   border-radius: 8px;
 }
 
@@ -661,10 +661,12 @@ form.baner-form input#address {
   line-height: 14px;
   color: #737373;
   padding: 13px 15px;
+  display: inline-block;
   border-radius: 8px;
   border: 1px solid #ddd9d9;
   width: 80%;
   margin-right: 10px;
+  background: transparent;
   position: relative;
 }
 

@@ -48,7 +48,7 @@ const Header = (props) => {
             <Logo />
           </Link>
         </Col>
-        <Col md={3} className="header-btn">
+        <Col md={4} className="header-btn">
           <div className="header-btn-group">
             <a href="#" className="btn px-4 btn-active">
               Deliver
@@ -60,7 +60,7 @@ const Header = (props) => {
           <SearchForm />
         </Col>
         <Col md={1}></Col>
-        <Col md={2} className="header-links">
+        <Col md={1} className="header-links">
           {isLogin && auth.verified ? (
             <Dropdown id={`dropdown-variants-`}>
               <span onClick={dropdownToggler}>
@@ -78,15 +78,7 @@ const Header = (props) => {
             </span>
           )}
 
-          {isLogin && auth.verified ? (
-            <Link to="/cart">
-              <Icon url={homeUrl("images/Vector.png")}></Icon>
-            </Link>
-          ) : (
-            <span onClick={toggleLoginModal}>
-              <Icon url={homeUrl("images/Vector.png")} />
-            </span>
-          )}
+
 
           <div className="cart-dropdown">
             <div className="cart-icon" onClick={cartToggler}>

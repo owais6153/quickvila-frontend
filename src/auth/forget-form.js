@@ -65,7 +65,11 @@ const ForgetForm = ({ swithHandler }) => {
       );
     }
   }
-
+  const checkMaxLimit = (e) => {
+    if (e.target.value.length > 6) {
+      e.target.value = e.target.value.slice(0, e.target.maxLength);
+    }
+  };
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!formState.isValid) {
@@ -155,7 +159,8 @@ const ForgetForm = ({ swithHandler }) => {
               id="code"
               name="code"
               placeholder="CODE"
-              onInput={inputHandler}
+              onInput={inputHandler}             
+              checkMaxLimit={checkMaxLimit}
               validators={[
                 VALIDATOR_MINLENGTH(6, "Please enter a valid code."),
               ]}

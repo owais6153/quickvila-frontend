@@ -65,9 +65,7 @@ span.cart-count {
   top: 40px;
   transform: translateX(60px);
 }
-.header-cart .cart-products {
-  margin-bottom: 30px;
-}
+
 @keyframes cartDropdown {
   from {
     opacity: 0;

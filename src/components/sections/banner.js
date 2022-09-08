@@ -39,6 +39,7 @@ const Banner = () => {
                 type="text"
                 id="address"
                 name="address"
+                className="form-control"
                 placeholder="Enter your full address"
               />
               <input type="submit" value="search" />
