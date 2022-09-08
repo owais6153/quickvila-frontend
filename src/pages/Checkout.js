@@ -26,75 +26,95 @@ const Checkout = () => {
               <Col md={8}>
                 <Row>
                   <Col md={12}>
-                  
-                <h3>Personal Info</h3></Col>
+                    <h3>Personal Info</h3>
+                  </Col>
                   <Col md={6}>
                     <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Full Name"/>
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Full Name"
+                      />
                     </div>
                   </Col>
                   <Col md={6}>
                     <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Email"/>
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Email"
+                      />
                     </div>
                   </Col>
                   <Col md={6}>
                     <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Phone Number"/>
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Phone Number"
+                      />
+                    </div>
+                  </Col>
+                  <Col md={12}>
+                    <h3>Shipping Details</h3>
+                  </Col>
+                  <Col md={6}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Select Address"
+                      />
+                    </div>
+                  </Col>
+                  <Col md={12}>
+                    <h3>Payment Details</h3>
+                  </Col>
+                  <Col md={6}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Full Name"
+                      />
+                    </div>
+                  </Col>
+                  <Col md={6}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Email"
+                      />
+                    </div>
+                  </Col>
+                  <Col md={6}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Phone Number"
+                      />
                     </div>
                   </Col>
                   <Col md={12}>
                     <div className="form-group">
-                      <textarea type="text" name="name" className="form-control" column="5" placeholder="Address"></textarea>
+                      <textarea
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        column="5"
+                        placeholder="Address"
+                      ></textarea>
                     </div>
                   </Col>
-                  <Col md={12}>
-                  
-                <h3>Shipping Details</h3></Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Full Name"/>
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Email"/>
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Phone Number"/>
-                    </div>
-                  </Col>
-                  <Col md={12}>
-                    <div className="form-group">
-                      <textarea type="text" name="name" className="form-control" column="5" placeholder="Address"></textarea>
-                    </div>
-                  </Col>
-                  <Col md={12}>
-                  
-                <h3>Payment Details</h3></Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Full Name"/>
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Email"/>
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input type="text" name="name" className="form-control" placeholder="Phone Number"/>
-                    </div>
-                  </Col>
-                  <Col md={12}>
-                    <div className="form-group">
-                      <textarea type="text" name="name" className="form-control" column="5" placeholder="Address"></textarea>
-                    </div>
-                  </Col>
-
                 </Row>
               </Col>
               <Col md={4}>

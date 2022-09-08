@@ -18,8 +18,10 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const responseData = await sendRequest(apiUrl("home"));
-        setProducts(responseData.products);
-        setStores(responseData.stores);
+        if (responseData.status == 200) {
+          setProducts(responseData.products);
+          setStores(responseData.stores);
+        }
       } catch (err) {}
     };
     fetchData();
