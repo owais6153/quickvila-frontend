@@ -29,12 +29,12 @@ export const useAuth = () => {
   }, []);
 
   const logout = useCallback(() => {
+    localStorage.removeItem("userData");
     setCart({});
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
     setVerified(null);
-    localStorage.removeItem("userData");
   }, []);
 
   useEffect(() => {

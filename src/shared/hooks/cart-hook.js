@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useEffect, useContext } from "react";
+import {  useCallback, useContext } from "react";
 import { useHttpClient } from "./http-hook";
 import { apiUrl } from "../helper";
 import { AppContext } from "../context/app-context";
@@ -17,7 +17,7 @@ export const useCart = () => {
           Authorization: `Bearer ${auth._token}`,
         }
       );
-      if (responseData.status == 200) {
+      if (responseData.status === 200) {
         setCart(responseData.cart);
       }
       return responseData;
@@ -34,7 +34,7 @@ export const useCart = () => {
           Authorization: `Bearer ${auth._token}`,
         }
       );
-      if (responseData.status == 200) {
+      if (responseData.status === 200) {
         setCart({});
       }
       return responseData;
@@ -51,7 +51,7 @@ export const useCart = () => {
           Authorization: `Bearer ${auth._token}`,
         }
       );
-      if (responseData.status == 200) {
+      if (responseData.status === 200) {
         setCart(responseData.cart);
       }
       return responseData;
@@ -68,7 +68,7 @@ export const useCart = () => {
           Authorization: `Bearer ${auth._token}`,
         }
       );
-      if (responseData.status == 200) {
+      if (responseData.status === 200) {
         setCart(responseData.cart);
       }
       return responseData;
