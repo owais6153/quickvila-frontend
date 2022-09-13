@@ -4,12 +4,11 @@ PHASE 1
 Frontend error handling
 backend errros in json
     404, throttle
-Pagination
 Location Stores
 Dynamic Pages
 Checkout
 Paypal
-Store Following
+Store Following & Account
 Responsive
 
 -------

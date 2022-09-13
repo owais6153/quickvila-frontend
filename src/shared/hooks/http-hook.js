@@ -1,10 +1,15 @@
 import { useLoading } from "./loader-hook";
 import { useState, useCallback, useRef, useEffect } from "react";
 
-export const useHttpClient = () => {
+import { toast } from "react-toastify";
+
+export const useHttpClient = (displayErrors = true) => {
   const [error, setError] = useState();
 
   const setTheErrors = (val) => {
+    if (displayErrors) {
+      toast.error(`${val}`);
+    }
     setError(() => {
       return val;
     });
@@ -40,12 +45,12 @@ export const useHttpClient = () => {
 
         return responseData;
       } catch (err) {
+        setIsLoading(false);
         if (responseData.errors && responseData.status != 200) {
           setTheErrors(responseData.errors);
         } else {
           setTheErrors(err.message);
         }
-        setIsLoading(false);
       }
     },
     []
@@ -57,7 +62,6 @@ export const useHttpClient = () => {
 
   useEffect(() => {
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       activeHttpRequests.current.forEach((abortCtrl) => abortCtrl.abort());
     };
   }, []);

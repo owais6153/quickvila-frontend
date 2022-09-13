@@ -653,19 +653,20 @@ form.baner-form {
   padding: 10px;
   border-radius: 8px;
 }
-
-form.baner-form input#address {
+form.baner-form .get-address {
+  width: 80%;
+  display: inline-block;
+  margin-right: 10px;
+}
+form.baner-form .get-address input {
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   color: #737373;
   padding: 13px 15px;
-  display: inline-block;
   border-radius: 8px;
   border: 1px solid #ddd9d9;
-  width: 80%;
-  margin-right: 10px;
   background: transparent;
   position: relative;
 }

@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { homeUrl } from "../../shared/helper";
 import { toast } from "react-toastify";
+import PlacesInput from "../../shared/components/form-elements/places-input";
 const Banner = () => {
   const BackgroundStyle = {
     backgroundImage: `url('${homeUrl("images/Banner.png")}')`,
@@ -35,14 +36,14 @@ const Banner = () => {
               quis vel.
             </p>
             <form className="baner-form">
+              {/* <PlacesInput /> */}
               <input
-                type="text"
-                id="address"
-                name="address"
-                className="form-control"
-                placeholder="Enter your full address"
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+                value="search"
               />
-              <input type="submit" value="search" />
               {"geolocation" in navigator && (
                 <div className="ser-icon" onClick={getUserLocation}>
                   <img src={homeUrl("images/Vectory (1).png")} />
