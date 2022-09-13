@@ -34,17 +34,17 @@ const Home = () => {
   return (
     <StaticPage getData={getData}>
       <Banner />
-      {stores && (
+      {stores  && stores.length > 0  && (
         <StoreSlider title="All Stores" url="/stores" stores={stores} />
       )}
-      {products && (
+      {products  && products.length > 0  && (
         <ProductSlider
           products={products}
           title="Top Selling Products"
           url="/products"
         />
       )}
-      {products && (
+      {products  && products.length > 0  &&  (
         <ProductSlider
           products={products}
           title="Featured Products"
@@ -52,8 +52,8 @@ const Home = () => {
         />
       )}
       <AdvBanners />
-      {testimonials && <Testimonials testimonials={testimonials} />}
-      {videos && <Videos videos={videos} />}
+      {testimonials && testimonials.length > 0 && <Testimonials testimonials={testimonials} />}
+      {videos  && videos.length > 0  && <Videos videos={videos} />}
     </StaticPage>
   );
 };
