@@ -1,7 +1,5 @@
-import { homeUrl } from "../../shared/helper";
-import CarouselButtonGroup from "../../shared/components/carousel-button-group";
-import HeadingRow from "../../shared/components/heading-row";
 import Carousel from "react-multi-carousel";
+import VideoItem from "../videos/item";
 
 const Videos = (props) => {
   return (
@@ -63,24 +61,10 @@ const Videos = (props) => {
         itemAriaLabel="Store Slider"
         ariaLabel="Store Slider"
       >
-        <div className="vid-box">
-          <img src={homeUrl("images/Rectangle 10.png")} />
-          <div className="vid-butn">
-            <img src={homeUrl("images/Group 16.png")} />
-          </div>
-        </div>
-        <div className="vid-box">
-          <img src={homeUrl("images/Rectangle 10.png")} />
-          <div className="vid-butn">
-            <img src={homeUrl("images/Group 16.png")} />
-          </div>
-        </div>
-        <div className="vid-box">
-          <img src={homeUrl("images/Rectangle 10.png")} />
-          <div className="vid-butn">
-            <img src={homeUrl("images/Group 16.png")} />
-          </div>
-        </div>
+        {props.videos &&
+          props.videos.map((video) => (
+            <VideoItem key={video.id} video={video} />
+          ))}
       </Carousel>
     </section>
   );

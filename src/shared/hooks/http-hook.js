@@ -8,7 +8,10 @@ export const useHttpClient = (displayErrors = true) => {
 
   const setTheErrors = (val) => {
     if (displayErrors) {
-      toast.error(`${val}`);
+      val &&
+        Object.keys(val).map((key, index) => {
+          return val[key].map((er) => toast.error(`${er}`));
+        });
     }
     setError(() => {
       return val;

@@ -11,6 +11,8 @@ import Videos from "../components/sections/videos";
 const Home = () => {
   const [products, setProducts] = useState();
   const [stores, setStores] = useState();
+  const [testimonials, setTestimonials] = useState();
+  const [videos, setVideos] = useState();
 
   const { sendRequest } = useHttpClient();
 
@@ -21,6 +23,8 @@ const Home = () => {
         if (responseData.status == 200) {
           setProducts(responseData.products);
           setStores(responseData.stores);
+          setTestimonials(responseData.testimonials);
+          setVideos(responseData.videos);
         }
       } catch (err) {}
     };
@@ -48,8 +52,8 @@ const Home = () => {
         />
       )}
       <AdvBanners />
-      <Testimonials />
-      <Videos />
+      {testimonials && <Testimonials testimonials={testimonials} />}
+      {videos && <Videos videos={videos} />}
     </StaticPage>
   );
 };

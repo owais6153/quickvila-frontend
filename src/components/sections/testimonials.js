@@ -1,7 +1,7 @@
-import { homeUrl } from "../../shared/helper";
 import CarouselButtonGroup from "../../shared/components/carousel-button-group";
 import HeadingRow from "../../shared/components/heading-row";
 import Carousel from "react-multi-carousel";
+import TestimonialItem from "../testimonials/item";
 
 const Testimonials = (props) => {
   return (
@@ -63,54 +63,10 @@ const Testimonials = (props) => {
         itemAriaLabel="Store Slider"
         ariaLabel="Store Slider"
       >
-        <div className="testimonial-box">
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            libero cras quis eu pretium tincidunt. Odio eget felis morbi
-            tristique auctor porttitor orci tempor gravida pellentesque. Egestas
-            nunc tempor gravida velit.”
-          </p>
-          <div className="testimonial-figure">
-            <img src={homeUrl("images/Image.png")} />
-            <div className="T-fig-ctn">
-              <h4>Mike Taylor</h4>
-              <h5>Lorem ipsum dolor</h5>
-              <img src={homeUrl("images/Vector (1).png")} />
-            </div>
-          </div>
-        </div>
-        <div className="testimonial-box">
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            libero cras quis eu pretium tincidunt. Odio eget felis morbi
-            tristique auctor porttitor orci tempor gravida pellentesque. Egestas
-            nunc tempor gravida velit.”
-          </p>
-          <div className="testimonial-figure">
-            <img src={homeUrl("images/Image.png")} />
-            <div className="T-fig-ctn">
-              <h4>Mike Taylor</h4>
-              <h5>Lorem ipsum dolor</h5>
-              <img src={homeUrl("images/Vector (1).png")} />
-            </div>
-          </div>
-        </div>
-        <div className="testimonial-box">
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            libero cras quis eu pretium tincidunt. Odio eget felis morbi
-            tristique auctor porttitor orci tempor gravida pellentesque. Egestas
-            nunc tempor gravida velit.”
-          </p>
-          <div className="testimonial-figure">
-            <img src={homeUrl("images/Image.png")} />
-            <div className="T-fig-ctn">
-              <h4>Mike Taylor</h4>
-              <h5>Lorem ipsum dolor</h5>
-              <img src={homeUrl("images/Vector (1).png")} />
-            </div>
-          </div>
-        </div>
+        {props.testimonials &&
+          props.testimonials.map((testimonial) => (
+            <TestimonialItem key={testimonial.id} testimonial={testimonial} />
+          ))}
       </Carousel>
     </section>
   );
