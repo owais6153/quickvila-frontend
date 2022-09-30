@@ -107,6 +107,7 @@ const LoginForm = ({ swithHandler }) => {
       if (responseData.status === 200) {
         auth.login(
           responseData.userId,
+          responseData.user,
           responseData.token,
           responseData.verified
         );

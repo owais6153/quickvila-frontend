@@ -78,8 +78,6 @@ const Header = (props) => {
             </span>
           )}
 
-
-
           <div className="cart-dropdown">
             <div className="cart-icon" onClick={cartToggler}>
               <Icon url={homeUrl("images/cart.png")}></Icon>
