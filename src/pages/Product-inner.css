@@ -1,0 +1,69 @@
+section.product-inner-main .col-md-8 h2 {
+    font-size: 40px;
+    line-height: 47px;
+    text-transform: uppercase;
+    color: #040404;
+}
+
+section.product-inner-main .col-md-8 p {
+    font-family: "Gilroy";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #737373;
+}
+
+.rating ul {
+    list-style: none;
+    display: flex;
+    border: 1px solid #f3f3f3;
+    align-items: center;
+    padding: 15px 10px;
+}
+
+.rating ul p {
+    margin-bottom: 0px;
+}
+
+.rating ul li:nth-child(4) {
+    margin-left: auto;
+}
+
+.rating ul li:nth-child(1) {
+    margin-right: 23px;
+}
+
+.rating ul li:nth-child(1) i.fa.fa-star {
+    margin-left: 8px;
+    color: #e57c01;
+}
+
+.rating ul li:nth-child(2) {
+    margin-right: 27px;
+}
+.rating ul li:nth-child(3) {
+    border: 1px solid #969696;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-top: 0px;
+    padding-left: 20px;
+}
+.rating ul li:nth-child(4) a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #040404;
+    border: 1px solid #f3f3f3;
+    padding: 6px 15px;
+}
+
+.rating ul li:nth-child(4) a i.fa.fa-heart-o {
+    padding-right: 11px !important;
+}
+
+.rating ul li:nth-child(4) a:hover {
+    background: #fe0000 !important;
+    color: #fff;
+}
