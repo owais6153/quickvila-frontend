@@ -11,7 +11,7 @@ const ProductInner = () => {
       <section>
         <div className="container">
           <div className="row">
-            <div className="col-md-4"></div>
+            <div className="col-md-4">
             <div className="col-md-8">
               <h2>Sit mauris nibh in sit quam ac dui.</h2>
               <p>Lorem Ipsum, Dolor Sit</p>
@@ -33,8 +33,8 @@ const ProductInner = () => {
             </div>
           </div>
           <div className="row">
-            <div col-md-4></div>
-            <div col-md-8>
+            <div className="col-md-4"></div>
+            <div className="col-md-8">
               <ul>
                 <li>
                   <button type="button" class="btn btn-secondary">
