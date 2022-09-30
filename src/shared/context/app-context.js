@@ -8,6 +8,7 @@ export const AppContext = createContext({
   auth: {
     _token: null,
     userId: null,
+    user: null,
     verified: false,
     login: () => {},
     logout: () => {},
@@ -28,7 +29,7 @@ export const AppProvider = ({ children }) => {
   };
   const [cart, setCart] = useState({});
   const { sendRequest } = useHttpClient();
-  const { token, login, logout, userId, verified } = useAuth();
+  const { token, login, logout, userId, user, verified } = useAuth();
   const [loginModal, setLoginModal] = useState(false);
   const toggleLoginModal = () => {
     setLoginModal(!loginModal);
@@ -58,6 +59,7 @@ export const AppProvider = ({ children }) => {
         auth: {
           verified,
           userId,
+          user,
           _token: token,
           login,
           logout,

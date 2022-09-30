@@ -8,7 +8,7 @@ import CartBox from "../components/cart/cart-box";
 
 import { useLoading } from "../shared/hooks/loader-hook";
 const Checkout = () => {
-  const { isLogin } = useContext(AppContext);
+  const { isLogin, auth } = useContext(AppContext);
   const { setIsLoading } = useLoading(true);
   const [cart] = useCart();
   const onPageLoad = (value) => {
@@ -25,7 +25,7 @@ const Checkout = () => {
             <Row>
               <Col md={8}>
                 <Row>
-                  <Col md={12}>
+                  <Col md={12} className=" mb-3">
                     <h3>Personal Info</h3>
                   </Col>
                   <Col md={6}>
@@ -33,8 +33,10 @@ const Checkout = () => {
                       <input
                         type="text"
                         name="name"
+                        readOnly="readonly"
                         className="form-control"
                         placeholder="Full Name"
+                        value={auth.user.name}
                       />
                     </div>
                   </Col>
@@ -45,6 +47,8 @@ const Checkout = () => {
                         name="name"
                         className="form-control"
                         placeholder="Email"
+                        readOnly="readonly"
+                        value={auth.user.email}
                       />
                     </div>
                   </Col>
@@ -55,23 +59,24 @@ const Checkout = () => {
                         name="name"
                         className="form-control"
                         placeholder="Phone Number"
+                        value={auth.user.phone}
                       />
                     </div>
                   </Col>
-                  <Col md={12}>
-                    <h3>Shipping Details</h3>
+                  <Col md={12} className="mt-4  mb-3">
+                    <h3>Extra Info</h3>
                   </Col>
-                  <Col md={6}>
+                  <Col md={12}>
                     <div className="form-group">
-                      <input
+                      <textarea
                         type="text"
                         name="name"
                         className="form-control"
-                        placeholder="Select Address"
+                        placeholder="Order Note"
                       />
                     </div>
                   </Col>
-                  <Col md={12}>
+                  <Col md={12} className="mt-4 mb-3">
                     <h3>Payment Details</h3>
                   </Col>
                   <Col md={6}>
@@ -80,39 +85,28 @@ const Checkout = () => {
                         type="text"
                         name="name"
                         className="form-control"
-                        placeholder="Full Name"
+                        placeholder="Card Number"
                       />
                     </div>
                   </Col>
-                  <Col md={6}>
+                  <Col md={3}>
                     <div className="form-group">
                       <input
                         type="text"
                         name="name"
                         className="form-control"
-                        placeholder="Email"
+                        placeholder="Card Name"
                       />
                     </div>
                   </Col>
-                  <Col md={6}>
+                  <Col md={3}>
                     <div className="form-group">
                       <input
                         type="text"
                         name="name"
                         className="form-control"
-                        placeholder="Phone Number"
+                        placeholder="CVC"
                       />
-                    </div>
-                  </Col>
-                  <Col md={12}>
-                    <div className="form-group">
-                      <textarea
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        column="5"
-                        placeholder="Address"
-                      ></textarea>
                     </div>
                   </Col>
                 </Row>

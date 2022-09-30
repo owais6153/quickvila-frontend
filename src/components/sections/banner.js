@@ -46,7 +46,10 @@ const Banner = () => {
               />
               {"geolocation" in navigator && (
                 <div className="ser-icon" onClick={getUserLocation}>
-                  <img src={homeUrl("images/Vectory (1).png")} />
+                  <img
+                    src={homeUrl("images/Vectory (1).png")}
+                    alt="Get Geolocation"
+                  />
                 </div>
               )}
             </form>
