@@ -19,7 +19,6 @@ export const AppContext = createContext({
   setCart: () => {},
   toggleLoginModal: () => {},
   searchHandler: () => {},
-  addToCart: () => {},
 });
 
 export const AppProvider = ({ children }) => {

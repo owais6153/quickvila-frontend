@@ -16,12 +16,13 @@ const CartBox = ({ cart, login, actions }) => {
         <h3>No Products In Cart</h3>
       ) : undefined}
       <div className="header-cart-actions">
-        <h5>
-          Total: <Currency />
-          {cart.total}
-        </h5>
         {cart.items && cart.count > 0 && login && actions && (
           <div>
+            <h5>
+              Total: <Currency />
+              {cart.total}
+            </h5>
+
             <Link
               to="/cart"
               className="btn btn-primary"

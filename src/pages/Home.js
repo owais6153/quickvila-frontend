@@ -6,7 +6,7 @@ import Banner from "../components/sections/banner";
 import StoreSlider from "../components/sections/store-slider";
 import ProductSlider from "../components/sections/product-slider";
 import AdvBanners from "../components/sections/advbanners";
-import Testimonials from "../components/sections/testimonials";
+import Testimonials from "../components/sections/testimonial-slider";
 import Videos from "../components/sections/videos";
 const Home = () => {
   const [products, setProducts] = useState();
@@ -34,17 +34,17 @@ const Home = () => {
   return (
     <StaticPage getData={getData}>
       <Banner />
-      {stores  && stores.length > 0  && (
+      {stores && stores.length > 0 && (
         <StoreSlider title="All Stores" url="/stores" stores={stores} />
       )}
-      {products  && products.length > 0  && (
+      {products && products.length > 0 && (
         <ProductSlider
           products={products}
           title="Top Selling Products"
           url="/products"
         />
       )}
-      {products  && products.length > 0  &&  (
+      {products && products.length > 0 && (
         <ProductSlider
           products={products}
           title="Featured Products"
@@ -52,8 +52,10 @@ const Home = () => {
         />
       )}
       <AdvBanners />
-      {testimonials && testimonials.length > 0 && <Testimonials testimonials={testimonials} />}
-      {videos  && videos.length > 0  && <Videos videos={videos} />}
+      {testimonials && testimonials.length > 0 && (
+        <Testimonials testimonials={testimonials} />
+      )}
+      {videos && videos.length > 0 && <Videos videos={videos} />}
     </StaticPage>
   );
 };

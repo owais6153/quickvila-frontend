@@ -68,7 +68,12 @@ const Header = (props) => {
               </span>
               {dropdown && (
                 <Dropdown.Menu show>
-                  <a onClick={logoutHandler}>Logout</a>
+                  <Link className="nav-link" to="/my-account">
+                    Account
+                  </Link>
+                  <a className="nav-link pointer" onClick={logoutHandler}>
+                    Logout
+                  </a>
                 </Dropdown.Menu>
               )}
             </Dropdown>

@@ -2,7 +2,7 @@ import { Currency } from "../../shared/helper";
 import { Link } from "react-router-dom";
 const CartBoxItem = ({ item }) => {
   return (
-    <Link to={`/products/${item.product.id}`}>
+    <Link to={`/stores/${item.product.store_id}/products/${item.product.id}`}>
       <div className="cart-product">
         <img src={item.product.image} alt={item.product.name} />
         <div>

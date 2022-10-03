@@ -18,14 +18,15 @@ div,
 section {
   font-family: "Gilroy";
 }
+a:hover,
 a {
-  text-decoration: none;
+  color: #fc0000;
+}
+a {
+  text-decoration: none !important;
 }
 #root {
   min-height: 100vh;
-}
-a {
-  color: #fc0000;
 }
 /* width */
 ::-webkit-scrollbar {
