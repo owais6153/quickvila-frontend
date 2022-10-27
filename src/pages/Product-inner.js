@@ -50,6 +50,7 @@ const ProductInner = () => {
             </div>
           </div>
         </div>
+        </div>
       </section>
     </StaticPage>
   );
