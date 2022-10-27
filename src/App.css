@@ -38,9 +38,7 @@
   outline: none;
   box-shadow: none;
 }
-.btn-primary:focus {
-  background-color: #fe0000;
-}
+
 .form-group {
   margin-bottom: 10px;
 }
@@ -61,6 +59,9 @@
   padding: 20px 20px;
   font-size: 21px;
 }
+.btn-primary {
+  border: 2px solid transparent;
+}
 .bg-primary,
 .btn-primary,
 .theme-primary {
@@ -73,6 +74,14 @@
   color: #fff;
   background-color: #fe0120;
   border-color: #fe0120;
+}
+.btn-primary:focus {
+  background-color: #fe0000;
+}
+.btn-primary:hover {
+  color: #fe0000;
+  border: 2px solid #fe0000;
+  background: #ffffff;
 }
 h1 {
   font-style: normal;

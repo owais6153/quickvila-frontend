@@ -1,0 +1,14 @@
+div#sidebar {
+  background: #f3f3f3;
+  padding: 20px 30px 8px;
+}
+
+div#sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+div#sidebar ul li a {
+  padding: 5px 10px;
+  display: inline-block;
+}

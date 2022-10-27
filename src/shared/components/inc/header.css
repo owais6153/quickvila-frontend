@@ -13,6 +13,14 @@
   flex-wrap: wrap;
   align-items: center;
 }
+.nav-link {
+  color: #fe0000;
+}
+
+.nav-link:hover {
+  color: #fe0000;
+}
+
 .header-btn {
   justify-content: center;
 }

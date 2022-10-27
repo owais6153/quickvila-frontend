@@ -1,87 +1,50 @@
 import { useState } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
+import Component404 from "../components/component-404";
 import StaticPage from "../shared/components/staticpages";
-import { useLoading } from "../shared/hooks/loader-hook";
 import ProductSlider from "../components/sections/product-slider";
-import { homeUrl } from "../shared/helper";
+import { useParams } from "react-router-dom";
+import Inner from "../components/store/inner";
 import "./Store-inner.css";
 
-
 const StoreInner = () => {
-    const [products, setProducts] = useState();
-  const [stores, setStores] = useState();
-  const [testimonials, setTestimonials] = useState();
-  const [videos, setVideos] = useState();
+  const store_id = useParams().sid;
+  const [products, setProducts] = useState();
+  const [store, setStore] = useState(false);
+  const [searching, setSearching] = useState(true);
 
   const { sendRequest } = useHttpClient();
-  const { setIsLoading } = useLoading(true);
-  const onPageLoad = (value) => {
-    setIsLoading(value);
-  };
-    const getData = () => {
+  const getData = () => {
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl("home"));
+        const responseData = await sendRequest(apiUrl(`stores/${store_id}`));
         if (responseData.status == 200) {
-          setProducts(responseData.products);
-          setStores(responseData.stores);
-          setTestimonials(responseData.testimonials);
-          setVideos(responseData.videos);
+          setProducts(responseData.store.products);
+          setStore(responseData.store);
         }
-      } catch (err) {}
+      } catch (err) {
+        setSearching(false);
+      }
     };
     fetchData();
   };
   return (
-    <StaticPage onPageLoad={onPageLoad} getData={getData}>
-      <section
-        className="inner-banner"
-        style={{
-          backgroundImage: `url('${homeUrl("images/Rectangle 340 (1).png")}')`,
-        }}
-      ></section>
-      <section className="in-sec-one-C">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3">
-              <div className="brnd-logo">
-                <img src={homeUrl("images/Group 39733.png")} />
-              </div>
-            </div>
-            <div className="col-md-3">
-              <p>
-                20k
-                <br />
-                <span>Followers</span>
-              </p>
-            </div>
-            <div className="col-md-3">
-              <p>
-                100+
-                <br />
-                <span>Products</span>
-              </p>
-            </div>
-            <div className="col-md-3">
-              <p>Reviews</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-            {products  && products.length > 0  && (
+    <StaticPage getData={getData}>
+      {!searching && !store && <Component404 />}
+      {store && <Inner store={store} />}
+      {products && products.length > 0 && (
         <ProductSlider
           products={products}
           title="Top Selling Products"
-          url="/products"
+          url={`/stores/${store.id}/products`}
         />
       )}
-      {products  && products.length > 0  &&  (
+      {products && products.length > 0 && (
         <ProductSlider
           products={products}
           title="Featured Products"
-          url="/products"
+          url={`/stores/${store.id}/products`}
         />
       )}
     </StaticPage>

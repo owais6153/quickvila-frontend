@@ -1,8 +1,6 @@
-import Container from "react-bootstrap/esm/Container";
 import StaticPage from "../shared/components/staticpages";
-import { homeUrl } from "../shared/helper";
 import { useLoading } from "../shared/hooks/loader-hook";
-import { Link } from "react-router-dom";
+import Component404 from "../components/component-404";
 
 const PageNotFound = () => {
   const { setIsLoading } = useLoading(true);
@@ -11,24 +9,7 @@ const PageNotFound = () => {
   };
   return (
     <StaticPage onPageLoad={onPageLoad}>
-      <Container
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          textAlign: "center",
-        }}
-      >
-        <img src={homeUrl("/images/404.webp")} alt="404 icon" className="" />
-        <h2>
-          Sorry! Page you are requesting <br />
-          is not found.
-        </h2>
-        <Link to="/" className="btn btn-primary">
-          Go to Home
-        </Link>
-      </Container>
+      <Component404 />
     </StaticPage>
   );
 };

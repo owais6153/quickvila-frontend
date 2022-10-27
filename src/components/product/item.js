@@ -1,13 +1,9 @@
 import { Currency } from "../../shared/helper";
-import AddToCartButton from "./add-to-cart";
 import { Link } from "react-router-dom";
-// import AddToWishlistButton from "./add-to-wishlist";
-
 const ProductItem = ({ product }) => {
   return (
-    <Link to={`/products/${product.id}`}>
+    <Link to={`/stores/${product.store_id}/products/${product.id}`}>
       <div className="prd-cBox">
-        {/* <AddToWishlistButton /> */}
         <img src={product.image} alt={product.name} className="w-100" />
         <div className="ctn-p text-center">
           <h3>{product.name}</h3>
@@ -23,7 +19,6 @@ const ProductItem = ({ product }) => {
               </h5>
             )}
           </div>
-          <AddToCartButton product={product} />
         </div>
       </div>
     </Link>

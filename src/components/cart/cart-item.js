@@ -28,7 +28,9 @@ const CartItem = ({ item }) => {
   return (
     <tr>
       <td>
-        <Link to={`/products/${item.product.id}`}>
+        <Link
+          to={`/stores/${item.product.store_id}/products/${item.product.id}`}
+        >
           <div className="cart-table-product">
             <img src={item.product.image} alt={item.product.name} />
             <h4>{item.product.name}</h4>

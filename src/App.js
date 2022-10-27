@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { useParams, Route, Routes } from "react-router-dom";
 import { useLoading } from "./shared/hooks/loader-hook";
 import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
@@ -13,7 +13,18 @@ import ProductInner from "./pages/Product-inner";
 import StoreInner from "./pages/Store-inner";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import StoreProducts from "./pages/Store-products";
+import Account from "./pages/Account";
 import "./App.css";
+
+const DynamicProductLink = (props) => {
+  const product_id = useParams().pid;
+  return <ProductInner {...props} key={product_id} />;
+};
+const DynamicStoreLink = (props) => {
+  const store_id = useParams().sid;
+  return <StoreInner {...props} key={store_id} />;
+};
 
 const App = () => {
   const { isLoading } = useLoading(true);
@@ -25,15 +36,22 @@ const App = () => {
         <Route path="/" exact element={<Home />} />
         <Route path="/search/:term" exact element={<Search />} />
         <Route path="/products/" exact element={<Product />} />
-        <Route path="/products/:pid" exact element={<ProductInner />} />
         <Route path="/stores" exact element={<Store />} />
-        <Route path="/stores/:sid" exact element={<StoreInner />} />
+        <Route path="/stores/:sid" exact element={<DynamicStoreLink />} />
+        <Route path="/stores/:sid/products" exact element={<StoreProducts />} />
+        <Route
+          path="/stores/:sid/products/:pid"
+          exact
+          element={<DynamicProductLink />}
+        />
+
+        {/* Need Auth */}
         <Route path="/cart" exact element={<Cart />} />
         <Route path="/checkout" exact element={<Checkout />} />
-        <Route path="/account" exact element={<h1>PageCart</h1>} />
-        <Route path="/account/orders" exact element={<h1>PageCart</h1>} />
-        <Route path="/account/whishlist" exact element={<h1>PageCart</h1>} />
-        <Route path="/account/following" exact element={<h1>PageCart</h1>} />
+        <Route path="/my-account" exact element={<Account />} />
+        <Route path="/my-account/orders" exact element={<h1>PageCart</h1>} />
+        <Route path="/my-account/following" exact element={<h1>PageCart</h1>} />
+
         {/* This should be last route of the app */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
