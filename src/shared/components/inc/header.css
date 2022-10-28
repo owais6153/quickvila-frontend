@@ -84,3 +84,32 @@ span.cart-count {
     transform: translateX(0px);
   }
 }
+
+@media screen and (max-width: 991px){
+  header#header .row >div:nth-child(1), header#header .row >div:nth-child(2) {
+    width: 50%;
+    text-align: center;
+}
+
+header#header .row >div img {
+    max-width: 200px;
+}
+
+
+.header-btn {
+    text-align: right;
+}
+
+.header-btn-group {
+    margin-left: auto;
+}
+
+header#header .row >div:nth-child(3), header#header .row >div:nth-child(5) {
+    width: 50%;
+    justify-content: space-around;
+}
+
+header#header .row >div:nth-child(4) {
+    display: none;
+}
+}
