@@ -36,7 +36,7 @@ const Banner = () => {
               quis vel.
             </p>
             <form className="baner-form">
-              <PlacesInput />
+              {/* <PlacesInput /> */}
               <input
                 type="submit"
                 onClick={(e) => {
