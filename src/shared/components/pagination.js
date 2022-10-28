@@ -9,6 +9,12 @@ const Pagination = ({ links, onPageChange }) => {
     var elem;
     if (active) {
       elem = <span className="page-link active">{page}</span>;
+    } else if (page === "...") {
+      elem = (
+        <span className="page-link" style={{ opacity: "50%" }}>
+          {page}
+        </span>
+      );
     } else if (!active && !url) {
       elem = (
         <span className={`page-link ${index === 0 ? "prev" : "next"}`}>
