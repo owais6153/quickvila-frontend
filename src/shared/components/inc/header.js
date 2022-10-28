@@ -43,7 +43,7 @@ const Header = (props) => {
   const content = (
     <Container>
       <Row>
-        <Col md={1} className="header-brand">
+        <Col md={2} className="header-brand">
           <Link to="/">
             <Logo />
           </Link>
@@ -56,7 +56,7 @@ const Header = (props) => {
             <a className="btn px-4">Order</a>
           </div>
         </Col>
-        <Col md={5}>
+        <Col md={4}>
           <SearchForm />
         </Col>
         <Col md={1}></Col>
