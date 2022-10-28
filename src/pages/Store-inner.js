@@ -20,7 +20,7 @@ const StoreInner = () => {
       try {
         const responseData = await sendRequest(apiUrl(`stores/${store_id}`));
         if (responseData.status == 200) {
-          setProducts(responseData.store.products);
+          setProducts(responseData.products);
           setStore(responseData.store);
         }
       } catch (err) {
