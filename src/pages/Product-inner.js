@@ -58,20 +58,20 @@ const ProductInner = () => {
           <section className="product-inner-main">
             <div className="container">
               <div className="row">
-                <div className="col-md-4">
+                <div className="col-lg-4 col-md-12 mb-sm-5">
                   <img src={product.image} alt={product.name} />
                 </div>
-                <div className="col-md-8">
+                <div className="col-lg-8 col-md-12">
                   <h2>{product.name}</h2>
                   <p>{product.short_description}</p>
                   <div className="rating">
                     <ul>
                       <li>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i className="fa fa-star" aria-hidden="true"></i>
+                        <i className="fa fa-star" aria-hidden="true"></i>
+                        <i className="fa fa-star" aria-hidden="true"></i>
+                        <i className="fa fa-star" aria-hidden="true"></i>
+                        <i className="fa fa-star" aria-hidden="true"></i>
                       </li>
                       <li>
                         <p>12Ratings</p>

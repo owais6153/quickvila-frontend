@@ -23,7 +23,7 @@ const Checkout = () => {
             <h3>{!isLogin ? "Please Login First" : "No product in Cart"}</h3>
           ) : (
             <Row>
-              <Col md={8}>
+              <Col lg={8} className="mb-md-5">
                 <Row>
                   <Col md={12} className=" mb-3">
                     <h3>Personal Info</h3>
@@ -111,7 +111,7 @@ const Checkout = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col md={4}>
+              <Col lg={4}>
                 <h3>Products</h3>
                 <CartBox cart={cart} login={isLogin} />
               </Col>

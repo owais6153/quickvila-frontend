@@ -127,10 +127,7 @@ const ForgetForm = ({ swithHandler }) => {
 
   return (
     <form id="loginForm" onSubmit={submitHandler} className="row">
-      <div
-        className="col-md-10"
-        style={{ margin: "auto", padding: "40px 0px" }}
-      >
+      <div className="col-10" style={{ margin: "auto", padding: "40px 0px" }}>
         <h3>Forget Password</h3>
         {step == 1 && (
           <p>
@@ -159,7 +156,7 @@ const ForgetForm = ({ swithHandler }) => {
               id="code"
               name="code"
               placeholder="CODE"
-              onInput={inputHandler}             
+              onInput={inputHandler}
               checkMaxLimit={checkMaxLimit}
               validators={[
                 VALIDATOR_MINLENGTH(6, "Please enter a valid code."),

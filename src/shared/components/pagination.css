@@ -6,7 +6,7 @@ ul.pagination li .page-link {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 8px;
+  margin: 4px 8px;
   border-radius: 4px;
   font-size: 18px;
   border: none;
@@ -14,7 +14,9 @@ ul.pagination li .page-link {
 ul.pagination li a {
   cursor: pointer;
 }
-
+ul.pagination {
+  flex-wrap: wrap;
+}
 ul.pagination li .page-link:hover,
 ul.pagination li .page-link.active {
   background: #f3f3f3;

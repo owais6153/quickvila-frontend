@@ -10,26 +10,26 @@ const Inner = ({ store }) => {
       ></section>
       <section className="in-sec-one-C">
         <div className="container">
-          <div className="row">
+          <div className="row align-items-sm-baseline">
             <div className="col-md-3">
               <div className="brnd-logo">
                 <img src={store.logo} alt={store.name} />
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-4">
               <p>
                 20k
                 <br />
                 <span>Followers</span>
               </p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-4">
               <p>
                 {store.products_count > 100 ? "100+" : store.products_count}
                 <br /> <span>Product{store.products_count > 1 && "s"}</span>
               </p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-4">
               <p>Reviews</p>
             </div>
           </div>

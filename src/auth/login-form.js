@@ -118,10 +118,7 @@ const LoginForm = ({ swithHandler }) => {
 
   return (
     <form id="loginForm" onSubmit={submitHandler} className="row">
-      <div
-        className="col-md-10"
-        style={{ margin: "auto", padding: "40px 0px" }}
-      >
+      <div className="col-10" style={{ margin: "auto", padding: "40px 0px" }}>
         <div className="btn-group">
           <Button
             type="button"

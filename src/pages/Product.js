@@ -57,7 +57,7 @@ const Product = () => {
             {products &&
               products.map((product) => {
                 return (
-                  <Col md={6} lg={3} key={product.id}>
+                  <Col md={6} xl={3} key={product.id}>
                     <ProductItem product={product} />
                   </Col>
                 );

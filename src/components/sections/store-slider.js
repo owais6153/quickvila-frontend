@@ -36,20 +36,20 @@ const StoreSlider = (props) => {
             items: 3,
             partialVisibilityGutter: 30,
           },
-          mobile: {
-            breakpoint: {
-              max: 464,
-              min: 0,
-            },
-            items: 1,
-            partialVisibilityGutter: 0,
-          },
           tablet: {
             breakpoint: {
               max: 1024,
-              min: 464,
+              min: 767,
             },
             items: 2,
+            partialVisibilityGutter: 0,
+          },
+          mobile: {
+            breakpoint: {
+              max: 767,
+              min: 0,
+            },
+            items: 1,
             partialVisibilityGutter: 0,
           },
         }}

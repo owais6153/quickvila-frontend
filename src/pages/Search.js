@@ -42,7 +42,9 @@ const Search = () => {
 
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl(`search/${term}/?page=${page}`));
+        const responseData = await sendRequest(
+          apiUrl(`search/${term}/?page=${page}`)
+        );
         setProducts(responseData.products.data);
         setPagination(responseData.products.links);
         setCurrentPages(responseData.products.current_page);
@@ -51,9 +53,8 @@ const Search = () => {
     fetchData();
   };
 
-
   return (
-    <StaticPage >
+    <StaticPage>
       <section className="no-banner">
         <Container>
           <HeadingRow lg title={`You have searched for "${term}"`} />
@@ -61,7 +62,7 @@ const Search = () => {
             {products &&
               products.map((product) => {
                 return (
-                  <Col md={3} key={product.id}>
+                  <Col md={6} xl={3} key={product.id}>
                     <ProductItem product={product} />
                   </Col>
                 );

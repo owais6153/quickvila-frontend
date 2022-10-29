@@ -49,8 +49,12 @@ const App = () => {
         <Route path="/cart" exact element={<Cart />} />
         <Route path="/checkout" exact element={<Checkout />} />
         <Route path="/my-account" exact element={<Account />} />
-        <Route path="/my-account/orders" exact element={<h1>PageCart</h1>} />
-        <Route path="/my-account/following" exact element={<h1>PageCart</h1>} />
+        <Route path="/my-account/orders" exact element={<h1>Orders</h1>} />
+        <Route
+          path="/my-account/following"
+          exact
+          element={<h1>Following</h1>}
+        />
 
         {/* This should be last route of the app */}
         <Route path="*" element={<PageNotFound />} />

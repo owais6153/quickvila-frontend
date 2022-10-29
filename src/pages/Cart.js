@@ -29,8 +29,8 @@ const Cart = () => {
           {!isLogin || !cart.count || cart.count < 1 ? (
             <h3>{!isLogin ? "Please Login First" : "No product in Cart"}</h3>
           ) : (
-            <div>
-              <Table>
+            <div className="table-responsive">
+              <Table className="table">
                 <thead>
                   <tr>
                     <th>Product</th>

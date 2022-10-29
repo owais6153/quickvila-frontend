@@ -183,7 +183,7 @@ section.no-banner .RRone.row {
   color: #737373;
   margin-right: 35px;
 }
-.RRone .col-md-6 h3 {
+.RRone h3 {
   font-size: 32px;
   line-height: 38px;
   color: #000000;
@@ -191,7 +191,7 @@ section.no-banner .RRone.row {
   margin-bottom: 20px;
 }
 
-.RRone .col-md-6 h3:before {
+.RRone h3:before {
   content: "";
   display: block;
   width: 110px;
@@ -200,13 +200,13 @@ section.no-banner .RRone.row {
   bottom: -22px;
   background: #fe0000;
 }
-.RRone .col-md-6 h2 {
+.RRone h2 {
   color: #000000;
   position: relative;
   margin-bottom: 20px;
 }
 
-.RRone .col-md-6 h2:before {
+.RRone h2:before {
   content: "";
   display: block;
   width: 110px;
@@ -712,7 +712,9 @@ table div {
   padding: 22px 0;
   align-items: center;
 }
-
+table input {
+  min-width: 100px;
+}
 td {
   vertical-align: middle;
 }
@@ -731,4 +733,76 @@ input#code::-webkit-inner-spin-button {
 /* Firefox */
 input#code[type="number"] {
   -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 767px) {
+  form.baner-form {
+    width: 100%;
+  }
+  section.no-banner {
+    padding: 60px 0;
+  }
+  ul.ul-N li {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: 0;
+    color: #ffffff;
+    margin-left: 33px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  h1 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+  h2 {
+    font-size: 32px;
+    line-height: 39px;
+  }
+  h3 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .btn-crousel-group {
+    position: absolute;
+    top: 125px;
+    right: 10px;
+  }
+  .slider-section .col-md-6:nth-child(2) {
+    justify-content: flex-start;
+    padding: 25px 15px;
+  }
+  footer .row .col-12 {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .foot-Rone .row > div {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+  }
+
+  ul.ul-Sicons {
+    padding: 0;
+    margin: 0;
+  }
+
+  .foot-Rone .row > div ul {
+    margin-top: 37px;
+  }
+
+  .foot-Rone .row > div ul li:first-child {
+    margin-left: 0 !important;
+  }
+  .homeSec-four .coldiv {
+    margin-bottom: 15px;
+  }
 }

@@ -18,20 +18,20 @@ const Footer = () => {
         <div className="foot-Rone">
           <Container>
             <Row>
-              <Col md={6} lg={4}>
+              <Col md={6} lg={4} sm={6}>
                 <img
                   src={homeUrl("images/Trikro-White 1.png")}
                   alt="Trikaro Logo"
                 />
               </Col>
-              <Col md={6} lg={4}>
+              <Col md={6} lg={4} sm={6}>
                 <ul className="ul-N">
                   <li>Returns</li>
                   <li>Privacy</li>
                   <li>FAQs</li>
                 </ul>
               </Col>
-              <Col md={6} lg={4} className="justify-content-md-center m-auto">
+              <Col md={6} lg={4} className="justify-content-sm-center m-auto">
                 <ul className="ul-Sicons">
                   <li>
                     <i className="fa fa-facebook" aria-hidden="true"></i>
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
         <Container>
           <Row>
-            <Col md={6} lg={4} className="p-md-0">
+            <Col md={6} lg={4} xs={12} className="p-md-0">
               <h3>
                 <img src={homeUrl("images/Vecto.png")} alt="Newsletter Icon" />
                 Signup For Newsletter
@@ -62,7 +62,7 @@ const Footer = () => {
                 integer fusce turpis vel tortor ornare.
               </p>
             </Col>
-            <Col md={3} lg={2}>
+            <Col md={3} lg={2} xs={6} className="p-sm-0">
               <h3>About Us</h3>
               <ul>
                 <li>our story</li>
@@ -70,21 +70,21 @@ const Footer = () => {
                 <li>blogs</li>
               </ul>
             </Col>
-            <Col md={3} lg={2}>
+            <Col md={3} lg={2} xs={6} className="p-sm-0">
               <h3>help</h3>
               <ul>
                 <li>FAQs</li>
                 <li>feadback</li>
               </ul>
             </Col>
-            <Col md={6} lg={2} className="p-md-0">
+            <Col md={6} lg={2} xs={6} className="p-sm-0">
               <h3>privacy</h3>
               <ul>
                 <li>term of use</li>
                 <li>privacy and security</li>
               </ul>
             </Col>
-            <Col md={4} lg={2} className="last">
+            <Col md={4} lg={2} sm={6} className="last p-sm-0">
               <h3>gallery</h3>
               <div className="footer-gallery">
                 <img src={homeUrl("images/Rectangle 24.png")} alt="gallery-1" />

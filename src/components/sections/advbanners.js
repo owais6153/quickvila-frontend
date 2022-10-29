@@ -4,7 +4,7 @@ const AdvBanners = (props) => {
     <section className="homeSec-four">
       <div className="container">
         <div className="row">
-          <div className="col-lg-6 mb-md-5">
+          <div className="col-lg-6 mb-sm-5 mb-lg-0">
             <div
               className="coldiv"
               style={{
@@ -22,7 +22,7 @@ const AdvBanners = (props) => {
               <a href="#">shop now</a>
             </div>
           </div>
-          <div className="col-lg-6 mb-md-5">
+          <div className="col-lg-6 ">
             <div
               className="coldiv"
               style={{

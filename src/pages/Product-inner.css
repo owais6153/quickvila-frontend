@@ -1,11 +1,11 @@
-section.product-inner-main .col-md-8 h2 {
+section.product-inner-main h2 {
   font-size: 40px;
   line-height: 47px;
   text-transform: uppercase;
   color: #040404;
 }
 
-section.product-inner-main .col-md-8 p {
+section.product-inner-main p {
   font-family: "Gilroy";
   font-style: normal;
   font-weight: 500;
@@ -67,8 +67,8 @@ section.product-inner-main .col-md-8 p {
   background: #fe0000 !important;
   color: #fff;
 }
-section.product-inner-main .col-md-4 img {
-  width: 100%;
+section.product-inner-main .row > div img {
+  max-width: 100%;
 }
 
 h2.c-two {
@@ -122,10 +122,30 @@ section.product-inner-main {
   padding-top: 50px;
 }
 
-.product-inner-main .col-md-8 li button.btn.btn-primary {
+.product-inner-main li button.btn.btn-primary {
   font-size: 18.0976px;
   line-height: 21px;
   text-transform: capitalize;
   width: 160px;
   height: 55px;
+}
+
+@media screen and (max-width: 575px) {
+  .rating ul {
+    flex-direction: column;
+  }
+
+  .rating ul li {
+    margin: 10px 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  section.product-inner-main h2 {
+    margin-top: 30px;
+  }
+  .product-inner-main ul {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

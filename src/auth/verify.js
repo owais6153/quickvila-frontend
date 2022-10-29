@@ -69,10 +69,7 @@ const Verify = () => {
   };
   return (
     <form id="verifyForm" className="row" onSubmit={verifyHandler}>
-      <div
-        className="col-md-10"
-        style={{ margin: "auto", padding: "40px 0px" }}
-      >
+      <div className="col-10" style={{ margin: "auto", padding: "40px 0px" }}>
         <h3>Please verify your account</h3>
         <p>We've send you a 6 digits code on your email!</p>
         {error && <Alert type="danger" error={error} />}
