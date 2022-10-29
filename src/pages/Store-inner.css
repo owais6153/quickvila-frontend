@@ -1,41 +1,43 @@
 section.inner-banner {
-    padding-top: 350px;
-    padding-bottom: 250px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  padding-top: 350px;
+  padding-bottom: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 section.in-sec-one-C {
-    padding-top: 60px;
-    position: relative;
+  padding-top: 60px;
+  position: relative;
 }
 
 section.in-sec-one-C .brnd-logo {
-    position: absolute;
-    top: -100%;
+  transform: translateY(-170px);
 }
-
-section.in-sec-one-C .col-md-3 {
+section.in-sec-one-C .brnd-logo img {
+  width: 310px;
+  height: 310px;
+  object-fit: cover;
+  border-radius: 100%;
+  border: solid 8px #efefef;
 }
-
 section.in-sec-one-C .col-md-3 p {
-    font-family: "Gilroy";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
-    text-align: center;
-    color: #000000;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  color: #000000;
 }
 
 section.in-sec-one-C .col-md-3 p span {
-    font-family: "Gilroy";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    text-align: center;
-    letter-spacing: -0.02em;
-    line-height: 24px;
-    color: #232f3e;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  color: #232f3e;
 }

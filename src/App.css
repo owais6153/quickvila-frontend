@@ -215,8 +215,8 @@ section.no-banner .RRone.row {
   bottom: -22px;
   background: #fe0000;
 }
-.products-list.row .col-md-3,
-.stores-list.row .col-md-4 {
+.products-list.row > div,
+.stores-list.row > div {
   margin-bottom: 30px;
 }
 .c-box {
@@ -531,7 +531,7 @@ footer h3 img {
   margin-top: 12px;
 }
 
-footer .col-md-4 h3:before {
+footer .col-lg-4 h3:before {
   content: "";
   display: block;
   width: 70px;
@@ -542,7 +542,7 @@ footer .col-md-4 h3:before {
   left: 46px;
 }
 
-footer .col-md-4 p {
+footer .col-lg-4 p {
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -550,11 +550,11 @@ footer .col-md-4 p {
   color: #737373;
 }
 
-footer .col-md-2 {
+footer .col-lg-2 {
   padding-left: 40px;
 }
 
-footer .col-md-2 h3:before {
+footer .col-lg-2 h3:before {
   content: "";
   display: block;
   width: 50px;
@@ -564,12 +564,12 @@ footer .col-md-2 h3:before {
   bottom: -22px;
 }
 
-footer .col-md-2 ul {
+footer .col-lg-2 ul {
   padding-left: 0px;
   list-style: none;
 }
 
-footer .col-md-2 li {
+footer .col-lg-2 li {
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -578,7 +578,7 @@ footer .col-md-2 li {
   text-transform: capitalize;
 }
 
-.col-md-3.last h3:before {
+footer div.last h3:before {
   bottom: -21px;
   width: 43px;
   left: 2px;
@@ -599,15 +599,15 @@ footer .col-md-2 li {
   padding-bottom: 15px;
   margin-bottom: 60px;
 }
-.foot-Rone .col-md-4 {
+.foot-Rone .row > div {
   display: flex;
   align-items: center;
 }
-.foot-Rone .col-md-4:last-child {
+.foot-Rone .row > div:last-child {
   display: flex;
   justify-content: flex-end;
 }
-.foot-Rone .col-md-4:nth-child(2) {
+.foot-Rone .row > div:nth-child(2) {
   display: flex;
   justify-content: center;
   align-items: center;

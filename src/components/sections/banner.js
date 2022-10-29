@@ -21,7 +21,7 @@ const Banner = () => {
     <section style={BackgroundStyle} className="center">
       <Container>
         <Row>
-          <Col md={6}>
+          <Col lg={6}>
             <h1>
               Bracket Holder
               <br />& Camera Stand
