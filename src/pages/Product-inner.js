@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { homeUrl } from "../shared/helper";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { useParams } from "react-router-dom";

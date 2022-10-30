@@ -5,6 +5,7 @@ import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
 import Loader from "./shared/components/loader";
 import Home from "./pages/Home";
+import RiderHome from "./pages/RiderHome";
 import Search from "./pages/Search";
 import Store from "./pages/Store";
 import Product from "./pages/Product";
@@ -34,6 +35,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" exact element={<Home />} />
+        <Route path="/rider" exact element={<RiderHome />} />
         <Route path="/search/:term" exact element={<Search />} />
         <Route path="/products/" exact element={<Product />} />
         <Route path="/stores" exact element={<Store />} />

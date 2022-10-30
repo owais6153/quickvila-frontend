@@ -19,12 +19,19 @@ export const AppContext = createContext({
   setCart: () => {},
   toggleLoginModal: () => {},
   searchHandler: () => {},
+  mode: null,
+  changeMode: () => {},
 });
 
 export const AppProvider = ({ children }) => {
   const navigate = useNavigate();
   const searchHandler = (value) => {
     navigate(`/search/${value}`);
+  };
+
+  const [mode, setMode] = useState("customer");
+  const changeMode = (name) => {
+    setMode(() => name);
   };
   const [cart, setCart] = useState({});
   const { sendRequest } = useHttpClient();
@@ -41,7 +48,7 @@ export const AppProvider = ({ children }) => {
           const responseData = await sendRequest(apiUrl(`cart`), "GET", null, {
             Authorization: `Bearer ${token}`,
           });
-          if (responseData.status == 200) {
+          if (responseData.status === 200) {
             setCart(responseData.cart);
           }
         } catch (err) {}
@@ -67,6 +74,8 @@ export const AppProvider = ({ children }) => {
         setCart,
         searchHandler,
         toggleLoginModal,
+        mode,
+        changeMode,
       }}
     >
       {children}
