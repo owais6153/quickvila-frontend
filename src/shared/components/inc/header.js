@@ -52,14 +52,14 @@ const Header = (props) => {
         <Col md={4} className="header-btn">
           <div className="header-btn-group">
             <a
-              href="/rider"
+              href="/"
               // onClick={changeMode("rider")}
               className={`btn px-4 ${mode === "rider" && "btn-active"}`}
             >
               Deliver
             </a>
             <a
-              href="/"
+              href="/order"
               // onClick={changeMode("customer")}
               className={`btn px-4 ${mode === "customer" && "btn-active"}`}
             >

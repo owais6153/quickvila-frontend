@@ -34,8 +34,8 @@ const App = () => {
       {isLoading && <Loader />}
       <Header />
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/rider" exact element={<RiderHome />} />
+        <Route path="/" exact element={<RiderHome />} />
+        <Route path="/order" exact element={<Home />} />
         <Route path="/search/:term" exact element={<Search />} />
         <Route path="/products/" exact element={<Product />} />
         <Route path="/stores" exact element={<Store />} />

@@ -29,7 +29,7 @@ export const AppProvider = ({ children }) => {
     navigate(`/search/${value}`);
   };
 
-  const [mode, setMode] = useState("customer");
+  const [mode, setMode] = useState("rider");
   const changeMode = (name) => {
     setMode(() => name);
   };
