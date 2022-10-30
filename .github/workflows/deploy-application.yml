@@ -19,7 +19,6 @@ jobs:
     name: Deploy On Server
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH Keys
       - uses: shimataro/ssh-key-action@v2
       - with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
