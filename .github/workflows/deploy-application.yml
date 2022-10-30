@@ -13,4 +13,5 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create new build
-        run: npm run build
+        run: npm install
+          npm run build
