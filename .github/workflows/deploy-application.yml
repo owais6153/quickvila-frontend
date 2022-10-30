@@ -29,9 +29,8 @@ jobs:
 
       - name: Connecting through ssh
       - run: ssh quickvil@quickvila.store
-
-      - runs: cd /home/quickvil/public_html/trikaro
-      - runs: git pull origin master
-      - runs: npm run build
-      - runs: rsync -a /home/quickvil/public_html/trikaro/build/* /home/quickvil/public_html/
-      - runs: cp /home/quickvil/public_html/trikaro/.htaccess /home/quickvil/public_html/.htaccess
+          cd /home/quickvil/public_html/trikaro
+          git pull origin master
+          npm run build
+          rsync -a /home/quickvil/public_html/trikaro/build/* /home/quickvil/public_html/
+          cp /home/quickvil/public_html/trikaro/.htaccess /home/quickvil/public_html/.htaccess
