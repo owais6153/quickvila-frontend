@@ -24,16 +24,15 @@ jobs:
       - with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: "just-a-placeholder-so-we-dont-get-errors"
+
+      - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Connecting through ssh
       - run: ssh quickvil@quickvila.store
 
-      - name: Creating Build
-      - run: cd /home/quickvil/public_html/trikaro
-      - run: git pull origin master
-      - run: npm run build
-
-      - name: Copy Build & .htaccess files to public_html
-      - run: rsync -a /home/quickvil/public_html/trikaro/build/* /home/quickvil/public_html/
-      - run: cp /home/quickvil/public_html/trikaro/.htaccess /home/quickvil/public_html/.htaccess
+      - runs: cd /home/quickvil/public_html/trikaro
+      - runs: git pull origin master
+      - runs: npm run build
+      - runs: rsync -a /home/quickvil/public_html/trikaro/build/* /home/quickvil/public_html/
+      - runs: cp /home/quickvil/public_html/trikaro/.htaccess /home/quickvil/public_html/.htaccess
