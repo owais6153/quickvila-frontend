@@ -2,17 +2,72 @@ import { useContext } from "react";
 import { AppContext } from "../shared/context/app-context";
 import { Container, Row, Col } from "react-bootstrap";
 import { useCart } from "../shared/hooks/cart-hook";
+import { useForm } from "../shared/hooks/form-hook";
+import { useLoading } from "../shared/hooks/loader-hook";
+import { apiUrl } from "../shared/helper";
+import { useHttpClient } from "../shared/hooks/http-hook";
+import { VALIDATOR_REQUIRE, VALIDATOR_EMAIL } from "../shared/util/validation";
+import { toast } from "react-toastify";
+
+import Input from "../shared/components/form-elements/input";
+import Button from "../shared/components/form-elements/button";
 import StaticPage from "../shared/components/staticpages";
 import HeadingRow from "../shared/components/heading-row";
 import CartBox from "../components/cart/cart-box";
 
-import { useLoading } from "../shared/hooks/loader-hook";
 const Checkout = () => {
-  const { isLogin, auth } = useContext(AppContext);
+  const { isLogin, auth, cart, setCart } = useContext(AppContext);
   const { setIsLoading } = useLoading(true);
-  const [cart] = useCart();
+  const { sendRequest, error, clearError } = useHttpClient();
   const onPageLoad = (value) => {
     setIsLoading(value);
+  };
+
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      name: {
+        value: "",
+        isValid: false,
+      },
+      email: {
+        value: "",
+        isValid: false,
+      },
+      phone: {
+        value: "",
+        isValid: false,
+      },
+      note: {
+        value: "",
+        isValid: true,
+      },
+    },
+    false
+  );
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    if (!formState.isValid) {
+      return;
+    }
+
+    var url = apiUrl("checkout");
+    var data = JSON.stringify({
+      email: formState.inputs.email.value,
+      name: formState.inputs.name.value,
+      phone: formState.inputs.phone.value,
+      note: formState.inputs.note.value,
+    });
+    try {
+      var responseData = await sendRequest(url, "POST", data, {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth._token}`,
+      });
+      if (responseData.status === 200) {
+        setCart({});
+        toast.success("Checkout Successfuly");
+        window.location.href = "account/order/".responseData.order.id;
+      }
+    } catch (err) {}
   };
   return (
     <StaticPage onPageLoad={onPageLoad}>
@@ -23,94 +78,118 @@ const Checkout = () => {
             <h3>{!isLogin ? "Please Login First" : "No product in Cart"}</h3>
           ) : (
             <Row>
-              <Col lg={8} className="mb-md-5">
-                <Row>
-                  <Col md={12} className=" mb-3">
-                    <h3>Personal Info</h3>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        readOnly="readonly"
-                        className="form-control"
-                        placeholder="Full Name"
-                        value={auth.user.name}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Email"
-                        readOnly="readonly"
-                        value={auth.user.email}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Phone Number"
-                        value={auth.user.phone}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={12} className="mt-4  mb-3">
-                    <h3>Extra Info</h3>
-                  </Col>
-                  <Col md={12}>
-                    <div className="form-group">
-                      <textarea
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Order Note"
-                      />
-                    </div>
-                  </Col>
-                  <Col md={12} className="mt-4 mb-3">
-                    <h3>Payment Details</h3>
-                  </Col>
-                  <Col md={6}>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Card Number"
-                      />
-                    </div>
-                  </Col>
-                  <Col md={3}>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Card Name"
-                      />
-                    </div>
-                  </Col>
-                  <Col md={3}>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="CVC"
-                      />
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
+              <form id="checkoutForm" onSubmit={submitHandler} className="row">
+                <Col lg={8} className="mb-md-5">
+                  <Row>
+                    <Col md={12} className=" mb-3">
+                      <h3>Personal Info</h3>
+                    </Col>
+                    <Col md={6}>
+                      <div className="form-group">
+                        <Input
+                          onInput={inputHandler}
+                          type="text"
+                          id="name"
+                          name="name"
+                          readOnly="readonly"
+                          className="form-control"
+                          placeholder="Full Name"
+                          validators={[VALIDATOR_REQUIRE("Name is required.")]}
+                        />
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="form-group">
+                        <Input
+                          id="email"
+                          onInput={inputHandler}
+                          type="email"
+                          name="email"
+                          className="form-control"
+                          placeholder="Email"
+                          readOnly="readonly"
+                          validators={[
+                            VALIDATOR_REQUIRE("Email is required."),
+                            VALIDATOR_EMAIL("Please enter a valid email"),
+                          ]}
+                        />
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="form-group">
+                        <Input
+                          id="phone"
+                          onInput={inputHandler}
+                          type="text"
+                          name="phone"
+                          className="form-control"
+                          placeholder="Phone Number"
+                          validators={[VALIDATOR_REQUIRE("Phone is required.")]}
+                        />
+                      </div>
+                    </Col>
+                    <Col md={12} className="mt-4  mb-3">
+                      <h3>Extra Info</h3>
+                    </Col>
+                    <Col md={12}>
+                      <div className="form-group">
+                        <Input
+                          onInput={inputHandler}
+                          type="textarea"
+                          name="note"
+                          id="note"
+                          className="form-control"
+                          placeholder="Order Note"
+                        />
+                      </div>
+                    </Col>
+                    <Col md={12} className="mt-4 mb-3">
+                      <h3>Payment Details</h3>
+                    </Col>
+                    {/* <Col md={6}>
+                      <div className="form-group">
+                        <Input
+                          onInput={inputHandler}
+                          type="text"
+                          name="name"
+                          className="form-control"
+                          placeholder="Card Number"
+                        />
+                      </div>
+                    </Col>
+                    <Col md={3}>
+                      <div className="form-group">
+                        <Input
+                          onInput={inputHandler}
+                          type="text"
+                          name="name"
+                          className="form-control"
+                          placeholder="Card Name"
+                        />
+                      </div>
+                    </Col>
+                    <Col md={3}>
+                      <div className="form-group">
+                        <Input
+                          onInput={inputHandler}
+                          type="text"
+                          name="name"
+                          className="form-control"
+                          placeholder="CVC"
+                        />
+                      </div>
+                    </Col> */}
+                  </Row>
+                  <div className="form-group">
+                    <Button
+                      type="submit"
+                      className="btn-primary w-100"
+                      text="Checkout"
+                      disable={formState.isValid}
+                    />
+                  </div>
+                </Col>
+              </form>
               <Col lg={4}>
                 <h3>Products</h3>
                 <CartBox cart={cart} login={isLogin} />
