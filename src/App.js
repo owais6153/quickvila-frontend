@@ -5,7 +5,7 @@ import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
 import Loader from "./shared/components/loader";
 import Home from "./pages/Home";
-import RiderHome from "./pages/RiderHome";
+import MainHome from "./pages/MainHome";
 import Search from "./pages/Search";
 import Store from "./pages/Store";
 import Product from "./pages/Product";
@@ -34,7 +34,7 @@ const App = () => {
       {isLoading && <Loader />}
       <Header />
       <Routes>
-        <Route path="/" exact element={<RiderHome />} />
+        <Route path="/" exact element={<MainHome />} />
         <Route path="/order" exact element={<Home />} />
         <Route path="/search/:term" exact element={<Search />} />
         <Route path="/products/" exact element={<Product />} />

@@ -1,9 +1,10 @@
 import { homeUrl } from "../shared/helper";
 import StaticPage from "../shared/components/staticpages";
 import { useLoading } from "../shared/hooks/loader-hook";
-import "./riderhome.css";
+import "./main-home.css";
 import { Col, Container, Row } from "react-bootstrap";
-const RiderHome = () => {
+import { Link } from "react-router-dom";
+const MainHome = () => {
   const { setIsLoading } = useLoading(true);
   const onPageLoad = (value) => {
     setIsLoading(value);
@@ -20,10 +21,14 @@ const RiderHome = () => {
         <Container>
           <Row>
             <Col lg={6}>
-              <img src={homeUrl("images/shopping.png")} alt="shopping" />
+              <Link to="/order">
+                <img src={homeUrl("images/shopping.png")} alt="shopping" />
+              </Link>
             </Col>
             <Col lg={6}>
-              <img src={homeUrl("images/door.png")} alt="door" />
+              <Link to="/">
+                <img src={homeUrl("images/door.png")} alt="door" />
+              </Link>
             </Col>
           </Row>
         </Container>
@@ -32,4 +37,4 @@ const RiderHome = () => {
   );
 };
 
-export default RiderHome;
+export default MainHome;

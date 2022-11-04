@@ -99,9 +99,43 @@ const ProductInner = () => {
                         </del>
                       </span>
                     )}
+
+                    {!product.sale_price && (
+                      <span>
+                        <Currency />
+                        {product.price}
+                      </span>
+                    )}
                   </h2>
                   <h3>Description:</h3>
                   <p>{product.description}</p>
+                  {product.variations && product.variations.length > 0 && (
+                    <div id="variations">
+                      {product.variations.map((variation) => {
+                        return (
+                          <div key={variation.id}>
+                            <label>{variation.name}</label>
+                            <select
+                              name={`variation_id${variation.id}`}
+                              className="form-control"
+                            >
+                              {variation.options.map((option) => {
+                                return (
+                                  <option
+                                    key={`${variation.id}${option.id}`}
+                                    value={option.id}
+                                  >
+                                    {option.value}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
                   <ul>
                     <li>
                       <button type="button" className="btn btn-primary">
