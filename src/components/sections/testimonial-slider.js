@@ -31,25 +31,17 @@ const Testimonials = (props) => {
           desktop: {
             breakpoint: {
               max: 3000,
-              min: 1024,
+              min: 767,
             },
             items: 2,
             partialVisibilityGutter: 30,
           },
           mobile: {
             breakpoint: {
-              max: 464,
+              max: 767,
               min: 0,
             },
             items: 1,
-            partialVisibilityGutter: 0,
-          },
-          tablet: {
-            breakpoint: {
-              max: 1024,
-              min: 464,
-            },
-            items: 2,
             partialVisibilityGutter: 0,
           },
         }}

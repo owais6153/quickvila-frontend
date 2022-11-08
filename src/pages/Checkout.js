@@ -18,7 +18,7 @@ import CartBox from "../components/cart/cart-box";
 const Checkout = () => {
   const { isLogin, auth, cart, setCart } = useContext(AppContext);
   const { setIsLoading } = useLoading(true);
-  const { sendRequest, error, clearError } = useHttpClient();
+  const { sendRequest } = useHttpClient();
   const onPageLoad = (value) => {
     setIsLoading(value);
   };
@@ -62,11 +62,13 @@ const Checkout = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${auth._token}`,
       });
+
       if (responseData.status === 200) {
+        console.log(responseData);
         setCart({});
-        toast.success("Checkout Successfuly");
-        window.location.href = "account/order/".responseData.order.id;
+        window.location.replace(`order/${responseData.order.id}`);
       }
+      return true;
     } catch (err) {}
   };
   return (
@@ -189,11 +191,11 @@ const Checkout = () => {
                     />
                   </div>
                 </Col>
+                <Col lg={4}>
+                  <h3>Products</h3>
+                  <CartBox cart={cart} login={isLogin} />
+                </Col>
               </form>
-              <Col lg={4}>
-                <h3>Products</h3>
-                <CartBox cart={cart} login={isLogin} />
-              </Col>
             </Row>
           )}
         </Container>

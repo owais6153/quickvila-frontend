@@ -13,7 +13,7 @@ const Videos = (props) => {
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="col-md-8"
+        containerClass="col-md-12"
         dotListClass=""
         draggable={true}
         focusOnSelect={false}
@@ -29,25 +29,17 @@ const Videos = (props) => {
           desktop: {
             breakpoint: {
               max: 3000,
-              min: 1024,
+              min: 767,
             },
-            items: 1,
+            items: 2,
             partialVisibilityGutter: 50,
           },
           mobile: {
             breakpoint: {
-              max: 464,
+              max: 767,
               min: 0,
             },
             items: 1,
-            partialVisibilityGutter: 0,
-          },
-          tablet: {
-            breakpoint: {
-              max: 1024,
-              min: 464,
-            },
-            items: 2,
             partialVisibilityGutter: 0,
           },
         }}
