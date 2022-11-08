@@ -1,4 +1,4 @@
-name: Deploy React Front
+name: Build & Deploy React Front
 
 on:
   push:
