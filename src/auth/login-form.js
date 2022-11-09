@@ -7,6 +7,8 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 import { AppContext } from "../shared/context/app-context";
 import {
   VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_MAXLENGTH,
   VALIDATOR_REQUIRE,
   VALIDATOR_PASSWORD,
   VALIDATOR_CONFIRM_PASSWORD,
@@ -44,7 +46,9 @@ const LoginForm = ({ swithHandler }) => {
           value: "",
           isValid: false,
         },
-        name: undefined,
+        first_name: undefined,
+        last_name: undefined,
+        phone: undefined,
         confirm_password: undefined,
       },
       formState.inputs.email.isValid && formState.inputs.email
@@ -63,7 +67,15 @@ const LoginForm = ({ swithHandler }) => {
           value: "",
           isValid: false,
         },
-        name: {
+        first_name: {
+          value: "",
+          isValid: false,
+        },
+        last_name: {
+          value: "",
+          isValid: false,
+        },
+        phone: {
           value: "",
           isValid: false,
         },
@@ -95,7 +107,9 @@ const LoginForm = ({ swithHandler }) => {
         email: formState.inputs.email.value,
         password: formState.inputs.password.value,
         confirm_password: formState.inputs.confirm_password.value,
-        name: formState.inputs.name.value,
+        first_name: formState.inputs.first_name.value,
+        last_name: formState.inputs.last_name.value,
+        phone: formState.inputs.phone.value,
       });
     }
     clearError();
@@ -137,16 +151,54 @@ const LoginForm = ({ swithHandler }) => {
         </div>
         {error && <Alert type="danger" error={error} />}
         {!isLoginMode && (
-          <div className="form-group">
-            <Input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              onInput={inputHandler}
-              validators={[VALIDATOR_REQUIRE("Please enter a valid name.")]}
-            />
-          </div>
+          <React.Fragment>
+            <div className="form-group">
+              <Input
+                type="text"
+                id="first_name"
+                name="first_name"
+                placeholder="First Name"
+                onInput={inputHandler}
+                validators={[
+                  VALIDATOR_REQUIRE("Please enter a valid first name."),
+                  VALIDATOR_MINLENGTH(
+                    3,
+                    "The first name must be at least 3 characters."
+                  ),
+                ]}
+              />
+            </div>
+            <div className="form-group">
+              <Input
+                type="text"
+                id="last_name"
+                name="last_name"
+                placeholder="Last Name"
+                onInput={inputHandler}
+                validators={[
+                  VALIDATOR_REQUIRE("Please enter a valid last name."),
+                  VALIDATOR_MINLENGTH(
+                    3,
+                    "The last name must be at least 3 characters."
+                  ),
+                ]}
+              />
+            </div>
+            <div className="form-group">
+              <Input
+                type="text"
+                id="phone"
+                name="phone"
+                placeholder="Phone"
+                onInput={inputHandler}
+                validators={[
+                  VALIDATOR_REQUIRE("Please enter a valid phone."),
+                  VALIDATOR_MINLENGTH(3, "Please enter a valid phone."),
+                  VALIDATOR_MAXLENGTH(14, "Please enter a valid phone."),
+                ]}
+              />
+            </div>
+          </React.Fragment>
         )}
         <div className="form-group">
           <Input
