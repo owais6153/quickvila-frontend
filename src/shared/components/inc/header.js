@@ -96,13 +96,11 @@ const Header = (props) => {
           <div className="cart-dropdown">
             <div className="cart-icon" onClick={cartToggler}>
               <Icon url={homeUrl("images/cart.png")}></Icon>
-              <span className="cart-count">
-                {isLogin && cart.count ? cart.count : 0}
-              </span>
+              <span className="cart-count">{cart.count ? cart.count : 0}</span>
             </div>
             {cartdropdown && (
               <div className="header-cart">
-                <CartBox cart={cart} login={isLogin} actions />
+                <CartBox cart={cart} actions />
               </div>
             )}
           </div>

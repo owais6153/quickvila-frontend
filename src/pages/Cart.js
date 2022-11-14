@@ -26,8 +26,8 @@ const Cart = () => {
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="Cart" />
-          {!isLogin || !cart.count || cart.count < 1 ? (
-            <h3>{!isLogin ? "Please Login First" : "No product in Cart"}</h3>
+          {!cart.count || cart.count < 1 ? (
+            <h3>No product in Cart</h3>
           ) : (
             <div className="cart-table">
               <div className="table-responsive">

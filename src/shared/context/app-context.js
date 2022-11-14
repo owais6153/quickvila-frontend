@@ -4,7 +4,7 @@ import { useHttpClient } from "../hooks/http-hook";
 import { useAuth } from "../hooks/auth-hook";
 import { apiUrl } from "../helper";
 import { toast } from "react-toastify";
-
+import { useCart } from "../hooks/cart-hook";
 export const AppContext = createContext({
   auth: {
     _token: null,
@@ -17,6 +17,8 @@ export const AppContext = createContext({
   isLogin: false,
   loginModal: false,
   cart: {},
+  identifier: false,
+  setIdentifier: () => {},
   updateCart: () => {},
   toggleLoginModal: () => {},
   searchHandler: () => {},
@@ -31,6 +33,7 @@ export const AppProvider = ({ children }) => {
   const [geolocation, setGeolocation] = useState();
   const { token, login, logout, userId, user, verified } = useAuth();
   const [loginModal, setLoginModal] = useState(false);
+  const [identifier, setIdentifier] = useState(false);
 
   // Search
   const navigate = useNavigate();
@@ -49,18 +52,51 @@ export const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    var cartidentifier = cart.identifier ? cart.identifier : false;
+    if (!cartidentifier) {
+      if (cartidentifier != identifier) {
+        localStorage.removeItem("cart");
+        setIdentifier(() => cartidentifier);
+      }
+    } else {
+      if (cartidentifier != identifier) {
+        setIdentifier(() => cartidentifier);
+        localStorage.setItem(
+          "cart",
+          JSON.stringify({
+            identifier: cartidentifier,
+          })
+        );
+      }
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    if (storedCart && storedCart.identifier) {
+      setIdentifier(() => storedCart.identifier);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl(`cart`), "GET", null, {
-          Authorization: `Bearer ${token}`,
-        });
+        const params = identifier ? "?identifier=" + identifier : "";
+        const responseData = await sendRequest(
+          apiUrl(`cart${params}`),
+          "GET",
+          null,
+          {
+            Authorization: `Bearer ${token}`,
+          }
+        );
         if (responseData.status === 200) {
           updateCart(responseData.cart);
         }
       } catch (err) {}
     };
-    fetchData();
-  }, [token]);
+    if (!!token || identifier) fetchData();
+  }, [identifier, token]);
 
   // GeoLocation
   const getLocationByNavigator = (displayError = true) => {
@@ -97,6 +133,8 @@ export const AppProvider = ({ children }) => {
           login,
           logout,
         },
+        identifier,
+        setIdentifier,
         cart,
         updateCart,
         searchHandler,

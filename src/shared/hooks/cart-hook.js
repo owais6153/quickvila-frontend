@@ -1,10 +1,11 @@
-import { useCallback, useState, useContext } from "react";
+import { useCallback, useState, useContext, useEffect } from "react";
 import { useHttpClient } from "./http-hook";
 import { apiUrl } from "../helper";
 import { AppContext } from "../context/app-context";
 
 export const useCart = () => {
-  const { isLogin, auth, updateCart } = useContext(AppContext);
+  const { isLogin, auth, updateCart, identifier, setIdentifier } =
+    useContext(AppContext);
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -14,13 +15,14 @@ export const useCart = () => {
         Authorization: `Bearer ${auth._token}`,
       };
     else return {};
-  }, [isLogin]);
+  }, [isLogin, identifier]);
 
   const addToCart = useCallback(
     async (product) => {
       try {
+        const params = identifier ? "?identifier=" + identifier : "";
         const responseData = await sendRequest(
-          apiUrl(`cart/add/${product.id}`),
+          apiUrl(`cart/add/${product.id}${params}`),
           "PUT",
           {},
           getHeaders()
@@ -31,14 +33,15 @@ export const useCart = () => {
         return responseData;
       } catch (err) {}
     },
-    [isLogin]
+    [isLogin, identifier]
   );
 
   const emptyCart = useCallback(
     async (product) => {
       try {
+        const params = identifier ? "?identifier=" + identifier : "";
         const responseData = await sendRequest(
-          apiUrl(`cart/empty`),
+          apiUrl(`cart/empty${params}`),
           "DELETE",
           {},
           getHeaders()
@@ -49,14 +52,15 @@ export const useCart = () => {
         return responseData;
       } catch (err) {}
     },
-    [isLogin]
+    [isLogin, identifier]
   );
 
   const updateItem = useCallback(
     async (item, operation) => {
       try {
+        const params = identifier ? "?identifier=" + identifier : "";
         const responseData = await sendRequest(
-          apiUrl(`cart/update/${item.id}/${operation}`),
+          apiUrl(`cart/update/${item.id}/${operation}${params}`),
           "PUT",
           {},
           getHeaders()
@@ -67,14 +71,15 @@ export const useCart = () => {
         return responseData;
       } catch (err) {}
     },
-    [isLogin]
+    [isLogin, identifier]
   );
 
   const removeItem = useCallback(
     async (item) => {
       try {
+        const params = identifier ? "?identifier=" + identifier : "";
         const responseData = await sendRequest(
-          apiUrl(`cart/remove/${item.id}`),
+          apiUrl(`cart/remove/${item.id}${params}`),
           "DELETE",
           {},
           getHeaders()
@@ -85,8 +90,13 @@ export const useCart = () => {
         return responseData;
       } catch (err) {}
     },
-    [isLogin]
+    [isLogin, identifier]
   );
 
-  return { updateCart, removeItem, updateItem, emptyCart, addToCart };
+  return {
+    removeItem,
+    updateItem,
+    emptyCart,
+    addToCart,
+  };
 };

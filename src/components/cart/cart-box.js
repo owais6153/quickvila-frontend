@@ -2,21 +2,21 @@ import CartBoxItem from "./cart-box-item";
 import { Currency } from "../../shared/helper";
 import { Link } from "react-router-dom";
 import "./cart-box.css";
-const CartBox = ({ cart, login, actions }) => {
+const CartBox = ({ cart, actions }) => {
   return (
     <div className="cart-box">
-      {cart.items && login && cart.count > 0 && (
+      {cart.items && cart.count > 0 && (
         <div className="cart-products">
           {cart.items.map((item) => {
             return <CartBoxItem key={item.id} item={item} />;
           })}
         </div>
       )}
-      {(cart.count && cart.count === 0) || !cart.count || !login ? (
+      {(cart.count && cart.count === 0) || !cart.count ? (
         <h3>No Products In Cart</h3>
       ) : undefined}
       <div className="header-cart-actions">
-        {cart.items && cart.count > 0 && login && actions && (
+        {cart.items && cart.count > 0 && actions && (
           <div>
             <h5>
               Total: <Currency />

@@ -7,6 +7,7 @@ import { apiUrl } from "../shared/helper";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { VALIDATOR_REQUIRE, VALIDATOR_EMAIL } from "../shared/util/validation";
 import { toast } from "react-toastify";
+import { useCart } from "../shared/hooks/cart-hook";
 
 import Input from "../shared/components/form-elements/input";
 import Button from "../shared/components/form-elements/button";
@@ -15,7 +16,8 @@ import HeadingRow from "../shared/components/heading-row";
 import CartBox from "../components/cart/cart-box";
 
 const Checkout = () => {
-  const { isLogin, auth, cart, updateCart } = useContext(AppContext);
+  const { isLogin, auth, cart } = useContext(AppContext);
+  const { setCartLocally } = useCart();
   const { setIsLoading } = useLoading(true);
   const { sendRequest } = useHttpClient();
   const onPageLoad = (value) => {
@@ -63,8 +65,7 @@ const Checkout = () => {
       });
 
       if (responseData.status === 200) {
-        console.log(responseData);
-        updateCart({});
+        setCartLocally({});
         window.location.replace(`order/${responseData.order.id}`);
       }
       return true;
@@ -75,8 +76,8 @@ const Checkout = () => {
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="Checkout" />
-          {!isLogin || !cart.count || cart.count < 1 ? (
-            <h3>{!isLogin ? "Please Login First" : "No product in Cart"}</h3>
+          {!cart.count || cart.count < 1 ? (
+            <h3>No product in Cart</h3>
           ) : (
             <Row>
               <form id="checkoutForm" onSubmit={submitHandler} className="row">
@@ -182,12 +183,15 @@ const Checkout = () => {
                     </Col> */}
                   </Row>
                   <div className="form-group">
-                    <Button
+                    {/* <Button
                       type="submit"
                       className="btn-primary w-100"
                       text="Checkout"
-                      disable={formState.isValid}
-                    />
+                      disable={true}
+                    /> */}
+                    <div className="alert alert-danger">
+                      No Payment Method is set.
+                    </div>
                   </div>
                 </Col>
                 <Col lg={4}>
