@@ -4,7 +4,6 @@ import { useHttpClient } from "../hooks/http-hook";
 import { useAuth } from "../hooks/auth-hook";
 import { apiUrl } from "../helper";
 import { toast } from "react-toastify";
-import { useCart } from "../hooks/cart-hook";
 export const AppContext = createContext({
   auth: {
     _token: null,
