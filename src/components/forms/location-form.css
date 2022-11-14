@@ -1,0 +1,34 @@
+form.baner-form {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+}
+.geo-loc {
+  position: relative;
+}
+
+.ser-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.modal form.baner-form {
+  padding: 0px;
+}
+
+.modal form.baner-form .row {
+  display: block;
+  position: relative;
+}
+
+.modal form.baner-form .row div[class^="col-"],
+.modal form.baner-form .row div[class*=" col-"] {
+  width: 100%;
+  padding: 0 15px !important;
+}
+
+.modal form.baner-form .row input[type="submit"] {
+  margin-top: 10px;
+}

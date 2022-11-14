@@ -4,7 +4,7 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { useParams } from "react-router-dom";
 import StaticPage from "../shared/components/staticpages";
-import Component404 from "../components/component-404";
+import Component404 from "../shared/components/component-404";
 import HeadingRow from "../shared/components/heading-row";
 
 const OrderInner = () => {

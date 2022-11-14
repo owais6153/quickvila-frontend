@@ -1,79 +1,92 @@
-import {  useCallback, useContext } from "react";
+import { useCallback, useState, useContext } from "react";
 import { useHttpClient } from "./http-hook";
 import { apiUrl } from "../helper";
 import { AppContext } from "../context/app-context";
 
 export const useCart = () => {
-  const { cart, setCart, isLogin, auth } = useContext(AppContext);
+  const { isLogin, auth, updateCart } = useContext(AppContext);
+
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  const addToCart = useCallback(async (product) => {
-    try {
-      const responseData = await sendRequest(
-        apiUrl(`cart/add/${product.id}`),
-        "PUT",
-        {},
-        {
-          Authorization: `Bearer ${auth._token}`,
-        }
-      );
-      if (responseData.status === 200) {
-        setCart(responseData.cart);
-      }
-      return responseData;
-    } catch (err) {}
-  }, []);
+  const getHeaders = useCallback(() => {
+    if (isLogin)
+      return {
+        Authorization: `Bearer ${auth._token}`,
+      };
+    else return {};
+  }, [isLogin]);
 
-  const emptyCart = useCallback(async (product) => {
-    try {
-      const responseData = await sendRequest(
-        apiUrl(`cart/empty`),
-        "DELETE",
-        {},
-        {
-          Authorization: `Bearer ${auth._token}`,
+  const addToCart = useCallback(
+    async (product) => {
+      try {
+        const responseData = await sendRequest(
+          apiUrl(`cart/add/${product.id}`),
+          "PUT",
+          {},
+          getHeaders()
+        );
+        if (responseData.status === 200) {
+          updateCart(responseData.cart);
         }
-      );
-      if (responseData.status === 200) {
-        setCart({});
-      }
-      return responseData;
-    } catch (err) {}
-  }, []);
+        return responseData;
+      } catch (err) {}
+    },
+    [isLogin]
+  );
 
-  const updateItem = useCallback(async (item, operation) => {
-    try {
-      const responseData = await sendRequest(
-        apiUrl(`cart/update/${item.id}/${operation}`),
-        "PUT",
-        {},
-        {
-          Authorization: `Bearer ${auth._token}`,
+  const emptyCart = useCallback(
+    async (product) => {
+      try {
+        const responseData = await sendRequest(
+          apiUrl(`cart/empty`),
+          "DELETE",
+          {},
+          getHeaders()
+        );
+        if (responseData.status === 200) {
+          updateCart({});
         }
-      );
-      if (responseData.status === 200) {
-        setCart(responseData.cart);
-      }
-      return responseData;
-    } catch (err) {}
-  }, []);
+        return responseData;
+      } catch (err) {}
+    },
+    [isLogin]
+  );
 
-  const removeItem = useCallback(async (item) => {
-    try {
-      const responseData = await sendRequest(
-        apiUrl(`cart/remove/${item.id}`),
-        "DELETE",
-        {},
-        {
-          Authorization: `Bearer ${auth._token}`,
+  const updateItem = useCallback(
+    async (item, operation) => {
+      try {
+        const responseData = await sendRequest(
+          apiUrl(`cart/update/${item.id}/${operation}`),
+          "PUT",
+          {},
+          getHeaders()
+        );
+        if (responseData.status === 200) {
+          updateCart(responseData.cart);
         }
-      );
-      if (responseData.status === 200) {
-        setCart(responseData.cart);
-      }
-      return responseData;
-    } catch (err) {}
-  }, []);
+        return responseData;
+      } catch (err) {}
+    },
+    [isLogin]
+  );
 
-  return [cart, addToCart, emptyCart, updateItem, removeItem];
+  const removeItem = useCallback(
+    async (item) => {
+      try {
+        const responseData = await sendRequest(
+          apiUrl(`cart/remove/${item.id}`),
+          "DELETE",
+          {},
+          getHeaders()
+        );
+        if (responseData.status === 200) {
+          updateCart(responseData.cart);
+        }
+        return responseData;
+      } catch (err) {}
+    },
+    [isLogin]
+  );
+
+  return { updateCart, removeItem, updateItem, emptyCart, addToCart };
 };

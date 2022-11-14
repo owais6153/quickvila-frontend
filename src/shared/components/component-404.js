@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/esm/Container";
-import { homeUrl } from "../shared/helper";
+import { homeUrl } from "../helper";
 import { Link } from "react-router-dom";
 
 const Component404 = () => {

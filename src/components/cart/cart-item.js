@@ -4,7 +4,7 @@ import { useCart } from "../../shared/hooks/cart-hook";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 const CartItem = ({ item }) => {
-  const [cart, addToCart, emptyCart, updateItem, removeItem] = useCart();
+  const { updateItem, removeItem } = useCart();
   const removeItemHandler = async () => {
     const responseData = await removeItem(item);
     if (responseData.status == 200) {

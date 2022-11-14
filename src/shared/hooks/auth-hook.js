@@ -9,7 +9,7 @@ export const useAuth = () => {
   const [userId, setUserId] = useState(false);
   const [verified, setVerified] = useState(false);
   const [user, setUser] = useState(false);
-  const { cart, setCart } = useContext(AppContext);
+  const { updateCart } = useContext(AppContext);
 
   const login = useCallback((uid, user, token, verified, expirationDate) => {
     setToken(token);
@@ -17,15 +17,15 @@ export const useAuth = () => {
     setVerified(verified);
     setUser(user);
     const tokenExpirationDate =
-      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
     localStorage.setItem(
       "userData",
       JSON.stringify({
-        verified: verified,
+        verified,
         userId: uid,
-        user: user,
-        token: token,
+        user,
+        token,
         expiration: tokenExpirationDate.toISOString(),
       })
     );
@@ -33,7 +33,7 @@ export const useAuth = () => {
 
   const logout = useCallback(() => {
     localStorage.removeItem("userData");
-    setCart({});
+    updateCart({});
     setToken(null);
     setUser(false);
     setTokenExpirationDate(null);

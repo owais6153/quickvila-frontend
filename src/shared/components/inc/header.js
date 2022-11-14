@@ -14,8 +14,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "./header.css";
 import { useHttpClient } from "../../hooks/http-hook";
 const Header = (props) => {
-  const { cart, isLogin, toggleLoginModal, auth, mode, changeMode } =
-    useContext(AppContext);
+  const { cart, isLogin, toggleLoginModal, auth } = useContext(AppContext);
   const { sendRequest } = useHttpClient();
   const [cartdropdown, setCartDropdown] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -54,14 +53,14 @@ const Header = (props) => {
             <a
               href="/"
               // onClick={changeMode("rider")}
-              className={`btn px-4 ${mode === "rider" && "btn-active"}`}
+              className={`btn px-4 active`}
             >
               Deliver
             </a>
             <a
-              href="/order"
+              href="/shop"
               // onClick={changeMode("customer")}
-              className={`btn px-4 ${mode === "customer" && "btn-active"}`}
+              className={`btn px-4 `}
             >
               Order
             </a>

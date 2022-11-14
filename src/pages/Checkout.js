@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "../shared/context/app-context";
 import { Container, Row, Col } from "react-bootstrap";
-import { useCart } from "../shared/hooks/cart-hook";
 import { useForm } from "../shared/hooks/form-hook";
 import { useLoading } from "../shared/hooks/loader-hook";
 import { apiUrl } from "../shared/helper";
@@ -16,7 +15,7 @@ import HeadingRow from "../shared/components/heading-row";
 import CartBox from "../components/cart/cart-box";
 
 const Checkout = () => {
-  const { isLogin, auth, cart, setCart } = useContext(AppContext);
+  const { isLogin, auth, cart, updateCart } = useContext(AppContext);
   const { setIsLoading } = useLoading(true);
   const { sendRequest } = useHttpClient();
   const onPageLoad = (value) => {
@@ -65,7 +64,7 @@ const Checkout = () => {
 
       if (responseData.status === 200) {
         console.log(responseData);
-        setCart({});
+        updateCart({});
         window.location.replace(`order/${responseData.order.id}`);
       }
       return true;

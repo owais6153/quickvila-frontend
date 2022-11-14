@@ -4,7 +4,8 @@ import { useLoading } from "../shared/hooks/loader-hook";
 import { Container, Row, Col } from "react-bootstrap";
 import HeadingRow from "../shared/components/heading-row";
 import StaticPage from "../shared/components/staticpages";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../shared/components/sidebar";
+
 const Account = () => {
   const { auth } = useContext(AppContext);
   const { setIsLoading } = useLoading(true);

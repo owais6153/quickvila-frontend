@@ -92,6 +92,7 @@ const ForgetForm = ({ swithHandler }) => {
         code: formState.inputs.code.value,
       });
       headers = {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       };
     } else if (step == 3) {
@@ -112,10 +113,10 @@ const ForgetForm = ({ swithHandler }) => {
       if (responseData.status === 200) {
         if (step == 1) {
           toast.success("Code sent to your email");
+          setToken(responseData.update_token);
           changeStep();
         } else if (step == 2) {
           toast.success("Code Verified");
-          setToken(responseData.token);
           changeStep();
         } else if (step == 3) {
           toast.success("Password Updated");

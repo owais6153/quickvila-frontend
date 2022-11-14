@@ -1,32 +1,51 @@
--------
-PHASE 1
--------
-Frontend error handling
-backend errros in json
-    404, throttle
-Location Stores
-Dynamic Pages
-Checkout
-Paypal
-Store Following & Account
-Responsive
+Front
+    Change Flow of Cart
 
--------
-PHASE 2
--------
-Basic Curd backend
-Store Manager Backend with API
-Riders according to location
 
--------
-PHASE 3
--------
-Scrapper
-Emails
-Newsletter
-Testing
 
----
-Store Frontend
-Rider Frontend
-Wishlist
+
+
+
+
+
+
+
+Flow Products By Location
+
+
+
+--------------Front-------------------
+
+Non Login:
+    Enter Location ->
+        <- Get Products
+    Loggedin ->
+
+Login: 
+    if
+        hasLocation
+            <- Get Products
+    else
+        Enter Location
+            <- Get Products
+
+
+Enter Location:
+    if
+        Non Login
+            Get Products
+        Login
+            Set Geolocation and make it active
+            Get products
+
+
+
+
+---------------Backend -------------
+
+    User
+        ->hasMultiple 
+            Address   :Get Adress which is active
+
+---------------Order-----------------
+

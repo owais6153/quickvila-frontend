@@ -9,7 +9,7 @@ import { useCart } from "../shared/hooks/cart-hook";
 import { Currency } from "../shared/helper";
 import StaticPage from "../shared/components/staticpages";
 import ProductSlider from "../components/sections/product-slider";
-import Component404 from "../components/component-404";
+import Component404 from "../shared/components/component-404";
 import "./Product-inner.css";
 
 const ProductInner = () => {
@@ -22,7 +22,7 @@ const ProductInner = () => {
 
   const { sendRequest } = useHttpClient();
   const { isLogin } = useContext(AppContext);
-  const [cart, addToCart, emptyCart] = useCart();
+  const { cart, addToCart, emptyCart } = useCart();
 
   const onClickHandler = async (e) => {
     try {

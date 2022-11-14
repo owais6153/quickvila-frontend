@@ -1,6 +1,6 @@
 import StaticPage from "../shared/components/staticpages";
 import { useLoading } from "../shared/hooks/loader-hook";
-import Component404 from "../components/component-404";
+import Component404 from "../shared/components/component-404";
 
 const PageNotFound = () => {
   const { setIsLoading } = useLoading(true);

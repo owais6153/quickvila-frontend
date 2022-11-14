@@ -23,11 +23,21 @@
   color: #737373;
   outline: none;
   box-shadow: none;
-  padding: 15px 20px;
+  padding-right: 20px;
+  padding-left: 20px;
   font-family: "Gilroy";
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
+  height: 45px;
+}
+a.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-group .btn {
+  height: unset;
 }
 .form-control--invalid {
   border: solid 1px #fe0000;
@@ -656,50 +666,7 @@ ul.ul-Sicons li i {
   position: relative;
   display: block;
 }
-form.baner-form {
-  background-color: #ffffff;
-  width: 84%;
-  padding: 10px;
-  border-radius: 8px;
-}
-form.baner-form .get-address {
-  width: 80%;
-  display: inline-block;
-  margin-right: 10px;
-}
-form.baner-form .get-address input {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  color: #737373;
-  padding: 13px 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd9d9;
-  background: transparent;
-  position: relative;
-}
 
-form.baner-form input[type="submit"] {
-  font-size: 14px;
-  line-height: 16px;
-  background: #fe0000;
-  border-radius: 8px;
-  border: #fe0000;
-  padding: 12px 23px;
-  color: #ffffff;
-  text-transform: capitalize;
-}
-
-form.baner-form {
-  position: relative;
-}
-
-.ser-icon {
-  position: absolute;
-  top: 31%;
-  right: 26%;
-}
 table img {
   width: 100px;
   height: 100px;

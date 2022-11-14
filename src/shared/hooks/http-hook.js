@@ -49,10 +49,14 @@ export const useHttpClient = (displayErrors = true) => {
         return responseData;
       } catch (err) {
         setIsLoading(false);
-        if (responseData.errors && responseData.status != 200) {
+        if (
+          responseData != undefined &&
+          responseData.errors &&
+          responseData.status != 200
+        ) {
           setTheErrors(responseData.errors);
         } else {
-          setTheErrors(err.message);
+          console.error(err.message);
         }
       }
     },

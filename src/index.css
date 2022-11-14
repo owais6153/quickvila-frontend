@@ -64,3 +64,8 @@ a {
 .carouselItem {
   padding-right: 30px;
 }
+.modal-backdrop.show {
+  backdrop-filter: blur(5px);
+  opacity: 1;
+  background-color: #00000096;
+}

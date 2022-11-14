@@ -9,8 +9,10 @@ import Auth from "../../../auth/auth";
 import Verify from "../../../auth/verify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LocationForm from "../../../components/forms/location-form";
+
 const Footer = () => {
-  const { toggleLoginModal, loginModal, isLogin, auth } =
+  const { toggleLoginModal, loginModal, isLogin, auth, hasGeoLocation } =
     useContext(AppContext);
   const content = (
     <React.Fragment>
@@ -114,7 +116,31 @@ const Footer = () => {
           <Verify />
         </ModalPopup>
       )}
-
+      {!hasGeoLocation && !loginModal && (
+        <ModalPopup size="lg" title="Login" show={true}>
+          <div
+            className="col-10"
+            style={{ margin: "auto", padding: "40px 0px" }}
+          >
+            <h3>We need your location to proceed further!</h3>
+            <p>
+              Please enable your location permission or enter your address
+              below.
+            </p>
+            <LocationForm />
+            <div className="mt-3 text-right">
+              Or you can{" "}
+              <a
+                href="#"
+                className=" d-inline-block"
+                onClick={toggleLoginModal}
+              >
+                Login here
+              </a>
+            </div>
+          </div>
+        </ModalPopup>
+      )}
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

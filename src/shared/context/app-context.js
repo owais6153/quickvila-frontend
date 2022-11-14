@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useHttpClient } from "../hooks/http-hook";
 import { useAuth } from "../hooks/auth-hook";
 import { apiUrl } from "../helper";
+import { toast } from "react-toastify";
 
 export const AppContext = createContext({
   auth: {
@@ -16,47 +17,73 @@ export const AppContext = createContext({
   isLogin: false,
   loginModal: false,
   cart: {},
-  setCart: () => {},
+  updateCart: () => {},
   toggleLoginModal: () => {},
   searchHandler: () => {},
-  mode: null,
-  changeMode: () => {},
+  hasGeoLocation: false,
+  geolocation: {},
+  getLocationByNavigator: () => {},
 });
 
 export const AppProvider = ({ children }) => {
+  const [cart, setCart] = useState({});
+  const { sendRequest } = useHttpClient(false);
+  const [geolocation, setGeolocation] = useState();
+  const { token, login, logout, userId, user, verified } = useAuth();
+  const [loginModal, setLoginModal] = useState(false);
+
+  // Search
   const navigate = useNavigate();
   const searchHandler = (value) => {
     navigate(`/search/${value}`);
   };
 
-  const [mode, setMode] = useState("rider");
-  const changeMode = (name) => {
-    setMode(() => name);
-  };
-  const [cart, setCart] = useState({});
-  const { sendRequest } = useHttpClient();
-  const { token, login, logout, userId, user, verified } = useAuth();
-  const [loginModal, setLoginModal] = useState(false);
+  // Auth
   const toggleLoginModal = () => {
     setLoginModal(!loginModal);
   };
 
+  // Cart
+  const updateCart = (newCart) => {
+    setCart(() => newCart);
+  };
+
   useEffect(() => {
-    if (token) {
-      const fetchData = async () => {
-        try {
-          const responseData = await sendRequest(apiUrl(`cart`), "GET", null, {
-            Authorization: `Bearer ${token}`,
-          });
-          if (responseData.status === 200) {
-            setCart(responseData.cart);
-          }
-        } catch (err) {}
-      };
-      fetchData();
-    }
+    const fetchData = async () => {
+      try {
+        const responseData = await sendRequest(apiUrl(`cart`), "GET", null, {
+          Authorization: `Bearer ${token}`,
+        });
+        if (responseData.status === 200) {
+          updateCart(responseData.cart);
+        }
+      } catch (err) {}
+    };
+    fetchData();
   }, [token]);
 
+  // GeoLocation
+  const getLocationByNavigator = (displayError = true) => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        setGeolocation(() => ({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        }));
+      },
+      function (error) {
+        if (displayError)
+          toast.error(
+            `${error.message}, Please reset your location permission`
+          );
+        else
+          console.error(
+            `${error.message}, Please reset your location permission`
+          );
+      }
+    );
+  };
+  getLocationByNavigator(false);
   return (
     <AppContext.Provider
       value={{
@@ -71,11 +98,12 @@ export const AppProvider = ({ children }) => {
           logout,
         },
         cart,
-        setCart,
+        updateCart,
         searchHandler,
         toggleLoginModal,
-        mode,
-        changeMode,
+        hasGeoLocation: !!geolocation,
+        geolocation,
+        getLocationByNavigator,
       }}
     >
       {children}

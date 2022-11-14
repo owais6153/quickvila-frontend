@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
-import Component404 from "../components/component-404";
+import Component404 from "../shared/components/component-404";
 import StaticPage from "../shared/components/staticpages";
 import ProductSlider from "../components/sections/product-slider";
 import { useParams } from "react-router-dom";
@@ -10,7 +10,8 @@ import "./Store-inner.css";
 
 const StoreInner = () => {
   const store_id = useParams().sid;
-  const [products, setProducts] = useState();
+  const [featured_products, setFeaturedProducts] = useState();
+  const [top_selling_products, setTopSellinggProducts] = useState();
   const [store, setStore] = useState(false);
   const [searching, setSearching] = useState(true);
 
@@ -20,7 +21,8 @@ const StoreInner = () => {
       try {
         const responseData = await sendRequest(apiUrl(`stores/${store_id}`));
         if (responseData.status == 200) {
-          setProducts(responseData.products);
+          setFeaturedProducts(responseData.featured_products);
+          setTopSellinggProducts(responseData.top_selling_products);
           setStore(responseData.store);
         }
       } catch (err) {
@@ -33,16 +35,16 @@ const StoreInner = () => {
     <StaticPage getData={getData}>
       {!searching && !store && <Component404 />}
       {store && <Inner store={store} />}
-      {products && products.length > 0 && (
+      {top_selling_products && top_selling_products.length > 0 && (
         <ProductSlider
-          products={products}
+          products={top_selling_products}
           title="Top Selling Products"
           url={`/stores/${store.id}/products`}
         />
       )}
-      {products && products.length > 0 && (
+      {featured_products && featured_products.length > 0 && (
         <ProductSlider
-          products={products}
+          products={featured_products}
           title="Featured Products"
           url={`/stores/${store.id}/products`}
         />

@@ -21,7 +21,7 @@ const MainHome = () => {
         <Container>
           <Row>
             <Col lg={6}>
-              <Link to="/order">
+              <Link to="/shop">
                 <img src={homeUrl("images/shopping.png")} alt="shopping" />
               </Link>
             </Col>
