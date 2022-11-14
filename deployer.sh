@@ -1,5 +1,3 @@
-set -e
-
 echo "Deployment Start"
 git pull origin master
 npm run build
