@@ -9,6 +9,7 @@ import { VALIDATOR_MINLENGTH } from "../shared/util/validation";
 import { toast } from "react-toastify";
 import { apiUrl } from "../shared/helper";
 const Verify = () => {
+  const [token, setToken] = useState(false);
   const { sendRequest, error, clearError } = useHttpClient();
   const { auth } = useContext(AppContext);
   const [formState, inputHandler, setFormData] = useForm(
@@ -38,7 +39,6 @@ const Verify = () => {
         }
       );
       if (responseData.status === 200) {
-        auth.login(responseData.userId, auth._token, responseData.verified);
         toast.success("Code Resend!");
       }
     } catch (err) {}
@@ -62,7 +62,12 @@ const Verify = () => {
         }
       );
       if (responseData.status === 200) {
-        auth.login(responseData.userId, auth._token, responseData.verified);
+        auth.login(
+          responseData.userId,
+          responseData.user,
+          auth._token,
+          responseData.verified
+        );
         toast.success("Successfully Verified");
       }
     } catch (err) {}
@@ -92,7 +97,7 @@ const Verify = () => {
             disable={formState.isValid}
           />
         </div>
-        Does'nt get the code
+        Does'nt get the code{" "}
         <a href="#" onClick={resendCode}>
           Resend Email
         </a>
