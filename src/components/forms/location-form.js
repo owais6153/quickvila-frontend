@@ -13,7 +13,7 @@ const LocationForm = () => {
       <Row>
         <Col xs={9} style={{ paddingRight: 0 }}>
           <div className="geo-loc">
-            <PlacesInput />
+            {/* <PlacesInput /> */}
             {"geolocation" in navigator && (
               <div className="ser-icon" onClick={getLocationByNavigator}>
                 <img

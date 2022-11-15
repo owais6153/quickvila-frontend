@@ -33,7 +33,7 @@ const ProductSlider = (props) => {
               max: 3000,
               min: 1199,
             },
-            items: 4,
+            items: 5,
             partialVisibilityGutter: 5,
           },
           tablet: {

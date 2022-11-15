@@ -1,5 +1,20 @@
+--------------------- Before Going Live
+Delete Non Authenticated Cart
+Expire code
+
+
+
+
+Variatons Flow -- 
+
+
+Email Flow
+Set Code not working
+
+
+
 Front
-    Change Flow of Cart
+    Change Flow of Cart for variations
 
 
 
