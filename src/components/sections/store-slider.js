@@ -33,7 +33,7 @@ const StoreSlider = (props) => {
               max: 3000,
               min: 1024,
             },
-            items: 3,
+            items: 4,
             partialVisibilityGutter: 30,
           },
           tablet: {
@@ -63,6 +63,18 @@ const StoreSlider = (props) => {
         itemAriaLabel="Store Slider"
         ariaLabel="Store Slider"
       >
+        {props.stores &&
+          props.stores.map((store) => {
+            return (
+              <StoreItem ariaLabel={store.name} key={store.id} store={store} />
+            );
+          })}
+        {props.stores &&
+          props.stores.map((store) => {
+            return (
+              <StoreItem ariaLabel={store.name} key={store.id} store={store} />
+            );
+          })}
         {props.stores &&
           props.stores.map((store) => {
             return (

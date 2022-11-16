@@ -1,7 +1,11 @@
---------------------- Before Going Live
+--------------------- Crons & Queues
 Delete Non Authenticated Cart
 Expire code
-
+Expire tokens
+Activate store after 7 days
+Queues Email
+Queues tokens
+Queues Firebase
 
 
 
