@@ -57,10 +57,10 @@ a {
 .react-multi-carousel-list.container {
   margin: 0 -15px;
 }
-/* .react-multi-carousel-list {
-  overflow: visible !important;
+.react-multi-carousel-list {
+  /* overflow: visible !important; */
   padding-top: 40px;
-} */
+}
 .carouselItem {
   padding-right: 30px;
 }
