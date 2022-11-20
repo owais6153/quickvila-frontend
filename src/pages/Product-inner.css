@@ -149,3 +149,34 @@ section.product-inner-main {
     gap: 20px;
   }
 }
+label.size input,
+label.color input {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+label.color span {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  border-radius: 100%;
+  border: solid 3px #f3f3f3;
+}
+
+label.color {
+  font-size: 0px;
+}
+
+label.size {
+  background: #efefef;
+  padding: 6px 10px;
+  border-radius: 17px;
+}
+
+label.size,
+label.color {
+  cursor: pointer;
+  margin: 5px 5px;
+  display: inline-block;
+}

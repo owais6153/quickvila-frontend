@@ -110,26 +110,53 @@ const ProductInner = () => {
                   <h3>Description:</h3>
                   <p>{product.description}</p>
                   {product.variations && product.variations.length > 0 && (
-                    <div id="variations">
+                    <div id="variations" className="mb-3">
                       {product.variations.map((variation) => {
                         return (
                           <div key={variation.id}>
-                            <label>{variation.name}</label>
-                            <select
-                              name={`variation_id${variation.id}`}
-                              className="form-control"
-                            >
-                              {variation.options.map((option) => {
+                            <label className="d-block">{variation.name}</label>
+                            {variation.type == "size" &&
+                              variation.options.map((option) => {
                                 return (
-                                  <option
-                                    key={`${variation.id}${option.id}`}
-                                    value={option.id}
-                                  >
+                                  <label className="size">
                                     {option.value}
-                                  </option>
+                                    <span
+                                      style={{ background: option.media }}
+                                    ></span>
+                                    <input type="radio" name="size" />
+                                  </label>
                                 );
                               })}
-                            </select>
+                            {variation.type == "color" &&
+                              variation.options.map((option) => {
+                                return (
+                                  <label className="color">
+                                    {option.value}
+                                    <span
+                                      style={{ background: option.media }}
+                                    ></span>
+                                    <input type="radio" name="color" />
+                                  </label>
+                                );
+                              })}
+
+                            {variation.type == "custom" && (
+                              <select
+                                name={`variation_id${variation.id}`}
+                                className="form-control"
+                              >
+                                {variation.options.map((option) => {
+                                  return (
+                                    <option
+                                      key={`${variation.id}${option.id}`}
+                                      value={option.id}
+                                    >
+                                      {option.value}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                            )}
                           </div>
                         );
                       })}
