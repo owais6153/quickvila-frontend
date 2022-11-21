@@ -12,23 +12,12 @@ Queues Firebase
 Variatons Flow -- 
 
 
-Email Flow
 Set Code not working
 
 
 
 Front
     Change Flow of Cart for variations
-
-
-
-
-
-
-
-
-Hide code from user object Backend
-Simplify Emails
 
 
 

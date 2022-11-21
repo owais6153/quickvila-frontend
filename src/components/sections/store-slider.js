@@ -69,18 +69,6 @@ const StoreSlider = (props) => {
               <StoreItem ariaLabel={store.name} key={store.id} store={store} />
             );
           })}
-        {props.stores &&
-          props.stores.map((store) => {
-            return (
-              <StoreItem ariaLabel={store.name} key={store.id} store={store} />
-            );
-          })}
-        {props.stores &&
-          props.stores.map((store) => {
-            return (
-              <StoreItem ariaLabel={store.name} key={store.id} store={store} />
-            );
-          })}
       </Carousel>
     </section>
   );
