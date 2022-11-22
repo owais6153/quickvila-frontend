@@ -1,0 +1,43 @@
+.reviews .review img {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.reviews .review .author-detail {
+  display: flex;
+  align-items: center;
+}
+
+.reviews p {
+  margin: 0;
+}
+
+.reviews p.author_name {
+  margin-left: 10px;
+  font-size: 22px;
+  line-height: 38px;
+  color: #000000;
+  position: relative;
+  max-width: 70%;
+}
+
+.reviews .review {
+  border: #efefef solid 1px;
+  padding: 20px 30px;
+  border-radius: 10px;
+}
+
+.reviews .review .content {
+  padding-left: 70px;
+}
+
+.reviews p.date {
+  font-size: 12px;
+}
+
+.reviews p.product_rating {
+  margin-left: auto;
+  color: #fe0000;
+}

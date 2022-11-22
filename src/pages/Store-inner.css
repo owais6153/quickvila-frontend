@@ -39,6 +39,25 @@ section.in-sec-one-C p span {
   line-height: 24px;
   color: #232f3e;
 }
+section.in-sec-one-C .description p {
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  color: #232f3e;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.description {
+  margin-top: 20px;
+}
+section.in-sec-one-C .row.out-row {
+  margin-right: -30px;
+  margin-left: -30px;
+}
 
 @media screen and (max-width: 991px) {
   section.inner-banner {

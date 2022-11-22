@@ -1,5 +1,7 @@
 import React from "react";
-const Inner = ({ store }) => {
+import HeadingRow from "../../shared/components/heading-row";
+import RatingStars from "../reviews/rating-stars.js";
+const Inner = ({ store, ratings }) => {
   return (
     <React.Fragment>
       <section
@@ -10,7 +12,7 @@ const Inner = ({ store }) => {
       ></section>
       <section className="in-sec-one-C">
         <div className="container">
-          <div className="row align-items-sm-baseline">
+          <div className="row out-row align-items-sm-baseline">
             <div className="col-md-3">
               <div className="brnd-logo">
                 <img src={store.logo} alt={store.name} />
@@ -30,9 +32,21 @@ const Inner = ({ store }) => {
               </p>
             </div>
             <div className="col-md-3 col-sm-4">
-              <p>Reviews</p>
+              <p>
+                Ratings
+                <br />
+                <span>
+                  <RatingStars ratings={ratings} />
+                </span>
+              </p>
             </div>
           </div>
+          {store.description && (
+            <div className="col-12 description">
+              <HeadingRow title="Description" />
+              <p>{store.description}</p>
+            </div>
+          )}
         </div>
       </section>
     </React.Fragment>

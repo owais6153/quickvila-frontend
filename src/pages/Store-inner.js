@@ -13,6 +13,7 @@ const StoreInner = () => {
   const [featured_products, setFeaturedProducts] = useState();
   const [top_selling_products, setTopSellinggProducts] = useState();
   const [store, setStore] = useState(false);
+  const [ratings, setRatings] = useState(0);
   const [searching, setSearching] = useState(true);
 
   const { sendRequest } = useHttpClient();
@@ -24,6 +25,7 @@ const StoreInner = () => {
           setFeaturedProducts(responseData.featured_products);
           setTopSellinggProducts(responseData.top_selling_products);
           setStore(responseData.store);
+          setRatings(responseData.ratings);
         }
       } catch (err) {
         setSearching(false);
@@ -34,7 +36,7 @@ const StoreInner = () => {
   return (
     <StaticPage getData={getData}>
       {!searching && !store && <Component404 />}
-      {store && <Inner store={store} />}
+      {store && <Inner store={store} ratings={ratings} />}
       {top_selling_products && top_selling_products.length > 0 && (
         <ProductSlider
           products={top_selling_products}

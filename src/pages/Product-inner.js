@@ -10,6 +10,9 @@ import { Currency } from "../shared/helper";
 import StaticPage from "../shared/components/staticpages";
 import ProductSlider from "../components/sections/product-slider";
 import Component404 from "../shared/components/component-404";
+import Reviews from "../components/reviews/reviews";
+import RatingStars from "../components/reviews/rating-stars";
+
 import "./Product-inner.css";
 
 const ProductInner = () => {
@@ -19,6 +22,8 @@ const ProductInner = () => {
   const [products, setProducts] = useState();
   const [product, setProduct] = useState(false);
   const [searching, setSearching] = useState(true);
+  const [reviews, setReviews] = useState(false);
+  const [averageRating, setAverageRating] = useState(false);
 
   const { sendRequest } = useHttpClient();
   const { isLogin } = useContext(AppContext);
@@ -42,6 +47,8 @@ const ProductInner = () => {
         if (responseData.status == 200) {
           setProduct(responseData.product);
           setProducts(responseData.related);
+          setReviews(responseData.reviews.data);
+          setAverageRating(responseData.average_rating);
         }
       } catch (err) {
         setSearching(false);
@@ -66,17 +73,13 @@ const ProductInner = () => {
                   <div className="rating">
                     <ul>
                       <li>
-                        <i className="fa fa-star" aria-hidden="true"></i>
-                        <i className="fa fa-star" aria-hidden="true"></i>
-                        <i className="fa fa-star" aria-hidden="true"></i>
-                        <i className="fa fa-star" aria-hidden="true"></i>
-                        <i className="fa fa-star" aria-hidden="true"></i>
+                        <RatingStars ratings={averageRating} />
                       </li>
                       <li>
-                        <p>12Ratings</p>
+                        <p>{product.reviews_count} Ratings</p>
                       </li>
                       <li>
-                        <p>4.1 average</p>
+                        <p>{averageRating} average</p>
                       </li>
                     </ul>
                   </div>
@@ -183,6 +186,7 @@ const ProductInner = () => {
               </div>
             </div>
           </section>
+          {reviews && reviews.length > 0 && <Reviews reviews={reviews} />}
           {products && products.length > 0 && (
             <ProductSlider
               products={products}
