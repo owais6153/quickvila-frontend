@@ -1,5 +1,5 @@
-// const ENVIROMENT = "local";
-const ENVIROMENT = process.env.REACT_APP_MY_APP_ENVIROMENT;
+const ENVIROMENT = "local";
+// const ENVIROMENT = process.env.REACT_APP_MY_APP_ENVIROMENT;
 
 export const homeUrl = (path = "") => {
   if (ENVIROMENT === "local")

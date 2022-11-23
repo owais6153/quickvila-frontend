@@ -1,18 +1,20 @@
 --------------------- Crons & Queues
-Delete Non Authenticated Cart
+Delete Non Authenticated Cart from front too
 Expire code
 Expire tokens
 Activate store after 7 days
 Queues Email
 Queues tokens
 Queues Firebase
-
+Token Security
 
 
 Variatons Flow -- 
 
 
 Set Code not working
+
+
 
 
 

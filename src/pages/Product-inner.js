@@ -47,7 +47,7 @@ const ProductInner = () => {
         if (responseData.status == 200) {
           setProduct(responseData.product);
           setProducts(responseData.related);
-          setReviews(responseData.reviews.data);
+          setReviews(responseData.reviews);
           setAverageRating(responseData.average_rating);
         }
       } catch (err) {
@@ -186,7 +186,14 @@ const ProductInner = () => {
               </div>
             </div>
           </section>
-          {reviews && reviews.length > 0 && <Reviews reviews={reviews} />}
+          {reviews && reviews.data.length > 0 && (
+            <Reviews
+              reviews={reviews}
+              updateReviews={setReviews}
+              store_id={product.store_id}
+              product_id={product.id}
+            />
+          )}
           {products && products.length > 0 && (
             <ProductSlider
               products={products}
