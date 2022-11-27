@@ -8,6 +8,10 @@ class StaticPage extends Component {
     if (this.props.getData) {
       this.props.getData();
     }
+    document.documentElement.scrollTo({
+      top: 0,
+      left: 0,
+    });
   }
   render() {
     return <React.Fragment>{this.props.children}</React.Fragment>;
