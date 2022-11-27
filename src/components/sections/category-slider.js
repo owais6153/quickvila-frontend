@@ -1,11 +1,11 @@
-import StoreItem from "../store/item";
-import Carousel from "react-multi-carousel";
-import HeadingRow from "../../shared/components/heading-row";
 import CarouselButtonGroup from "../../shared/components/carousel-button-group";
+import HeadingRow from "../../shared/components/heading-row";
+import Carousel from "react-multi-carousel";
+import CategoryItem from "../category/item";
 
-const StoreSlider = (props) => {
+const CategorySlider = (props) => {
   return (
-    <section className="home-sec-one slider-section container">
+    <section className="home-sec-two container slider-section">
       <HeadingRow title={props.title} url={props.url} />
       <Carousel
         customButtonGroup={<CarouselButtonGroup />}
@@ -31,14 +31,14 @@ const StoreSlider = (props) => {
           desktop: {
             breakpoint: {
               max: 3000,
-              min: 1024,
+              min: 1199,
             },
-            items: 4,
-            partialVisibilityGutter: 30,
+            items: 7,
+            partialVisibilityGutter: 5,
           },
           tablet: {
             breakpoint: {
-              max: 1024,
+              max: 1199,
               min: 767,
             },
             items: 2,
@@ -63,14 +63,12 @@ const StoreSlider = (props) => {
         itemAriaLabel="Store Slider"
         ariaLabel="Store Slider"
       >
-        {props.stores &&
-          props.stores.map((store) => {
-            return (
-              <StoreItem ariaLabel={store.name} key={store.id} store={store} />
-            );
+        {props.categories &&
+          props.categories.map((category) => {
+            return <CategoryItem key={category.id} category={category} />;
           })}
       </Carousel>
     </section>
   );
 };
-export default StoreSlider;
+export default CategorySlider;

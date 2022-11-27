@@ -9,6 +9,7 @@ import ProductSlider from "../components/sections/product-slider";
 import AdvBanners from "../components/sections/advbanners";
 import Testimonials from "../components/sections/testimonial-slider";
 import Videos from "../components/sections/videos";
+import CategorySlider from "../components/sections/category-slider";
 
 const Home = () => {
   const { geolocation, hasGeoLocation } = useContext(AppContext);
@@ -17,6 +18,7 @@ const Home = () => {
   const [stores, setStores] = useState();
   const [testimonials, setTestimonials] = useState();
   const [videos, setVideos] = useState();
+  const [categories, setCategories] = useState();
 
   const { sendRequest } = useHttpClient();
   useEffect(() => {
@@ -36,6 +38,7 @@ const Home = () => {
           setStores(responseData.stores);
           setTestimonials(responseData.testimonials);
           setVideos(responseData.videos);
+          setCategories(responseData.store_categories);
         }
       } catch (err) {}
     };
@@ -46,7 +49,25 @@ const Home = () => {
     <StaticPage>
       <Banner />
       {stores && stores.length > 0 && (
-        <StoreSlider title="All Stores" url="/stores" stores={stores} />
+        <StoreSlider title="Stores near you" url="/stores" stores={stores} />
+      )}
+      {stores && stores.length > 0 && (
+        <StoreSlider
+          title="Stores you have purchased from"
+          url="/stores"
+          stores={stores}
+        />
+      )}
+
+      {stores && stores.length > 0 && (
+        <StoreSlider title="Featured Stores" url="/stores" stores={stores} />
+      )}
+      {featured_products && featured_products.length > 0 && (
+        <ProductSlider
+          products={featured_products}
+          title="Featured Products"
+          url="/products"
+        />
       )}
       {top_selling_products && top_selling_products.length > 0 && (
         <ProductSlider
@@ -55,12 +76,8 @@ const Home = () => {
           url="/products"
         />
       )}
-      {featured_products && featured_products.length > 0 && (
-        <ProductSlider
-          products={featured_products}
-          title="Featured Products"
-          url="/products"
-        />
+      {categories && categories.length > 0 && (
+        <CategorySlider categories={categories} title="Categories" />
       )}
       <AdvBanners />
       {testimonials && testimonials.length > 0 && (

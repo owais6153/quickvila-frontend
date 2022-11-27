@@ -20,13 +20,6 @@ const Inner = ({ store, ratings }) => {
             </div>
             <div className="col-md-3 col-sm-4">
               <p>
-                20k
-                <br />
-                <span>Followers</span>
-              </p>
-            </div>
-            <div className="col-md-3 col-sm-4">
-              <p>
                 {store.products_count > 100 ? "100+" : store.products_count}
                 <br /> <span>Product{store.products_count > 1 && "s"}</span>
               </p>
