@@ -48,6 +48,13 @@ const Home = () => {
   return (
     <StaticPage>
       <Banner />
+      {categories && categories.length > 0 && (
+        <CategorySlider
+          categories={categories}
+          title="Categories"
+          url="/categories"
+        />
+      )}
       {stores && stores.length > 0 && (
         <StoreSlider title="Stores near you" url="/stores" stores={stores} />
       )}
@@ -76,9 +83,7 @@ const Home = () => {
           url="/products"
         />
       )}
-      {categories && categories.length > 0 && (
-        <CategorySlider categories={categories} title="Categories" />
-      )}
+
       <AdvBanners />
       {testimonials && testimonials.length > 0 && (
         <Testimonials testimonials={testimonials} />

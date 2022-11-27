@@ -17,7 +17,8 @@ import Checkout from "./pages/Checkout";
 import StoreProducts from "./pages/Store-products";
 import Account from "./pages/Account";
 import OrderInner from "./pages/OrderInner";
-import CategoryStore from "./pages/CategoryStore";
+import CategoryStore from "./pages/Category-store";
+import StoreCategories from "./pages/Store-category";
 import "./App.css";
 
 const DynamicProductLink = (props) => {
@@ -48,6 +49,7 @@ const App = () => {
           exact
           element={<DynamicProductLink />}
         />
+        <Route path="/categories/" exact element={<StoreCategories />} />
         <Route path="/categories/:cid" exact element={<CategoryStore />} />
 
         {/* Need Auth */}
