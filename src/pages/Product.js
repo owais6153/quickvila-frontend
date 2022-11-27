@@ -6,6 +6,7 @@ import HeadingRow from "../shared/components/heading-row";
 import StaticPage from "../shared/components/staticpages";
 import ProductItem from "../components/product/item";
 import Pagination from "../shared/components/pagination";
+import { Helmet } from "react-helmet";
 const Product = () => {
   const { sendRequest } = useHttpClient();
 
@@ -50,6 +51,16 @@ const Product = () => {
 
   return (
     <StaticPage getData={getData}>
+      <Helmet>
+        <title>All Products | QuiclVila</title>
+        <meta
+          name="description"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sit rhoncus non, ultricies enim eget adipiscing orci
+malesuada mauris. Orci tellus ut ornare varius sed massa
+quis vel."
+        />
+      </Helmet>
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="All Products" />

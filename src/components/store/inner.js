@@ -1,9 +1,14 @@
 import React from "react";
 import HeadingRow from "../../shared/components/heading-row";
 import RatingStars from "../reviews/rating-stars.js";
+import { Helmet } from "react-helmet";
 const Inner = ({ store, ratings }) => {
   return (
     <React.Fragment>
+      <Helmet>
+        <title>{store.name} | QuiclVila</title>
+        <meta name="description" content={store.description} />
+      </Helmet>
       <section
         className="inner-banner"
         style={{

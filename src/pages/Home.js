@@ -10,6 +10,7 @@ import AdvBanners from "../components/sections/advbanners";
 import Testimonials from "../components/sections/testimonial-slider";
 import Videos from "../components/sections/videos";
 import CategorySlider from "../components/sections/category-slider";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const { geolocation, hasGeoLocation } = useContext(AppContext);
@@ -47,6 +48,16 @@ const Home = () => {
 
   return (
     <StaticPage>
+      <Helmet>
+        <title>Shop | QuiclVila</title>
+        <meta
+          name="description"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sit rhoncus non, ultricies enim eget adipiscing orci
+malesuada mauris. Orci tellus ut ornare varius sed massa
+quis vel."
+        />
+      </Helmet>
       <Banner />
       {categories && categories.length > 0 && (
         <CategorySlider
@@ -65,7 +76,6 @@ const Home = () => {
           stores={stores}
         />
       )}
-
       {stores && stores.length > 0 && (
         <StoreSlider title="Featured Stores" url="/stores" stores={stores} />
       )}
@@ -83,7 +93,6 @@ const Home = () => {
           url="/products"
         />
       )}
-
       <AdvBanners />
       {testimonials && testimonials.length > 0 && (
         <Testimonials testimonials={testimonials} />

@@ -7,6 +7,7 @@ import StaticPage from "../shared/components/staticpages";
 import StoreItem from "../components/store/item";
 import Pagination from "../shared/components/pagination";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const CategoryStore = () => {
   const cat_id = useParams().cid;
   const { sendRequest } = useHttpClient();
@@ -58,6 +59,16 @@ const CategoryStore = () => {
 
   return (
     <StaticPage getData={getData}>
+      <Helmet>
+        <title>Category | QuiclVila</title>
+        <meta
+          name="description"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sit rhoncus non, ultricies enim eget adipiscing orci
+malesuada mauris. Orci tellus ut ornare varius sed massa
+quis vel."
+        />
+      </Helmet>
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="All Stores" />

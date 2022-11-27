@@ -7,6 +7,7 @@ import StaticPage from "../shared/components/staticpages";
 import HeadingRow from "../shared/components/heading-row";
 import ProductItem from "../components/product/item";
 import Pagination from "../shared/components/pagination";
+import { Helmet } from "react-helmet";
 
 const Search = () => {
   const term = useParams().term;
@@ -55,6 +56,16 @@ const Search = () => {
 
   return (
     <StaticPage>
+      <Helmet>
+        <title>Search Products | QuiclVila</title>
+        <meta
+          name="description"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sit rhoncus non, ultricies enim eget adipiscing orci
+malesuada mauris. Orci tellus ut ornare varius sed massa
+quis vel."
+        />
+      </Helmet>
       <section className="no-banner">
         <Container>
           <HeadingRow lg title={`You have searched for "${term}"`} />

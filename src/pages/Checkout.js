@@ -14,6 +14,7 @@ import Button from "../shared/components/form-elements/button";
 import StaticPage from "../shared/components/staticpages";
 import HeadingRow from "../shared/components/heading-row";
 import CartBox from "../components/cart/cart-box";
+import { Helmet } from "react-helmet";
 
 const Checkout = () => {
   const { isLogin, auth, cart } = useContext(AppContext);
@@ -73,6 +74,16 @@ const Checkout = () => {
   };
   return (
     <StaticPage onPageLoad={onPageLoad}>
+      <Helmet>
+        <title>Checkout | QuiclVila</title>
+        <meta
+          name="description"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sit rhoncus non, ultricies enim eget adipiscing orci
+malesuada mauris. Orci tellus ut ornare varius sed massa
+quis vel."
+        />
+      </Helmet>
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="Checkout" />

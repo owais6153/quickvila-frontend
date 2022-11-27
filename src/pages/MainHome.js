@@ -4,6 +4,7 @@ import { useLoading } from "../shared/hooks/loader-hook";
 import "./main-home.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const MainHome = () => {
   const { setIsLoading } = useLoading(true);
   const onPageLoad = (value) => {
@@ -11,6 +12,16 @@ const MainHome = () => {
   };
   return (
     <StaticPage onPageLoad={onPageLoad}>
+      <Helmet>
+        <title>Home | QuiclVila</title>
+        <meta
+          name="description"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sit rhoncus non, ultricies enim eget adipiscing orci
+malesuada mauris. Orci tellus ut ornare varius sed massa
+quis vel."
+        />
+      </Helmet>
       <section
         className="rider-banner"
         style={{ background: `url('${homeUrl("images/ridder-banner.png")}')` }}

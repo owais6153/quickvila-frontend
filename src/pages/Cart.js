@@ -6,6 +6,7 @@ import StaticPage from "../shared/components/staticpages";
 import HeadingRow from "../shared/components/heading-row";
 import CartItem from "../components/cart/cart-item";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 import { useLoading } from "../shared/hooks/loader-hook";
 const Cart = () => {
@@ -23,6 +24,16 @@ const Cart = () => {
   };
   return (
     <StaticPage onPageLoad={onPageLoad}>
+      <Helmet>
+        <title>Cart | QuiclVila</title>
+        <meta
+          name="description"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sit rhoncus non, ultricies enim eget adipiscing orci
+malesuada mauris. Orci tellus ut ornare varius sed massa
+quis vel."
+        />
+      </Helmet>
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="Cart" />

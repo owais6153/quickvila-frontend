@@ -12,6 +12,7 @@ import ProductSlider from "../components/sections/product-slider";
 import Component404 from "../shared/components/component-404";
 import Reviews from "../components/reviews/reviews";
 import RatingStars from "../components/reviews/rating-stars";
+import { Helmet } from "react-helmet";
 
 import "./Product-inner.css";
 
@@ -61,6 +62,10 @@ const ProductInner = () => {
       {!searching && !product && <Component404 />}
       {product && (
         <div>
+          <Helmet>
+            <title>{product.name} - Product | QuiclVila</title>
+            <meta name="description" content={product.short_description} />
+          </Helmet>
           <section className="product-inner-main">
             <div className="container">
               <div className="row">
