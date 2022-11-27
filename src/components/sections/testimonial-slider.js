@@ -6,7 +6,7 @@ import TestimonialItem from "../testimonials/item";
 const Testimonials = (props) => {
   return (
     <section className="home-Sec-five slider-section container">
-      <HeadingRow title="Testimonials" url="#" />
+      <HeadingRow title="Testimonials" />
       <Carousel
         customButtonGroup={<CarouselButtonGroup />}
         additionalTransfrom={0}
