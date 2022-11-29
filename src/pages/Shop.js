@@ -12,7 +12,7 @@ import Videos from "../components/sections/videos";
 import CategorySlider from "../components/sections/category-slider";
 import { Helmet } from "react-helmet";
 
-const Home = () => {
+const Shop = () => {
   const { geolocation, hasGeoLocation } = useContext(AppContext);
   const [featured_products, setFeaturedProducts] = useState();
   const [top_selling_products, setTopSellinggProducts] = useState();
@@ -101,4 +101,4 @@ quis vel."
     </StaticPage>
   );
 };
-export default Home;
+export default Shop;

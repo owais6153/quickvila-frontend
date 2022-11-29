@@ -2,7 +2,7 @@ import React from "react";
 import HeadingRow from "../../shared/components/heading-row";
 import RatingStars from "../reviews/rating-stars.js";
 import { Helmet } from "react-helmet";
-const Inner = ({ store, ratings }) => {
+const StoreDetail = ({ store, ratings }) => {
   return (
     <React.Fragment>
       <Helmet>
@@ -50,4 +50,4 @@ const Inner = ({ store, ratings }) => {
     </React.Fragment>
   );
 };
-export default Inner;
+export default StoreDetail;

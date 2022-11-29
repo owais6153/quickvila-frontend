@@ -4,7 +4,7 @@ import { useLoading } from "./shared/hooks/loader-hook";
 import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
 import Loader from "./shared/components/loader";
-import Home from "./pages/Home";
+import Shop from "./pages/Shop";
 import MainHome from "./pages/MainHome";
 import Search from "./pages/Search";
 import Store from "./pages/Store";
@@ -38,7 +38,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" exact element={<MainHome />} />
-        <Route path="/shop" exact element={<Home />} />
+        <Route path="/shop" exact element={<Shop />} />
         <Route path="/search/:term" exact element={<Search />} />
         <Route path="/products/" exact element={<Product />} />
         <Route path="/stores" exact element={<Store />} />

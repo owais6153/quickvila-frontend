@@ -5,7 +5,7 @@ import Component404 from "../shared/components/component-404";
 import StaticPage from "../shared/components/staticpages";
 import ProductSlider from "../components/sections/product-slider";
 import { useParams } from "react-router-dom";
-import Inner from "../components/store/inner";
+import StoreDetail from "../components/store/detail";
 import "./Store-inner.css";
 
 const StoreInner = () => {
@@ -36,7 +36,7 @@ const StoreInner = () => {
   return (
     <StaticPage getData={getData}>
       {!searching && !store && <Component404 />}
-      {store && <Inner store={store} ratings={ratings} />}
+      {store && <StoreDetail store={store} ratings={ratings} />}
       {top_selling_products && top_selling_products.length > 0 && (
         <ProductSlider
           products={top_selling_products}
