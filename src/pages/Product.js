@@ -44,6 +44,11 @@ const Product = () => {
         setProducts(responseData.products.data);
         setPagination(responseData.products.links);
         setCurrentPages(responseData.products.current_page);
+        document.documentElement.scrollTo({
+          top: 0,
+          left: 0,
+          // behavior: "instant",
+        });
       } catch (err) {}
     };
     fetchData();

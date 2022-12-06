@@ -1,45 +1,12 @@
-import { homeUrl } from "../../shared/helper";
-const AdvBanners = (props) => {
+import StoreBannerItem from "../storebanner/item";
+const AdvBanners = ({ banners }) => {
   return (
     <section className="homeSec-four">
       <div className="container">
         <div className="row">
-          <div className="col-lg-6 mb-sm-5 mb-lg-0">
-            <div
-              className="coldiv"
-              style={{
-                backgroundImage: `url('${homeUrl(
-                  "images/Discount offer.png"
-                )}')`,
-              }}
-            >
-              <p>Flat 20% Discount</p>
-              <h3>
-                Stylish Women
-                <br />
-                Bags
-              </h3>
-              <a href="#">shop now</a>
-            </div>
-          </div>
-          <div className="col-lg-6 ">
-            <div
-              className="coldiv"
-              style={{
-                backgroundImage: `url('${homeUrl(
-                  "images/Discount offer.png"
-                )}')`,
-              }}
-            >
-              <p>Flat 20% Discount</p>
-              <h3>
-                Stylish Women
-                <br />
-                Bags
-              </h3>
-              <a href="#">shop now</a>
-            </div>
-          </div>
+          {banners.map((banner) => (
+            <StoreBannerItem banner={banner} />
+          ))}
         </div>
       </div>
     </section>

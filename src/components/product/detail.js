@@ -30,7 +30,7 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler }) => {
         }
       });
     }
-    setOptions(option);
+    setOptions(() => option);
   }, []);
 
   return (

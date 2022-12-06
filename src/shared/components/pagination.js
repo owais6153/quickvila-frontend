@@ -15,16 +15,6 @@ const Pagination = ({ links, onPageChange }) => {
           {page}
         </span>
       );
-    } else if (!active && !url) {
-      elem = (
-        <span className={`page-link ${index === 0 ? "prev" : "next"}`}>
-          {index === 0 ? (
-            <Icon icon="fa fa-chevron-left" />
-          ) : (
-            <Icon icon="fa fa-chevron-right" />
-          )}
-        </span>
-      );
     } else if (isInt(page)) {
       elem = (
         <a className="page-link" data-page={page} onClick={onPageChange}>

@@ -20,6 +20,7 @@ const Shop = () => {
   const [testimonials, setTestimonials] = useState();
   const [videos, setVideos] = useState();
   const [categories, setCategories] = useState();
+  const [banners, setBanners] = useState();
 
   const { sendRequest } = useHttpClient();
   useEffect(() => {
@@ -40,6 +41,7 @@ const Shop = () => {
           setTestimonials(responseData.testimonials);
           setVideos(responseData.videos);
           setCategories(responseData.store_categories);
+          setBanners(responseData.banners);
         }
       } catch (err) {}
     };
@@ -93,7 +95,7 @@ quis vel."
           url="/products"
         />
       )}
-      <AdvBanners />
+      {banners && banners.length > 0 && <AdvBanners banners={banners} />}
       {testimonials && testimonials.length > 0 && (
         <Testimonials testimonials={testimonials} />
       )}

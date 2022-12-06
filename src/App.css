@@ -334,6 +334,9 @@ section.home-sec-two {
   border: 1px solid whitesmoke;
   filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.05));
   border-radius: 8px;
+  opacity: 0.5;
+  transform: translateY(50px);
+  animation: 0.5s products ease-in forwards;
 }
 
 .prd-cBox .wishlist-icon {
@@ -777,5 +780,16 @@ input#code[type="number"] {
   }
   .homeSec-four .coldiv {
     margin-bottom: 15px;
+  }
+}
+
+@keyframes products {
+  from {
+    opacity: 0.5;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
