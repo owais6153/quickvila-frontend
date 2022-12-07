@@ -327,7 +327,11 @@ section.home-sec-two {
   padding-bottom: 60px;
   padding-top: 60px;
 }
-
+.category img {
+  height: 120px;
+  object-fit: contain;
+  margin: auto;
+}
 .prd-cBox {
   position: relative;
   background: #ffffff;
