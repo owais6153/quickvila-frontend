@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useLoading } from "./shared/hooks/loader-hook";
 import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
 import Loader from "./shared/components/loader";
+import ErrorBoundary from "./shared/components/inc/error-boundary";
 import Shop from "./pages/Shop";
 import MainHome from "./pages/MainHome";
 import Search from "./pages/Search";
@@ -19,17 +20,7 @@ import Account from "./pages/Account";
 import OrderInner from "./pages/OrderInner";
 import CategoryStore from "./pages/Category-store";
 import StoreCategories from "./pages/Store-category";
-import ErrorBoundary from "./shared/components/inc/error-boundary";
 import "./App.css";
-
-const DynamicProductLink = (props) => {
-  const product_id = useParams().pid;
-  return <ProductInner {...props} key={product_id} />;
-};
-const DynamicStoreLink = (props) => {
-  const store_id = useParams().sid;
-  return <StoreInner {...props} key={store_id} />;
-};
 
 const App = () => {
   const { isLoading } = useLoading(true);
@@ -43,12 +34,12 @@ const App = () => {
         <Route path="/search/:term" exact element={<Search />} />
         <Route path="/products/" exact element={<Product />} />
         <Route path="/stores" exact element={<Store />} />
-        <Route path="/stores/:sid" exact element={<DynamicStoreLink />} />
+        <Route path="/stores/:sid" exact element={<StoreInner />} />
         <Route path="/stores/:sid/products" exact element={<StoreProducts />} />
         <Route
           path="/stores/:sid/products/:pid"
           exact
-          element={<DynamicProductLink />}
+          element={<ProductInner />}
         />
         <Route path="/categories/" exact element={<StoreCategories />} />
         <Route path="/categories/:cid" exact element={<CategoryStore />} />

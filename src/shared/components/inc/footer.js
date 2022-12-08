@@ -12,9 +12,15 @@ import "react-toastify/dist/ReactToastify.css";
 import LocationForm from "../../../components/forms/location-form";
 
 const Footer = () => {
-  const { toggleLoginModal, loginModal, isLogin, auth, hasGeoLocation } =
-    useContext(AppContext);
-  const content = (
+  const {
+    toggleLoginModal,
+    loginModal,
+    isLogin,
+    auth,
+    hasGeoLocation,
+    layout,
+  } = useContext(AppContext);
+  const content = layout && (
     <React.Fragment>
       <Container fluid style={{ padding: "0px" }}>
         <div className="foot-Rone">

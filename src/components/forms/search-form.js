@@ -5,7 +5,6 @@ import { useForm } from "../../shared/hooks/form-hook";
 import { useContext } from "react";
 import { AppContext } from "../../shared/context/app-context";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import "./search-form.css";
 const SearchForm = (props) => {
   const term = useParams().term;

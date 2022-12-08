@@ -25,6 +25,7 @@ const StoreInner = () => {
           setFeaturedProducts(responseData.featured_products);
           setTopSellinggProducts(responseData.top_selling_products);
           setStore(responseData.store);
+          setSearching(false);
           setRatings(responseData.ratings);
         }
       } catch (err) {

@@ -13,6 +13,8 @@ export const AppContext = createContext({
     login: () => {},
     logout: () => {},
   },
+  layout: true,
+  setLayout: () => {},
   isLogin: false,
   loginModal: false,
   cart: {},
@@ -28,6 +30,7 @@ export const AppContext = createContext({
 
 export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState({});
+  const [layout, setLayout] = useState(true);
   const { sendRequest } = useHttpClient(false);
   const [geolocation, setGeolocation] = useState();
   const { token, login, logout, userId, user, verified } = useAuth();
@@ -132,6 +135,8 @@ export const AppProvider = ({ children }) => {
           login,
           logout,
         },
+        layout,
+        setLayout,
         identifier,
         setIdentifier,
         cart,

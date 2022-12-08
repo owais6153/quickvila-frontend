@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { useParams } from "react-router-dom";
-import { AppContext } from "../shared/context/app-context";
-import { useContext } from "react";
 import { toast } from "react-toastify";
 import { useCart } from "../shared/hooks/cart-hook";
 import StaticPage from "../shared/components/staticpages";
@@ -25,8 +23,7 @@ const ProductInner = () => {
   const [averageRating, setAverageRating] = useState(false);
 
   const { sendRequest } = useHttpClient();
-  const { isLogin } = useContext(AppContext);
-  const { cart, addToCart, emptyCart } = useCart();
+  const { addToCart } = useCart();
 
   const onClickHandler = async (e) => {
     try {

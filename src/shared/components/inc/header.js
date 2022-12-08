@@ -14,7 +14,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "./header.css";
 import { useHttpClient } from "../../hooks/http-hook";
 const Header = (props) => {
-  const { cart, isLogin, toggleLoginModal, auth } = useContext(AppContext);
+  const { cart, isLogin, toggleLoginModal, auth, layout } =
+    useContext(AppContext);
   const { sendRequest } = useHttpClient();
   const [cartdropdown, setCartDropdown] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -40,7 +41,7 @@ const Header = (props) => {
     logout();
   };
 
-  const content = (
+  const content = layout && (
     <Container>
       <Row>
         <Col md={2} className="header-brand">
