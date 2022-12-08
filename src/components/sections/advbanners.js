@@ -5,7 +5,7 @@ const AdvBanners = ({ banners }) => {
       <div className="container">
         <div className="row">
           {banners.map((banner) => (
-            <StoreBannerItem banner={banner} />
+            <StoreBannerItem key={banner.id} banner={banner} />
           ))}
         </div>
       </div>

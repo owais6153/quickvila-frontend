@@ -19,6 +19,7 @@ import Account from "./pages/Account";
 import OrderInner from "./pages/OrderInner";
 import CategoryStore from "./pages/Category-store";
 import StoreCategories from "./pages/Store-category";
+import ErrorBoundary from "./shared/components/inc/error-boundary";
 import "./App.css";
 
 const DynamicProductLink = (props) => {
@@ -33,7 +34,7 @@ const DynamicStoreLink = (props) => {
 const App = () => {
   const { isLoading } = useLoading(true);
   return (
-    <React.Fragment>
+    <ErrorBoundary>
       {isLoading && <Loader />}
       <Header />
       <Routes>
@@ -68,7 +69,7 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
-    </React.Fragment>
+    </ErrorBoundary>
   );
 };
 

@@ -1,3 +1,17 @@
+footer#footer:empty,
+#header:empty {
+  display: none;
+}
+div#error-boundry {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#error-boundry h1 {
+  margin-bottom: 0px;
+}
 ._loader {
   position: fixed;
   height: 100vh;
