@@ -7,6 +7,7 @@ div#error-boundry {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 div#error-boundry h1 {
