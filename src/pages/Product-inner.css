@@ -180,3 +180,25 @@ label.color {
   margin: 5px 5px;
   display: inline-block;
 }
+.store-detail a {
+  display: flex;
+  text-transform: capitalize;
+  align-items: center;
+}
+
+.store-detail a img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 100%;
+  border: solid 2px;
+}
+
+.store-detail a p {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.store-detail {
+  margin-bottom: 10px;
+}

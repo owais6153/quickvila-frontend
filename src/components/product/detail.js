@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import RatingStars from "../reviews/rating-stars";
 import { Currency } from "../../shared/helper";
+import { Link } from "react-router-dom";
 
 const PrdouctDetail = ({ product, averageRating, onClickHandler }) => {
   const [options, setOptions] = useState(false);
@@ -46,6 +47,12 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler }) => {
               <img src={product.image} alt={product.name} />
             </div>
             <div className="col-lg-8 col-md-12">
+              <div className="store-detail">
+                <Link to={`/stores/${product.store.id}`}>
+                  <img src={product.store.logo} alt={product.store.name} />
+                  <p>{product.store.name}</p>
+                </Link>
+              </div>
               <h2>{product.name}</h2>
               <p>{product.short_description}</p>
               <div className="rating">
@@ -103,11 +110,6 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler }) => {
               )}
 
               <ul>
-                <li>
-                  <button type="button" className="btn btn-primary">
-                    buy now
-                  </button>
-                </li>
                 <li>
                   <button
                     key={product.id}
