@@ -20,6 +20,9 @@ import Account from "./pages/Account";
 import OrderInner from "./pages/OrderInner";
 import CategoryStore from "./pages/Category-store";
 import StoreCategories from "./pages/Store-category";
+import PaymentSuccess from "./pages/Payment-success";
+import PaymentCancel from "./pages/Payment-cancel";
+
 import "./App.css";
 
 const App = () => {
@@ -43,6 +46,8 @@ const App = () => {
         />
         <Route path="/categories/" exact element={<StoreCategories />} />
         <Route path="/categories/:cid" exact element={<CategoryStore />} />
+        <Route path="/payment-suceess" exact element={<PaymentSuccess />} />
+        <Route path="/payment-cancel" exact element={<PaymentCancel />} />
 
         {/* Need Auth */}
         <Route path="/cart" exact element={<Cart />} />
