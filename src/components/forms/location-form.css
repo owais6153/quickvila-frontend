@@ -9,9 +9,8 @@ form.baner-form {
 
 .ser-icon {
   position: absolute;
-  top: 50%;
+  top: 12px;
   right: 10px;
-  transform: translateY(-50%);
 }
 
 .modal form.baner-form {
