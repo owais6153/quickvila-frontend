@@ -1,39 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import RatingStars from "../reviews/rating-stars";
 import { Currency } from "../../shared/helper";
 import { Link } from "react-router-dom";
+import Variations from "./variation";
 
-const PrdouctDetail = ({ product, averageRating, onClickHandler }) => {
-  const [options, setOptions] = useState(false);
-
-  useEffect(() => {
-    let option = [];
-    if (product.variations && product.variations.length > 0) {
-      product.variations.map((variation, index) => {
-        for (const key in variation.variants) {
-          let flag = true;
-          if (!option[key]) option[key] = [];
-
-          for (const o in option[key]) {
-            if (option[key][o].name == variation.variants[key].name) {
-              flag = false;
-            }
-          }
-
-          if (flag) {
-            let op = {
-              name: variation.variants[key].name,
-              media: variation.variants[key].media,
-            };
-            option[key].push(op);
-          }
-        }
-      });
-    }
-    setOptions(() => option);
-  }, []);
-
+const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
   return (
     <React.Fragment>
       <Helmet>
@@ -97,18 +69,9 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler }) => {
               </h2>
               <h3>Description:</h3>
               <p>{product.description}</p>
-              {options && (
-                <div id="variations" className="mb-3">
-                  {options.map((option, index) => {
-                    return (
-                      <div>
-                        <label className="d-block">asd</label>
-                      </div>
-                    );
-                  })}
-                </div>
+              {product.variations && product.variations.length > 0 && (
+                <Variations options={options} variations={product.variations} />
               )}
-
               <ul>
                 <li>
                   <button

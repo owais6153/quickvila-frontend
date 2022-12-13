@@ -21,6 +21,7 @@ const ProductInner = () => {
   const [searching, setSearching] = useState(true);
   const [reviews, setReviews] = useState(false);
   const [averageRating, setAverageRating] = useState(false);
+  const [options, setOptions] = useState(false);
 
   const { sendRequest } = useHttpClient();
   const { addToCart } = useCart();
@@ -45,6 +46,7 @@ const ProductInner = () => {
           setProducts(responseData.related);
           setReviews(responseData.reviews);
           setAverageRating(responseData.average_rating);
+          setOptions(responseData.product_options);
         }
       } catch (err) {
         setSearching(false);
@@ -61,6 +63,7 @@ const ProductInner = () => {
             onClickHandler={onClickHandler}
             product={product}
             averageRating={averageRating}
+            options={options}
           />
           {reviews && reviews.data.length > 0 && (
             <Reviews
