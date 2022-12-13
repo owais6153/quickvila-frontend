@@ -10,7 +10,7 @@ const PaymentSuccess = () => {
         <StaticPage onPageLoad={onPageLoad}>
           <div id="error-boundry">
             <Helmet>
-              <title>Thank you - QuiclVila</title>
+              <title>Order Confirmed - QuiclVila</title>
               <meta
                 name="description"
                 content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
