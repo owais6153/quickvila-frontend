@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import RatingStars from "../reviews/rating-stars";
 import { Currency } from "../../shared/helper";
@@ -7,6 +7,24 @@ import Variations from "./variation";
 
 const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
   const [addToCartFlag, setAddToCartFlag] = useState(true);
+  const [price, setPrice] = useState(false);
+  const [salePrice, setSalePrice] = useState(false);
+
+  useEffect(() => {
+    setPrice(() => product.price);
+    setSalePrice(() => product.sale_price);
+  }, []);
+
+  const updateDetail = (
+    flag,
+    price = product.price,
+    sale_price = product.sale_price
+  ) => {
+    setAddToCartFlag(flag);
+    setPrice(price);
+    setSalePrice(sale_price);
+  };
+
   return (
     <React.Fragment>
       <Helmet>
@@ -42,11 +60,11 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
                 </ul>
               </div>
               <h2 className="c-two">
-                {product.sale_price && (
+                {salePrice && (
                   <span>
                     <span>
                       <Currency />
-                      {product.sale_price}
+                      {salePrice}
                     </span>
                     <del
                       style={{
@@ -56,15 +74,15 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
                       }}
                     >
                       <Currency />
-                      {product.price}
+                      {price}
                     </del>
                   </span>
                 )}
 
-                {!product.sale_price && (
+                {!salePrice && (
                   <span>
                     <Currency />
-                    {product.price}
+                    {price}
                   </span>
                 )}
               </h2>
@@ -74,13 +92,15 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
                   <p>{product.description}</p>
                 </>
               )}
-              {product.variations && product.variations.length > 0 && (
-                <Variations
-                  options={options}
-                  variations={product.variations}
-                  setAddToCartFlag={setAddToCartFlag}
-                />
-              )}
+              {product.variations &&
+                product.variations.length > 0 &&
+                product.product_type == "variation" && (
+                  <Variations
+                    options={options}
+                    variations={product.variations}
+                    updateDetail={updateDetail}
+                  />
+                )}
               <ul>
                 <li>
                   <button

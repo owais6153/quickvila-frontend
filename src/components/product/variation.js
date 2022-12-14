@@ -15,9 +15,44 @@ const VariationInput = ({ item, labelname, changeHandler, className }) => {
   );
 };
 
-const Variations = ({ options, variations, setAddToCartFlag }) => {
+const Variations = ({ options, variations, updateDetail }) => {
   const [selected, setSelected] = useState([]);
+  const [displayError, setDisplayError] = useState(false);
 
+  const updatePricing = (buttonFlag) => {
+    var flag = null;
+    var price = 0;
+    var saleprice = 0;
+    for (let i in variations) {
+      flag = null;
+
+      let variants = variations[i].variants;
+      for (var key in selected) {
+        if (flag !== false) {
+          if (variants[key].name === selected[key]) {
+            flag = true;
+          } else {
+            flag = false;
+          }
+        }
+      }
+
+      if (flag === true) {
+        price = variations[i].price;
+        saleprice = variations[i].sale_price;
+        console.log(variations[i].name);
+        break;
+      }
+    }
+
+    if (flag === true) {
+      setDisplayError(false);
+      updateDetail(buttonFlag, price, saleprice);
+    } else {
+      setDisplayError(true);
+      updateDetail(false);
+    }
+  };
   const changeHandler = (e) => {
     let s = selected;
     s[e.target.dataset.labelname] = e.target.value;
@@ -27,16 +62,21 @@ const Variations = ({ options, variations, setAddToCartFlag }) => {
     let selectedlegth = Object.keys(selected).length;
 
     if (optionslength == selectedlegth) {
-      setAddToCartFlag(true);
+      updatePricing(true);
     }
   };
 
   useEffect(() => {
-    setAddToCartFlag(false);
+    updateDetail(false);
   }, []);
 
   return (
     <div id="variations">
+      {displayError && (
+        <p style={{ color: "red" }}>
+          Sorry! The selected options are not in the stock.
+        </p>
+      )}
       {Object.keys(options).map((key) => {
         return (
           <>
