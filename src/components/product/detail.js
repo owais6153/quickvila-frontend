@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import RatingStars from "../reviews/rating-stars";
 import { Currency } from "../../shared/helper";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Variations from "./variation";
 
 const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
+  const [addToCartFlag, setAddToCartFlag] = useState(true);
   return (
     <React.Fragment>
       <Helmet>
@@ -67,10 +68,18 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
                   </span>
                 )}
               </h2>
-              <h3>Description:</h3>
-              <p>{product.description}</p>
+              {product.description && (
+                <>
+                  <h3>Description:</h3>
+                  <p>{product.description}</p>
+                </>
+              )}
               {product.variations && product.variations.length > 0 && (
-                <Variations options={options} variations={product.variations} />
+                <Variations
+                  options={options}
+                  variations={product.variations}
+                  setAddToCartFlag={setAddToCartFlag}
+                />
               )}
               <ul>
                 <li>
@@ -78,6 +87,7 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
                     key={product.id}
                     className="btn btn-primary"
                     onClick={onClickHandler}
+                    disabled={!addToCartFlag}
                   >
                     Add To Cart
                   </button>

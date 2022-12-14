@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const VariationInput = ({ item, labelname, changeHandler, className }) => {
   return (
@@ -15,14 +15,26 @@ const VariationInput = ({ item, labelname, changeHandler, className }) => {
   );
 };
 
-const Variations = ({ options, variations }) => {
+const Variations = ({ options, variations, setAddToCartFlag }) => {
   const [selected, setSelected] = useState([]);
+
   const changeHandler = (e) => {
-    console.log(1);
     let s = selected;
     s[e.target.dataset.labelname] = e.target.value;
     setSelected(s);
+
+    let optionslength = Object.keys(options).length;
+    let selectedlegth = Object.keys(selected).length;
+
+    if (optionslength == selectedlegth) {
+      setAddToCartFlag(true);
+    }
   };
+
+  useEffect(() => {
+    setAddToCartFlag(false);
+  }, []);
+
   return (
     <div id="variations">
       {Object.keys(options).map((key) => {
