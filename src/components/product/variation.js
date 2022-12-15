@@ -23,6 +23,7 @@ const Variations = ({ options, variations, updateDetail }) => {
     var flag = null;
     var price = 0;
     var saleprice = 0;
+    var id = 0;
     for (let i in variations) {
       flag = null;
 
@@ -40,6 +41,7 @@ const Variations = ({ options, variations, updateDetail }) => {
       if (flag === true) {
         price = variations[i].price;
         saleprice = variations[i].sale_price;
+        id = variations[i].id;
         console.log(variations[i].name);
         break;
       }
@@ -47,7 +49,7 @@ const Variations = ({ options, variations, updateDetail }) => {
 
     if (flag === true) {
       setDisplayError(false);
-      updateDetail(buttonFlag, price, saleprice);
+      updateDetail(buttonFlag, price, saleprice, id);
     } else {
       setDisplayError(true);
       updateDetail(false);

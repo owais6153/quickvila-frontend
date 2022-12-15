@@ -33,7 +33,11 @@ const CartItem = ({ item }) => {
         >
           <div className="cart-table-product">
             <img src={item.product.image} alt={item.product.name} />
-            <h4>{item.product.name}</h4>
+            <h4>
+              {item.product.product_type === "variation" && item.variation
+                ? item.variation.name
+                : item.product.name}
+            </h4>
           </div>
         </Link>
       </td>

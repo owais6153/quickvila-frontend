@@ -6,7 +6,11 @@ const CartBoxItem = ({ item }) => {
       <div className="cart-product">
         <img src={item.product.image} alt={item.product.name} />
         <div>
-          <h3>{item.product.name}</h3>
+          <h3>
+            {item.product.product_type === "variation" && item.variation
+              ? item.variation.name
+              : item.product.name}
+          </h3>
           <p>
             <span className="price mr-3">
               <Currency />

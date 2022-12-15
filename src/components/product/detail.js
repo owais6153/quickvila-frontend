@@ -4,11 +4,15 @@ import RatingStars from "../reviews/rating-stars";
 import { Currency } from "../../shared/helper";
 import { Link } from "react-router-dom";
 import Variations from "./variation";
+import { toast } from "react-toastify";
+import { useCart } from "../../shared/hooks/cart-hook";
 
-const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
+const PrdouctDetail = ({ product, averageRating, options }) => {
   const [addToCartFlag, setAddToCartFlag] = useState(true);
   const [price, setPrice] = useState(false);
   const [salePrice, setSalePrice] = useState(false);
+  const [variationId, setVariationID] = useState(false);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     setPrice(() => product.price);
@@ -18,11 +22,22 @@ const PrdouctDetail = ({ product, averageRating, onClickHandler, options }) => {
   const updateDetail = (
     flag,
     price = product.price,
-    sale_price = product.sale_price
+    sale_price = product.sale_price,
+    id = false
   ) => {
     setAddToCartFlag(flag);
     setPrice(price);
     setSalePrice(sale_price);
+    setVariationID(id);
+  };
+
+  const onClickHandler = async (e) => {
+    try {
+      const res = await addToCart(product, variationId);
+      if (res.status == 200) {
+        toast.success(`${product.name} added to Cart!`);
+      }
+    } catch (err) {}
   };
 
   return (

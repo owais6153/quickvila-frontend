@@ -18,11 +18,18 @@ export const useCart = () => {
   }, [isLogin, identifier]);
 
   const addToCart = useCallback(
-    async (product) => {
+    async (product, variation) => {
       try {
         const params = identifier ? "?identifier=" + identifier : "";
+        var url = "";
+        if (product.product_type == "variation") {
+          url = `cart/add/${product.id}${params}&variation=${variation}`;
+        } else {
+          url = `cart/add/${product.id}${params}`;
+        }
+
         const responseData = await sendRequest(
-          apiUrl(`cart/add/${product.id}${params}`),
+          apiUrl(url),
           "PUT",
           {},
           getHeaders()

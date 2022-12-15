@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useCart } from "../shared/hooks/cart-hook";
 import StaticPage from "../shared/components/staticpages";
 import ProductSlider from "../components/sections/product-slider";
 import Component404 from "../shared/components/component-404";
@@ -24,16 +22,6 @@ const ProductInner = () => {
   const [options, setOptions] = useState(false);
 
   const { sendRequest } = useHttpClient();
-  const { addToCart } = useCart();
-
-  const onClickHandler = async (e) => {
-    try {
-      const res = await addToCart(product);
-      if (res.status == 200) {
-        toast.success(`${product.name} added to Cart!`);
-      }
-    } catch (err) {}
-  };
 
   const getData = () => {
     const fetchData = async () => {
@@ -60,7 +48,6 @@ const ProductInner = () => {
       {product && (
         <div>
           <PrdouctDetail
-            onClickHandler={onClickHandler}
             product={product}
             averageRating={averageRating}
             options={options}
