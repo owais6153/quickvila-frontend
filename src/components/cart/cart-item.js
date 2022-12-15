@@ -43,7 +43,10 @@ const CartItem = ({ item }) => {
       </td>
       <td>
         <Currency />
-        {item.product.sale_price || item.product.price}
+
+        {item.product.product_type === "variation" && item.variation
+          ? item.variation.sale_price || item.variation.price
+          : item.product.sale_price || item.product.price}
       </td>
       <td>
         <div className="quqntity">

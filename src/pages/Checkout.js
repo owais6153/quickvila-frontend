@@ -156,42 +156,6 @@ quis vel."
                         />
                       </div>
                     </Col>
-                    <Col md={12} className="mt-4 mb-3">
-                      <h3>Payment Details</h3>
-                    </Col>
-                    {/* <Col md={6}>
-                      <div className="form-group">
-                        <Input
-                          onInput={inputHandler}
-                          type="text"
-                          name="name"
-                          className="form-control"
-                          placeholder="Card Number"
-                        />
-                      </div>
-                    </Col>
-                    <Col md={3}>
-                      <div className="form-group">
-                        <Input
-                          onInput={inputHandler}
-                          type="text"
-                          name="name"
-                          className="form-control"
-                          placeholder="Card Name"
-                        />
-                      </div>
-                    </Col>
-                    <Col md={3}>
-                      <div className="form-group">
-                        <Input
-                          onInput={inputHandler}
-                          type="text"
-                          name="name"
-                          className="form-control"
-                          placeholder="CVC"
-                        />
-                      </div>
-                    </Col> */}
                   </Row>
                   <div className="form-group">
                     {/* <Button
