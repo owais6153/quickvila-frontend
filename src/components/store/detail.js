@@ -24,6 +24,9 @@ const StoreDetail = ({ store, ratings }) => {
               </div>
             </div>
             <div className="col-md-3 col-sm-4">
+              <p>{store.name}</p>
+            </div>
+            <div className="col-md-3 col-sm-4">
               <p>
                 {store.products_count > 100 ? "100+" : store.products_count}
                 <br /> <span>Product{store.products_count > 1 && "s"}</span>

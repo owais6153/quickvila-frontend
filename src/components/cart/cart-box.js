@@ -16,10 +16,13 @@ const CartBox = ({ cart, actions }) => {
         <h3>No Products In Cart</h3>
       ) : undefined}
       <div className="header-cart-actions">
-        <h5>
-          Total: <Currency />
-          {cart.total}
-        </h5>
+        {cart.count && cart.count > 0 ? (
+          <h5>
+            Total: <Currency />
+            {cart.total}
+          </h5>
+        ) : undefined}
+
         {cart.items && cart.count > 0 && actions && (
           <div>
             <Link
