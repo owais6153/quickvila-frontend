@@ -31,7 +31,9 @@ class PlacesInput extends React.Component {
   render() {
     return (
       <PlacesAutocomplete
-        value={this.state.address}
+        value={
+          this.state.address != "" ? this.state.address : this.props.address
+        }
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
@@ -42,7 +44,11 @@ class PlacesInput extends React.Component {
                 placeholder: "Enter your full address",
                 className: "form-control",
               })}
-              value={this.state.address}
+              value={
+                this.state.address != ""
+                  ? this.state.address
+                  : this.props.address
+              }
             />
             <div className="autocomplete-dropdown-container">
               {loading && (
