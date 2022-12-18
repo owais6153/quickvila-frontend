@@ -6,14 +6,14 @@ import { useContext } from "react";
 import "./location-form.css";
 
 const LocationForm = () => {
-  const { getLocationByNavigator } = useContext(AppContext);
+  const { getLocationByNavigator, setGeolocation } = useContext(AppContext);
 
   return (
     <form className="baner-form">
       <Row>
         <Col xs={9} style={{ paddingRight: 0 }}>
           <div className="geo-loc">
-            <PlacesInput />
+            <PlacesInput setGeolocation={setGeolocation} />
             {"geolocation" in navigator && (
               <div className="ser-icon" onClick={getLocationByNavigator}>
                 <img

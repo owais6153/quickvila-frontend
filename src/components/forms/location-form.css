@@ -31,3 +31,26 @@ form.baner-form {
 .modal form.baner-form .row input[type="submit"] {
   margin-top: 10px;
 }
+.autocomplete-dropdown-container:not(:empty) {
+  position: absolute;
+  top: 100%;
+  z-index: 9999;
+  border: solid 1px #dbdbdb;
+  width: 100%;
+}
+.autocomplete-dropdown-container .suggestion-item--active,
+.autocomplete-dropdown-container .suggestion-item {
+  padding: 10px 20px;
+  border-bottom: solid 1px #dbdbdb;
+  font-weight: 500;
+}
+.autocomplete-dropdown-container .suggestion-item--active i,
+.autocomplete-dropdown-container .suggestion-item i {
+  margin-right: 10px;
+}
+.autocomplete-dropdown-container .suggestion-item--active i {
+  color: #fe0000;
+}
+.get-address input {
+  padding-right: 36px;
+}

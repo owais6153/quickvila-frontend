@@ -146,6 +146,7 @@ export const AppProvider = ({ children }) => {
         hasGeoLocation: !!geolocation,
         geolocation,
         getLocationByNavigator,
+        setGeolocation,
       }}
     >
       {children}

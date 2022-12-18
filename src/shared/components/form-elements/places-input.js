@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -15,9 +15,16 @@ class PlacesInput extends React.Component {
   };
 
   handleSelect = (address) => {
+    this.setState({ address });
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
-      .then((latLng) => console.log("Success", latLng))
+      .then((latLng) => {
+        this.props.setGeolocation(() => ({
+          latitude: latLng.lat,
+          longitude: latLng.lng,
+        }));
+        console.log("Success", latLng);
+      })
       .catch((error) => console.error("Error", error));
   };
 
@@ -35,16 +42,26 @@ class PlacesInput extends React.Component {
                 placeholder: "Enter your full address",
                 className: "form-control",
               })}
+              value={this.state.address}
             />
             <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
+              {loading && (
+                <div
+                  style={{
+                    background: "#fff",
+                    padding: "10px 20px",
+                  }}
+                >
+                  Loading...
+                </div>
+              )}
               {suggestions.map((suggestion) => {
                 const className = suggestion.active
                   ? "suggestion-item--active"
                   : "suggestion-item";
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                  ? { backgroundColor: "#f3f3f3", cursor: "pointer" }
                   : { backgroundColor: "#ffffff", cursor: "pointer" };
                 return (
                   <div
@@ -53,7 +70,10 @@ class PlacesInput extends React.Component {
                       style,
                     })}
                   >
-                    <span>{suggestion.description}</span>
+                    <span>
+                      <i className="fa fa-map-marker" aria-hidden="true"></i>
+                      {suggestion.description}
+                    </span>
                   </div>
                 );
               })}
