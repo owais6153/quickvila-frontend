@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useHttpClient } from "../hooks/http-hook";
+import { useGeoLoacation } from "../hooks/geolocation-hook";
 import { useAuth } from "../hooks/auth-hook";
 import { apiUrl } from "../helper";
-import { toast } from "react-toastify";
 export const AppContext = createContext({
   auth: {
     _token: null,
@@ -32,7 +32,8 @@ export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState({});
   const [layout, setLayout] = useState(true);
   const { sendRequest } = useHttpClient(false);
-  const [geolocation, setGeolocation] = useState();
+  const { geolocation, setGeolocation, getLocationByNavigator } =
+    useGeoLoacation();
   const { token, login, logout, userId, user, verified } = useAuth();
   const [loginModal, setLoginModal] = useState(false);
   const [identifier, setIdentifier] = useState(false);
@@ -99,79 +100,6 @@ export const AppProvider = ({ children }) => {
     };
     if (!!token || identifier) fetchData();
   }, [identifier, token]);
-
-  function getAddress(results) {
-    let res = "";
-    if (results && results.length) {
-      res = results[0].formatted_address;
-      for (var i = 0; i < results.length; i++) {
-        if (results[i].types.indexOf("neighborhood") != -1) {
-          res = results[i].formatted_address;
-        }
-      }
-    }
-    return res;
-  }
-
-  // GeoLocation
-  const getLocationByNavigator = (
-    displayError = true,
-    forcedBrowserLocation = false
-  ) => {
-    if (!geolocation || forcedBrowserLocation) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          const fetchAddress = async function (position) {
-            const response = await fetch(
-              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${process.env.REACT_APP_GOOGLE_API}`
-            );
-            const address = await response.json();
-            setGeolocation(() => ({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-              address: getAddress(address.results),
-            }));
-          };
-          fetchAddress(position);
-        },
-        function (error) {
-          if (displayError)
-            toast.error(
-              `${error.message}, Please reset your location permission`
-            );
-          else
-            console.error(
-              `${error.message}, Please reset your location permission`
-            );
-        }
-      );
-    }
-  };
-
-  useEffect(() => {
-    var hasLocation = geolocation ? true : false;
-    if (hasLocation) {
-      localStorage.setItem("geolocation", JSON.stringify(geolocation));
-    }
-  }, [geolocation]);
-
-  useEffect(() => {
-    const storedLocation = JSON.parse(localStorage.getItem("geolocation"));
-    if (
-      storedLocation &&
-      storedLocation.latitude &&
-      storedLocation.longitude &&
-      storedLocation.address
-    ) {
-      setGeolocation({
-        latitude: storedLocation.latitude,
-        longitude: storedLocation.longitude,
-        address: storedLocation.address,
-      });
-    } else {
-      getLocationByNavigator(false);
-    }
-  }, []);
 
   return (
     <AppContext.Provider

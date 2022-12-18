@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -24,8 +24,6 @@ class PlacesInput extends React.Component {
           longitude: latLng.lng,
           address: address,
         }));
-
-        console.log("Success", latLng);
       })
       .catch((error) => console.error("Error", error));
   };
