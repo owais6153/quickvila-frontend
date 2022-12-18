@@ -17,6 +17,7 @@ section.in-sec-one-C .brnd-logo img {
   height: 300px;
   object-fit: cover;
   margin-top: -150px;
+  background-color: #fff;
   border: solid 8px #efefef;
 }
 section.in-sec-one-C p {

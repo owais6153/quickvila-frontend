@@ -15,8 +15,9 @@ import { Helmet } from "react-helmet";
 const Shop = () => {
   const { geolocation, hasGeoLocation } = useContext(AppContext);
   const [featured_products, setFeaturedProducts] = useState();
-  const [top_selling_products, setTopSellinggProducts] = useState();
-  const [stores, setStores] = useState();
+  const [featured_stores, setFeaturedStores] = useState();
+  const [stores_purchased_from, setStores] = useState();
+  const [nearby_stores, setNearbyStores] = useState();
   const [testimonials, setTestimonials] = useState();
   const [videos, setVideos] = useState();
   const [categories, setCategories] = useState();
@@ -32,12 +33,13 @@ const Shop = () => {
           url = `home?lat=${geolocation.latitude}&long=${geolocation.longitude}`;
         else url = `home`;
 
-        console.log(url);
-        const responseData = await sendRequest(apiUrl("home"));
+        const responseData = await sendRequest(apiUrl(url));
         if (responseData.status == 200) {
           setFeaturedProducts(responseData.featured_products);
-          setTopSellinggProducts(responseData.top_selling_products);
-          setStores(responseData.stores);
+          setFeaturedStores(responseData.featured_stores);
+          setStores(responseData.stores_purchased_from);
+          setNearbyStores(responseData.nearby_stores);
+
           setTestimonials(responseData.testimonials);
           setVideos(responseData.videos);
           setCategories(responseData.store_categories);
@@ -68,18 +70,26 @@ quis vel."
           url="/categories"
         />
       )}
-      {stores && stores.length > 0 && (
-        <StoreSlider title="Stores near you" url="/stores" stores={stores} />
+      {nearby_stores && nearby_stores.length > 0 && (
+        <StoreSlider
+          title="Stores near you"
+          url="/stores"
+          stores={nearby_stores}
+        />
       )}
-      {stores && stores.length > 0 && (
+      {stores_purchased_from && stores_purchased_from.length > 0 && (
         <StoreSlider
           title="Stores you have purchased from"
           url="/stores"
-          stores={stores}
+          stores={stores_purchased_from}
         />
       )}
-      {stores && stores.length > 0 && (
-        <StoreSlider title="Featured Stores" url="/stores" stores={stores} />
+      {featured_stores && featured_stores.length > 0 && (
+        <StoreSlider
+          title="Featured Stores"
+          url="/stores"
+          stores={featured_stores}
+        />
       )}
       {featured_products && featured_products.length > 0 && (
         <ProductSlider
@@ -88,13 +98,7 @@ quis vel."
           url="/products"
         />
       )}
-      {top_selling_products && top_selling_products.length > 0 && (
-        <ProductSlider
-          products={top_selling_products}
-          title="Top Selling Products"
-          url="/products"
-        />
-      )}
+
       {banners && banners.length > 0 && <AdvBanners banners={banners} />}
       {testimonials && testimonials.length > 0 && (
         <Testimonials testimonials={testimonials} />
