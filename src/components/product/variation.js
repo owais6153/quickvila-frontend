@@ -23,6 +23,7 @@ const Variations = ({ options, variations, updateDetail }) => {
     var flag = null;
     var price = 0;
     var saleprice = 0;
+    var name = "";
     var id = 0;
     for (let i in variations) {
       flag = null;
@@ -42,14 +43,14 @@ const Variations = ({ options, variations, updateDetail }) => {
         price = variations[i].price;
         saleprice = variations[i].sale_price;
         id = variations[i].id;
-        console.log(variations[i].name);
+        name = variations[i].name;
         break;
       }
     }
 
     if (flag === true) {
       setDisplayError(false);
-      updateDetail(buttonFlag, price, saleprice, id);
+      updateDetail(buttonFlag, price, saleprice, id, name);
     } else {
       setDisplayError(true);
       updateDetail(false);
@@ -58,14 +59,24 @@ const Variations = ({ options, variations, updateDetail }) => {
   const changeHandler = (e) => {
     let s = selected;
     s[e.target.dataset.labelname] = e.target.value;
-    setSelected(s);
+    setSelected(() => s);
 
-    let optionslength = Object.keys(options).length;
-    let selectedlegth = Object.keys(selected).length;
+    // let optionslength = Object.keys(options).length;
+    // let selectedlegth = Object.keys(selected).length;
 
-    if (optionslength == selectedlegth) {
-      updatePricing(true);
+    // if (optionslength == selectedlegth) {
+    updatePricing(true);
+    // }
+  };
+
+  const checkForClasses = (key, i) => {
+    let classes = "";
+
+    if (selected[key] == i.name) {
+      classes = "active";
     }
+
+    return classes;
   };
 
   useEffect(() => {
@@ -94,7 +105,7 @@ const Variations = ({ options, variations, updateDetail }) => {
                     item={i}
                     labelname={key}
                     changeHandler={changeHandler}
-                    className={selected[key] == i.name ? "active" : ""}
+                    className={checkForClasses(key, i)}
                   />
                 );
               })}

@@ -7,11 +7,11 @@ import PlacesAutocomplete, {
 class PlacesInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: "" };
+    this.state = { address: false, isTouched: false };
   }
 
   handleChange = (address) => {
-    this.setState({ address });
+    this.setState({ address, isTouched: true });
   };
 
   handleSelect = (address) => {
@@ -22,7 +22,9 @@ class PlacesInput extends React.Component {
         this.props.setGeolocation(() => ({
           latitude: latLng.lat,
           longitude: latLng.lng,
+          address: address,
         }));
+
         console.log("Success", latLng);
       })
       .catch((error) => console.error("Error", error));
@@ -32,7 +34,9 @@ class PlacesInput extends React.Component {
     return (
       <PlacesAutocomplete
         value={
-          this.state.address != "" ? this.state.address : this.props.address
+          this.state.isTouched === true
+            ? this.state.address
+            : this.props.address
         }
         onChange={this.handleChange}
         onSelect={this.handleSelect}
@@ -45,7 +49,7 @@ class PlacesInput extends React.Component {
                 className: "form-control",
               })}
               value={
-                this.state.address != ""
+                this.state.isTouched === true
                   ? this.state.address
                   : this.props.address
               }

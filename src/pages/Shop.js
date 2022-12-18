@@ -39,7 +39,6 @@ const Shop = () => {
           setFeaturedStores(responseData.featured_stores);
           setStores(responseData.stores_purchased_from);
           setNearbyStores(responseData.nearby_stores);
-
           setTestimonials(responseData.testimonials);
           setVideos(responseData.videos);
           setCategories(responseData.store_categories);
@@ -48,7 +47,7 @@ const Shop = () => {
       } catch (err) {}
     };
     fetchData();
-  }, [hasGeoLocation]);
+  }, [geolocation, hasGeoLocation]);
 
   return (
     <StaticPage>

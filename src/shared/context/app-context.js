@@ -99,6 +99,7 @@ export const AppProvider = ({ children }) => {
     };
     if (!!token || identifier) fetchData();
   }, [identifier, token]);
+
   function getAddress(results) {
     let res = "";
     if (results && results.length) {
@@ -111,9 +112,13 @@ export const AppProvider = ({ children }) => {
     }
     return res;
   }
+
   // GeoLocation
-  const getLocationByNavigator = (displayError = true) => {
-    if (!geolocation) {
+  const getLocationByNavigator = (
+    displayError = true,
+    forcedBrowserLocation = false
+  ) => {
+    if (!geolocation || forcedBrowserLocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
           const fetchAddress = async function (position) {
@@ -142,7 +147,32 @@ export const AppProvider = ({ children }) => {
       );
     }
   };
-  getLocationByNavigator(false);
+
+  useEffect(() => {
+    var hasLocation = geolocation ? true : false;
+    if (hasLocation) {
+      localStorage.setItem("geolocation", JSON.stringify(geolocation));
+    }
+  }, [geolocation]);
+
+  useEffect(() => {
+    const storedLocation = JSON.parse(localStorage.getItem("geolocation"));
+    if (
+      storedLocation &&
+      storedLocation.latitude &&
+      storedLocation.longitude &&
+      storedLocation.address
+    ) {
+      setGeolocation({
+        latitude: storedLocation.latitude,
+        longitude: storedLocation.longitude,
+        address: storedLocation.address,
+      });
+    } else {
+      getLocationByNavigator(false);
+    }
+  }, []);
+
   return (
     <AppContext.Provider
       value={{

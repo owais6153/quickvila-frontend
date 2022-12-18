@@ -19,7 +19,10 @@ const LocationForm = () => {
               address={geolocation ? geolocation.address : ""}
             />
             {"geolocation" in navigator && (
-              <div className="ser-icon" onClick={getLocationByNavigator}>
+              <div
+                className="ser-icon"
+                onClick={() => getLocationByNavigator(true, true)}
+              >
                 <img
                   src={homeUrl("images/Vectory (1).png")}
                   alt="Get Geolocation"

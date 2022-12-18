@@ -12,23 +12,27 @@ const PrdouctDetail = ({ product, averageRating, options }) => {
   const [price, setPrice] = useState(false);
   const [salePrice, setSalePrice] = useState(false);
   const [variationId, setVariationID] = useState(false);
+  const [productName, setProductName] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
     setPrice(() => product.price);
     setSalePrice(() => product.sale_price);
+    setProductName(() => product.name);
   }, []);
 
   const updateDetail = (
     flag,
     price = product.price,
     sale_price = product.sale_price,
-    id = false
+    id = false,
+    pName = product.name
   ) => {
     setAddToCartFlag(flag);
     setPrice(price);
     setSalePrice(sale_price);
     setVariationID(id);
+    setProductName(pName);
   };
 
   const onClickHandler = async (e) => {
@@ -59,7 +63,7 @@ const PrdouctDetail = ({ product, averageRating, options }) => {
                   <p>{product.store.name}</p>
                 </Link>
               </div>
-              <h2>{product.name}</h2>
+              <h2>{productName}</h2>
               <p>{product.short_description}</p>
               <div className="rating">
                 <ul>
