@@ -7,7 +7,6 @@ import { apiUrl } from "../shared/helper";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { VALIDATOR_REQUIRE, VALIDATOR_EMAIL } from "../shared/util/validation";
 import { toast } from "react-toastify";
-import { useCart } from "../shared/hooks/cart-hook";
 
 import Input from "../shared/components/form-elements/input";
 import Button from "../shared/components/form-elements/button";
@@ -18,7 +17,6 @@ import { Helmet } from "react-helmet";
 
 const Checkout = () => {
   const { isLogin, auth, cart } = useContext(AppContext);
-  const { setCartLocally } = useCart();
   const { setIsLoading } = useLoading(true);
   const { sendRequest } = useHttpClient();
   const onPageLoad = (value) => {
@@ -66,7 +64,6 @@ const Checkout = () => {
       });
 
       if (responseData.status === 200) {
-        setCartLocally({});
         window.location.replace(`order/${responseData.order.id}`);
       }
       return true;

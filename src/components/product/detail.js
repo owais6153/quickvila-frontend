@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
 import RatingStars from "../reviews/rating-stars";
 import { Currency } from "../../shared/helper";
 import { Link } from "react-router-dom";
 import Variations from "./variation";
 import { toast } from "react-toastify";
-import { useCart } from "../../shared/hooks/cart-hook";
+import { AppContext } from "../../shared/context/app-context";
 
 const PrdouctDetail = ({ product, averageRating, options }) => {
   const [addToCartFlag, setAddToCartFlag] = useState(true);
@@ -13,7 +13,7 @@ const PrdouctDetail = ({ product, averageRating, options }) => {
   const [salePrice, setSalePrice] = useState(false);
   const [variationId, setVariationID] = useState(false);
   const [productName, setProductName] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart } = useContext(AppContext);
 
   useEffect(() => {
     setPrice(() => product.price);

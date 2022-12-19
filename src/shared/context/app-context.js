@@ -1,9 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useHttpClient } from "../hooks/http-hook";
 import { useGeoLoacation } from "../hooks/geolocation-hook";
+import { useCart } from "../hooks/cart-hook";
+
 import { useAuth } from "../hooks/auth-hook";
-import { apiUrl } from "../helper";
 export const AppContext = createContext({
   auth: {
     _token: null,
@@ -17,26 +17,29 @@ export const AppContext = createContext({
   setLayout: () => {},
   isLogin: false,
   loginModal: false,
-  cart: {},
-  identifier: false,
-  setIdentifier: () => {},
-  updateCart: () => {},
   toggleLoginModal: () => {},
   searchHandler: () => {},
+
+  cart: {},
+  identifier: false,
+  updateItem: () => {},
+  addToCart: () => {},
+  emptyCart: () => {},
+  removeItem: () => {},
+
   hasGeoLocation: false,
   geolocation: {},
   getLocationByNavigator: () => {},
 });
 
 export const AppProvider = ({ children }) => {
-  const [cart, setCart] = useState({});
   const [layout, setLayout] = useState(true);
-  const { sendRequest } = useHttpClient(false);
+  const [loginModal, setLoginModal] = useState(false);
   const { geolocation, setGeolocation, getLocationByNavigator } =
     useGeoLoacation();
   const { token, login, logout, userId, user, verified } = useAuth();
-  const [loginModal, setLoginModal] = useState(false);
-  const [identifier, setIdentifier] = useState(false);
+  const { cart, identifier, addToCart, emptyCart, updateItem, removeItem } =
+    useCart(!!token, token);
 
   // Search
   const navigate = useNavigate();
@@ -48,58 +51,6 @@ export const AppProvider = ({ children }) => {
   const toggleLoginModal = () => {
     setLoginModal(!loginModal);
   };
-
-  // Cart
-  const updateCart = (newCart) => {
-    setCart(() => newCart);
-  };
-
-  useEffect(() => {
-    var cartidentifier = cart.identifier ? cart.identifier : false;
-    if (!cartidentifier) {
-      if (cartidentifier != identifier) {
-        localStorage.removeItem("cart");
-        setIdentifier(() => cartidentifier);
-      }
-    } else {
-      if (cartidentifier != identifier) {
-        setIdentifier(() => cartidentifier);
-        localStorage.setItem(
-          "cart",
-          JSON.stringify({
-            identifier: cartidentifier,
-          })
-        );
-      }
-    }
-  }, [cart]);
-
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart"));
-    if (storedCart && storedCart.identifier) {
-      setIdentifier(() => storedCart.identifier);
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const params = identifier ? "?identifier=" + identifier : "";
-        const responseData = await sendRequest(
-          apiUrl(`cart${params}`),
-          "GET",
-          null,
-          {
-            Authorization: `Bearer ${token}`,
-          }
-        );
-        if (responseData.status === 200) {
-          updateCart(responseData.cart);
-        }
-      } catch (err) {}
-    };
-    if (!!token || identifier) fetchData();
-  }, [identifier, token]);
 
   return (
     <AppContext.Provider
@@ -116,12 +67,16 @@ export const AppProvider = ({ children }) => {
         },
         layout,
         setLayout,
-        identifier,
-        setIdentifier,
-        cart,
-        updateCart,
-        searchHandler,
         toggleLoginModal,
+        searchHandler,
+
+        removeItem,
+        updateItem,
+        emptyCart,
+        addToCart,
+        identifier,
+        cart,
+
         hasGeoLocation: !!geolocation,
         geolocation,
         getLocationByNavigator,

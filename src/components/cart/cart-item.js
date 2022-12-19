@@ -1,10 +1,12 @@
 import { Currency } from "../../shared/helper";
 import Icon from "../../shared/components/font-awesome-icon";
-import { useCart } from "../../shared/hooks/cart-hook";
+import { AppContext } from "../../shared/context/app-context";
+
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 const CartItem = ({ item }) => {
-  const { updateItem, removeItem } = useCart();
+  const { updateItem, removeItem } = useContext(AppContext);
   const removeItemHandler = async () => {
     const responseData = await removeItem(item);
     if (responseData.status == 200) {

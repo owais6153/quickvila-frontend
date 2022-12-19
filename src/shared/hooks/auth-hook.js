@@ -1,5 +1,4 @@
-import { useState, useCallback, useEffect, useContext } from "react";
-import { AppContext } from "../context/app-context";
+import { useState, useCallback, useEffect } from "react";
 
 let logoutTimer;
 
@@ -9,8 +8,6 @@ export const useAuth = () => {
   const [userId, setUserId] = useState(false);
   const [verified, setVerified] = useState(false);
   const [user, setUser] = useState(false);
-  const { setIdentifier } = useContext(AppContext);
-
   const login = useCallback((uid, user, token, verified, expirationDate) => {
     setToken(token);
     setUserId(uid);
@@ -33,7 +30,6 @@ export const useAuth = () => {
 
   const logout = useCallback(() => {
     localStorage.removeItem("userData");
-    setIdentifier(false);
     setToken(null);
     setUser(false);
     setTokenExpirationDate(null);

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "../shared/context/app-context";
 import { Container, Table } from "react-bootstrap";
-import { useCart } from "../shared/hooks/cart-hook";
 import StaticPage from "../shared/components/staticpages";
 import HeadingRow from "../shared/components/heading-row";
 import CartItem from "../components/cart/cart-item";
@@ -10,8 +9,7 @@ import { Helmet } from "react-helmet";
 
 import { useLoading } from "../shared/hooks/loader-hook";
 const Cart = () => {
-  const { cart, isLogin } = useContext(AppContext);
-  const { emptyCart } = useCart();
+  const { cart, isLogin, emptyCart } = useContext(AppContext);
   const emptyHandler = async () => {
     const responseData = await emptyCart();
     if (responseData.status == 200) {

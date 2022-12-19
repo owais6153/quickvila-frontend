@@ -1,21 +1,63 @@
-import { useCallback, useState, useContext, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useHttpClient } from "./http-hook";
 import { apiUrl } from "../helper";
-import { AppContext } from "../context/app-context";
 
-export const useCart = () => {
-  const { isLogin, auth, updateCart, identifier, setIdentifier } =
-    useContext(AppContext);
+export const useCart = (isLogin, token) => {
+  const [identifier, setIdentifier] = useState(false);
+  const [cart, setCart] = useState({});
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
   const getHeaders = useCallback(() => {
     if (isLogin)
       return {
-        Authorization: `Bearer ${auth._token}`,
+        Authorization: `Bearer ${token}`,
       };
     else return {};
   }, [isLogin, identifier]);
+  useEffect(() => {
+    var cartidentifier = cart.identifier ? cart.identifier : false;
+    if (!cartidentifier) {
+      if (cartidentifier != identifier) {
+        localStorage.removeItem("cart");
+        setIdentifier(() => cartidentifier);
+      }
+    } else {
+      if (cartidentifier != identifier) {
+        setIdentifier(() => cartidentifier);
+        localStorage.setItem(
+          "cart",
+          JSON.stringify({
+            identifier: cartidentifier,
+          })
+        );
+      }
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    if (storedCart && storedCart.identifier) {
+      setIdentifier(() => storedCart.identifier);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const params = identifier ? "?identifier=" + identifier : "";
+        const responseData = await sendRequest(
+          apiUrl(`cart${params}`),
+          "GET",
+          null,
+          getHeaders()
+        );
+        if (responseData.status === 200) {
+          setCart(responseData.cart);
+        }
+      } catch (err) {}
+    };
+    if (!!token || identifier) fetchData();
+  }, [identifier, token]);
 
   const addToCart = useCallback(
     async (product, variation) => {
@@ -35,7 +77,7 @@ export const useCart = () => {
           getHeaders()
         );
         if (responseData.status === 200) {
-          updateCart(responseData.cart);
+          setCart(responseData.cart);
         }
         return responseData;
       } catch (err) {}
@@ -54,7 +96,7 @@ export const useCart = () => {
           getHeaders()
         );
         if (responseData.status === 200) {
-          updateCart({});
+          setCart({});
         }
         return responseData;
       } catch (err) {}
@@ -73,7 +115,7 @@ export const useCart = () => {
           getHeaders()
         );
         if (responseData.status === 200) {
-          updateCart(responseData.cart);
+          setCart(responseData.cart);
         }
         return responseData;
       } catch (err) {}
@@ -92,7 +134,7 @@ export const useCart = () => {
           getHeaders()
         );
         if (responseData.status === 200) {
-          updateCart(responseData.cart);
+          setCart(responseData.cart);
         }
         return responseData;
       } catch (err) {}
@@ -105,5 +147,7 @@ export const useCart = () => {
     updateItem,
     emptyCart,
     addToCart,
+    identifier,
+    cart,
   };
 };
