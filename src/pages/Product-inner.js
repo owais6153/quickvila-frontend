@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { useParams } from "react-router-dom";
@@ -23,7 +23,7 @@ const ProductInner = () => {
 
   const { sendRequest } = useHttpClient();
 
-  const getData = () => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const responseData = await sendRequest(
@@ -41,9 +41,9 @@ const ProductInner = () => {
       }
     };
     fetchData();
-  };
+  }, [store_id, product_id]);
   return (
-    <StaticPage getData={getData}>
+    <StaticPage>
       {!searching && !product && <Component404 />}
       {product && (
         <div>
