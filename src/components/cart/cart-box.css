@@ -1,3 +1,18 @@
+.main-cart {
+  margin-top: 60px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 41px;
+}
+
+.main-cart .total {
+  font-size: 22px;
+  color: #fe0000;
+}
+.main-cart.cart-box h3 {
+  font-size: 26px;
+  line-height: 160%;
+}
 .cart-box {
   background: #fff;
   border: 1px solid whitesmoke;

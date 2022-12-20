@@ -16,7 +16,7 @@ import CartBox from "../components/cart/cart-box";
 import { Helmet } from "react-helmet";
 
 const Checkout = () => {
-  const { isLogin, auth, cart } = useContext(AppContext);
+  const { isLogin, auth, cart, geolocation } = useContext(AppContext);
   const { setIsLoading } = useLoading(true);
   const { sendRequest } = useHttpClient();
   const onPageLoad = (value) => {
@@ -39,6 +39,10 @@ const Checkout = () => {
       },
       note: {
         value: "",
+        isValid: true,
+      },
+      address1: {
+        value: "geolocation.address",
         isValid: true,
       },
     },
@@ -135,6 +139,35 @@ quis vel."
                           className="form-control"
                           placeholder="Phone Number"
                           validators={[VALIDATOR_REQUIRE("Phone is required.")]}
+                        />
+                      </div>
+                    </Col>
+                    <Col md={12} className="mt-4  mb-3">
+                      <h3>Shipping Info</h3>
+                    </Col>
+                    <Col md={12}>
+                      <div className="form-group">
+                        <Input
+                          onInput={inputHandler}
+                          type="text"
+                          name="address1"
+                          id="address1"
+                          className="form-control"
+                          placeholder="Address 1"
+                          value={geolocation.address}
+                          disabled="disabled"
+                        />
+                      </div>
+                    </Col>
+                    <Col md={12}>
+                      <div className="form-group">
+                        <Input
+                          onInput={inputHandler}
+                          type="text"
+                          name="address2"
+                          id="address2"
+                          className="form-control"
+                          placeholder="Address 2"
                         />
                       </div>
                     </Col>
