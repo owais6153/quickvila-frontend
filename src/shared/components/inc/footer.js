@@ -10,6 +10,7 @@ import Verify from "../../../auth/verify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LocationForm from "../../../components/forms/location-form";
+import Icon from "../../../shared/components/font-awesome-icon";
 
 const Footer = () => {
   const {
@@ -42,16 +43,16 @@ const Footer = () => {
               <Col md={6} lg={4} className="justify-content-sm-center m-auto">
                 <ul className="ul-Sicons">
                   <li>
-                    <i className="fa fa-facebook" aria-hidden="true"></i>
+                    <Icon icon="fa fa-facebook" aria-hidden="true"></Icon>
                   </li>
                   <li>
-                    <i className="fa fa-youtube-play" aria-hidden="true"></i>
+                    <Icon icon="fa fa-youtube-play" aria-hidden="true"></Icon>
                   </li>
                   <li>
-                    <i className="fa fa-twitter" aria-hidden="true"></i>
+                    <Icon icon="fa fa-twitter" aria-hidden="true"></Icon>
                   </li>
                   <li>
-                    <i className="fa fa-pinterest-p" aria-hidden="true"></i>
+                    <Icon icon="fa fa-pinterest-p" aria-hidden="true"></Icon>
                   </li>
                 </ul>
               </Col>

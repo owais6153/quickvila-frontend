@@ -3,6 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import Icon from "../font-awesome-icon";
 
 class PlacesInput extends React.Component {
   constructor(props) {
@@ -79,7 +80,7 @@ class PlacesInput extends React.Component {
                     })}
                   >
                     <span>
-                      <i className="fa fa-map-marker" aria-hidden="true"></i>
+                      <Icon icon="fa fa-map-marker" aria-hidden="true"></Icon>
                       {suggestion.description}
                     </span>
                   </div>

@@ -4,6 +4,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import { apiUrl } from "../../shared/helper";
 import HeadingRow from "../../shared/components/heading-row";
 import Pagination from "../../shared/components/pagination";
+import Icon from "../../shared/components/font-awesome-icon";
 import "./reviews.css";
 const Reviews = ({ reviews, updateReviews, store_id, product_id }) => {
   const [pagination, setPagination] = useState(reviews.links);
@@ -48,7 +49,7 @@ const Reviews = ({ reviews, updateReviews, store_id, product_id }) => {
                     <img src={review.author.avatar} alt={review.author.name} />
                     <p className="author_name">{review.author.name}</p>
                     <p className="product_rating">
-                      <i className="fa fa-star" aria-hidden="true"></i>
+                      <Icon icon="fa fa-star" aria-hidden="true"></Icon>
                       {review.rating}
                     </p>
                   </div>
