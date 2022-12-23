@@ -26,6 +26,7 @@ const ProductInner = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setProducts(false);
         const responseData = await sendRequest(
           apiUrl(`stores/${store_id}/products/${product_id}`)
         );
@@ -51,6 +52,8 @@ const ProductInner = () => {
             product={product}
             averageRating={averageRating}
             options={options}
+            std={store_id}
+            pd={product_id}
           />
           {reviews && reviews.data.length > 0 && (
             <Reviews

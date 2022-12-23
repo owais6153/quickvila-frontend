@@ -7,7 +7,7 @@ import Variations from "./variation";
 import { toast } from "react-toastify";
 import { AppContext } from "../../shared/context/app-context";
 
-const PrdouctDetail = ({ product, averageRating, options }) => {
+const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
   const [addToCartFlag, setAddToCartFlag] = useState(true);
   const [price, setPrice] = useState(false);
   const [salePrice, setSalePrice] = useState(false);
@@ -19,7 +19,7 @@ const PrdouctDetail = ({ product, averageRating, options }) => {
     setPrice(() => product.price);
     setSalePrice(() => product.sale_price);
     setProductName(() => product.name);
-  }, []);
+  }, [std, pd]);
 
   const updateDetail = (
     flag,

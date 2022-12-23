@@ -28,6 +28,8 @@
 .cart-box .cart-products img {
   width: 50px;
   height: 50px;
+  object-fit: cover;
+  border: solid 1px #f3f3f3;
 }
 .cart-box h3 {
   font-size: 17px;

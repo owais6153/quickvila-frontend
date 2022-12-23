@@ -46,7 +46,9 @@ quis vel."
         <Container>
           <HeadingRow lg title="Cart" />
           {!cart.count || cart.count < 1 ? (
-            <h3>No product in Cart</h3>
+            <h3>
+              No product in Cart <Link to="/shop">Continue Shopping</Link>
+            </h3>
           ) : (
             <>
               <div className="cart-table" style={style}>
