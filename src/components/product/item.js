@@ -10,12 +10,14 @@ const ProductItem = ({ product }) => {
           <div className="innerctn ">
             <h4>
               <Currency />
-              {product.sale_price ? product.sale_price : product.price}
+              {product.sale_price_to_display
+                ? product.sale_price_to_display
+                : product.price_to_display}
             </h4>
-            {product.sale_price && (
+            {product.sale_price_to_display && (
               <h5>
                 <Currency />
-                {product.price}
+                {product.price_to_display}
               </h5>
             )}
           </div>

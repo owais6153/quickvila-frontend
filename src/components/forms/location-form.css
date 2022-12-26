@@ -52,5 +52,5 @@ form.baner-form {
   color: #fe0000;
 }
 .get-address input {
-  padding-right: 36px;
+  padding-right: 36px !important;
 }

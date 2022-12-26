@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../shared/context/app-context";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "../shared/hooks/form-hook";
@@ -42,12 +42,49 @@ const Checkout = () => {
         isValid: true,
       },
       address1: {
-        value: "geolocation.address",
-        isValid: true,
+        value: "",
+        isValid: false,
+      },
+      address2: {
+        value: "",
+        isValid: false,
       },
     },
     false
   );
+
+  useEffect(() => {
+    setFormData(
+      {
+        name: {
+          value: "",
+          isValid: false,
+        },
+        email: {
+          value: "",
+          isValid: false,
+        },
+        phone: {
+          value: "",
+          isValid: false,
+        },
+        note: {
+          value: "",
+          isValid: true,
+        },
+        address1: {
+          value: geolocation ? geolocation.address : "",
+          isValid: true,
+        },
+        address2: {
+          value: "",
+          isValid: false,
+        },
+      },
+      false
+    );
+  }, [geolocation]);
+
   const submitHandler = async (event) => {
     event.preventDefault();
     if (!formState.isValid) {
@@ -60,6 +97,10 @@ const Checkout = () => {
       name: formState.inputs.name.value,
       phone: formState.inputs.phone.value,
       note: formState.inputs.note.value,
+      address1: formState.inputs.note.address1,
+      address2: formState.inputs.note.address2,
+      latitude: geolocation.latitude,
+      longitude: geolocation.longitude,
     });
     try {
       var responseData = await sendRequest(url, "POST", data, {
@@ -147,15 +188,16 @@ quis vel."
                     </Col>
                     <Col md={12}>
                       <div className="form-group">
-                        <Input
+                        <input
                           onInput={inputHandler}
                           type="text"
                           name="address1"
                           id="address1"
                           className="form-control"
                           placeholder="Address 1"
-                          value={geolocation.address}
                           disabled="disabled"
+                          readonly="readonly"
+                          value={geolocation.address}
                         />
                       </div>
                     </Col>
@@ -168,6 +210,9 @@ quis vel."
                           id="address2"
                           className="form-control"
                           placeholder="Address 2"
+                          validators={[
+                            VALIDATOR_REQUIRE("Address 2 is required."),
+                          ]}
                         />
                       </div>
                     </Col>

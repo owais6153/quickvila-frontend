@@ -84,7 +84,7 @@ quis vel."
               >
                 <Row>
                   <Col sm={12}>
-                    <h3>Cart Total</h3>
+                    <h3>Cart</h3>
                   </Col>
                   <Col sm={6}>Tax:</Col>
                   <Col sm={6}>

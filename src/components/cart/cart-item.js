@@ -47,8 +47,9 @@ const CartItem = ({ item }) => {
         <Currency />
 
         {item.product.product_type === "variation" && item.variation
-          ? item.variation.sale_price || item.variation.price
-          : item.product.sale_price || item.product.price}
+          ? item.variation.sale_price_to_display ||
+            item.variation.price_to_display
+          : item.product.sale_price_to_display || item.product.price_to_display}
       </td>
       <td>
         <div className="quqntity">

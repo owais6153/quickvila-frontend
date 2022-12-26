@@ -827,3 +827,12 @@ input#code[type="number"] {
 .cart-table h4 {
   font-size: 18px;
 }
+.form-control:disabled,
+.form-control[readonly] {
+  opacity: 69%;
+}
+
+textarea.form-control {
+  padding-top: 15px;
+  min-height: 100px;
+}

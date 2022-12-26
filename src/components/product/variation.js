@@ -40,8 +40,8 @@ const Variations = ({ options, variations, updateDetail }) => {
       }
 
       if (flag === true) {
-        price = variations[i].price;
-        saleprice = variations[i].sale_price;
+        price = variations[i].price_to_display;
+        saleprice = variations[i].sale_price_to_display;
         id = variations[i].id;
         name = variations[i].name;
         break;
