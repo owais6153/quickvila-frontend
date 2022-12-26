@@ -15,43 +15,44 @@ const OrderInner = () => {
   const { sendRequest } = useHttpClient();
   const { auth, isLogin } = useContext(AppContext);
 
-  const getData = () => {
-    const fetchData = async () => {
-      console.log(auth);
-      try {
-        const responseData = await sendRequest(
-          apiUrl(`orders/${order_id}`),
-          "GET",
-          null,
-          {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${auth._token}`,
-          }
-        );
-        if (responseData.status == 200) {
-          setOrder(responseData.order);
-        }
-        console.log("working");
-        setSearching(false);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  };
+  // const getData = () => {
+  //   const fetchData = async () => {
+  //     console.log(auth);
+  //     try {
+  //       const responseData = await sendRequest(
+  //         apiUrl(`orders/${order_id}`),
+  //         "GET",
+  //         null,
+  //         {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${auth._token}`,
+  //         }
+  //       );
+  //       if (responseData.status == 200) {
+  //         setOrder(responseData.order);
+  //       }
+  //       console.log("working");
+  //       setSearching(false);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchData();
+  // };
 
   return (
-    <StaticPage getData={getData}>
-      {(!searching && !order) || (!isLogin && <Component404 />)}
+    <StaticPage>
+      {/* {(!searching && !order) || (!isLogin && <Component404 />)} */}
 
-      {isLogin && order && (
-        <section className="container no-banner">
-          <HeadingRow lg title="Order" />
-          <p className="alert alert-info">
-            Your order atatus is: {order.status}
-          </p>
-        </section>
-      )}
+      <div id="error-boundry">
+        <div className="catch">
+          <h1>Thanks for your order.</h1>
+          <p>Your order is in progress.</p>
+          <a href="/" className="btn btn-primary">
+            Go to Home
+          </a>
+        </div>
+      </div>
     </StaticPage>
   );
 };

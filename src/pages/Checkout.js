@@ -16,7 +16,8 @@ import CartBox from "../components/cart/cart-box";
 import { Helmet } from "react-helmet";
 
 const Checkout = () => {
-  const { isLogin, auth, cart, geolocation } = useContext(AppContext);
+  const { isLogin, auth, cart, identifier, geolocation } =
+    useContext(AppContext);
   const { setIsLoading } = useLoading(true);
   const { sendRequest } = useHttpClient();
   const onPageLoad = (value) => {
@@ -91,7 +92,7 @@ const Checkout = () => {
       return;
     }
 
-    var url = apiUrl("checkout");
+    var url = apiUrl(`checkout?identifier=${identifier}`);
     var data = JSON.stringify({
       email: formState.inputs.email.value,
       name: formState.inputs.name.value,
@@ -196,7 +197,7 @@ quis vel."
                           className="form-control"
                           placeholder="Address 1"
                           disabled="disabled"
-                          readonly="readonly"
+                          readOnly="readonly"
                           value={geolocation.address}
                         />
                       </div>
@@ -232,21 +233,19 @@ quis vel."
                       </div>
                     </Col>
                   </Row>
-                  <div className="form-group">
-                    {/* <Button
-                      type="submit"
-                      className="btn-primary w-100"
-                      text="Checkout"
-                      disable={true}
-                    /> */}
-                    <div className="alert alert-danger">
-                      No Payment Method is set.
-                    </div>
-                  </div>
                 </Col>
                 <Col lg={4}>
                   <h3>Cart Info</h3>
                   <CartBox cart={cart} login={isLogin} />
+                  <Button
+                    type="submit"
+                    className="btn-primary w-100 mt-3"
+                    text="Checkout"
+                    disable={true}
+                  />
+                  {/* <div className="alert alert-danger">
+                    No Payment Method is set.
+                  </div> */}
                 </Col>
               </form>
             </Row>
