@@ -87,7 +87,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                       }}
                     >
                       <Currency />
-                      {price}
+                      {price || product.price_to_display}
                     </del>
                   </span>
                 )}

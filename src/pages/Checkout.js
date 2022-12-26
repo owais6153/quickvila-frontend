@@ -245,7 +245,7 @@ quis vel."
                   </div>
                 </Col>
                 <Col lg={4}>
-                  <h3>Products</h3>
+                  <h3>Cart Info</h3>
                   <CartBox cart={cart} login={isLogin} />
                 </Col>
               </form>

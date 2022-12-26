@@ -13,6 +13,9 @@
   font-size: 26px;
   line-height: 160%;
 }
+form#checkoutForm .cart-box {
+  margin-top: 24px;
+}
 .cart-box {
   background: #fff;
   border: 1px solid whitesmoke;

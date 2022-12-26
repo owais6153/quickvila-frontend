@@ -4,7 +4,6 @@ import { useLoading } from "./shared/hooks/loader-hook";
 import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
 import Loader from "./shared/components/loader";
-import ErrorBoundary from "./shared/components/inc/error-boundary";
 import Shop from "./pages/Shop";
 import MainHome from "./pages/MainHome";
 import Search from "./pages/Search";
@@ -28,7 +27,7 @@ import "./App.css";
 const App = () => {
   const { isLoading } = useLoading(true);
   return (
-    <ErrorBoundary>
+    <>
       {isLoading && <Loader />}
       <Header />
       <Routes>
@@ -65,7 +64,7 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
-    </ErrorBoundary>
+    </>
   );
 };
 

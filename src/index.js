@@ -4,19 +4,22 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./shared/context/app-context";
 import { LoadingProvider } from "./shared/context/loader-context";
+import ErrorBoundary from "./shared/components/inc/error-boundary";
 import App from "./App";
 import "react-multi-carousel/lib/styles.css";
 import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <LoadingProvider>
-        <AppProvider>
-          <App />
-        </AppProvider>
-      </LoadingProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <LoadingProvider>
+          <AppProvider>
+            <App />
+          </AppProvider>
+        </LoadingProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 
