@@ -6,7 +6,7 @@ import HeadingRow from "../shared/components/heading-row";
 import CartItem from "../components/cart/cart-item";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
-import { Currency } from "../shared/helper";
+import CartTotalTable from "../components/cart/cart-total-table";
 
 import { useLoading } from "../shared/hooks/loader-hook";
 import { Link } from "react-router-dom";
@@ -86,28 +86,7 @@ quis vel."
                   <Col sm={12}>
                     <h3>Cart</h3>
                   </Col>
-                  <Col sm={6}>Tax:</Col>
-                  <Col sm={6}>
-                    <Currency />
-                    {cart.total}
-                  </Col>
-                  <Col sm={6}>Platform Tax:</Col>
-                  <Col sm={6}>
-                    <Currency />
-                    {cart.total}
-                  </Col>
-                  <Col sm={6}>Delivery Charges:</Col>
-                  <Col sm={6}>
-                    <Currency />
-                    {cart.total}
-                  </Col>
-                  <Col sm={6} className="total">
-                    Total:
-                  </Col>
-                  <Col sm={6} className="total">
-                    <Currency />
-                    {cart.total}
-                  </Col>
+                  <CartTotalTable displayAll={true} cart={cart} />
                   <Col sm={12}>
                     <Link to="/checkout" className="btn w-100 mt-4 btn-primary">
                       Proceed to Checkout

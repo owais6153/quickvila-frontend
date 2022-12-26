@@ -1,5 +1,5 @@
 import CartBoxItem from "./cart-box-item";
-import { Currency } from "../../shared/helper";
+import CartTotalTable from "./cart-total-table";
 import { Link } from "react-router-dom";
 import "./cart-box.css";
 const CartBox = ({ cart, actions }) => {
@@ -17,14 +17,13 @@ const CartBox = ({ cart, actions }) => {
       ) : undefined}
       <div className="header-cart-actions">
         {cart.count && cart.count > 0 ? (
-          <h5>
-            Total: <Currency />
-            {cart.total}
-          </h5>
+          <div className="row">
+            <CartTotalTable displayAll={!actions} cart={cart} />
+          </div>
         ) : undefined}
 
         {cart.items && cart.count > 0 && actions && (
-          <div>
+          <div className="mt-3">
             <Link
               to="/cart"
               className="btn btn-primary"

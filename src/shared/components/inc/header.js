@@ -101,7 +101,7 @@ const Header = (props) => {
             </div>
             {cartdropdown && (
               <div className="header-cart">
-                <CartBox cart={cart} actions />
+                <CartBox cart={cart} actions={true} />
               </div>
             )}
           </div>

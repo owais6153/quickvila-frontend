@@ -65,7 +65,9 @@ export const useCart = (isLogin, token) => {
         const params = identifier ? "?identifier=" + identifier : "";
         var url = "";
         if (product.product_type == "variation") {
-          url = `cart/add/${product.id}${params}&variation=${variation}`;
+          url = `cart/add/${product.id}${params}${
+            params !== "" ? "&" : "?"
+          }variation=${variation}`;
         } else {
           url = `cart/add/${product.id}${params}`;
         }
