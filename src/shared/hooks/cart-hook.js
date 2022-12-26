@@ -52,7 +52,10 @@ export const useCart = (isLogin, token) => {
           getHeaders()
         );
         if (responseData.status === 200) {
-          setCart(responseData.cart);
+          if (responseData.cart !== null) setCart(responseData.cart);
+          else {
+            localStorage.removeItem("cart");
+          }
         }
       } catch (err) {}
     };
