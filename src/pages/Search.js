@@ -69,18 +69,21 @@ quis vel."
       <section className="no-banner">
         <Container>
           <HeadingRow lg title={`You have searched for "${term}"`} />
-          <Row className="products-list">
-            {products &&
-              products.map((product) => {
+          {!products && !isLoading && (
+            <h3>No Product Found Matching Your Search</h3>
+          )}
+          {products && (
+            <Row className="products-list">
+              {products.map((product) => {
                 return (
                   <Col md={6} xl={3} key={product.id}>
                     <ProductItem product={product} />
                   </Col>
                 );
               })}
-            {!products && <h3>No Product Found Matching Your Search</h3>}
-          </Row>
-          {pagination && (
+            </Row>
+          )}
+          {products && pagination && (
             <Pagination links={pagination} onPageChange={chanePage} />
           )}
         </Container>

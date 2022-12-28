@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 import CartTotalTable from "../components/cart/cart-total-table";
 import { Link } from "react-router-dom";
 const Cart = () => {
-  const { cart, isLogin, emptyCart } = useContext(AppContext);
+  const { cart, emptyCart } = useContext(AppContext);
   const emptyHandler = async () => {
     const responseData = await emptyCart();
     if (responseData.status == 200) {

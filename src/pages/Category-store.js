@@ -72,6 +72,7 @@ quis vel."
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="All Stores" />
+          {(!stores || stores.length < 1) && <h3>No Store Found</h3>}
           <Row className="stores-list">
             {stores &&
               stores.map((store) => {
@@ -81,9 +82,8 @@ quis vel."
                   </Col>
                 );
               })}
-            {(!stores || stores.length < 1) && <h3>No Store Found</h3>}
           </Row>
-          {pagination && (
+          {stores && pagination && (
             <Pagination links={pagination} onPageChange={chanePage} />
           )}
         </Container>

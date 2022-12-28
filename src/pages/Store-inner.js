@@ -17,9 +17,8 @@ const StoreInner = () => {
   const [top_selling_products, setTopSellinggProducts] = useState();
   const [store, setStore] = useState(false);
   const [ratings, setRatings] = useState(0);
-  const [searching, setSearching] = useState(true);
 
-  const { sendRequest } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,18 +27,15 @@ const StoreInner = () => {
           setFeaturedProducts(responseData.featured_products);
           setTopSellinggProducts(responseData.top_selling_products);
           setStore(responseData.store);
-          setSearching(false);
           setRatings(responseData.ratings);
         }
-      } catch (err) {
-        setSearching(false);
-      }
+      } catch (err) {}
     };
     if (hasGeoLocation) fetchData();
   }, [geolocation, hasGeoLocation]);
   return (
     <StaticPage>
-      {!searching && !store && <Component404 />}
+      {!isLoading && !store && <Component404 />}
       {store && <StoreDetail store={store} ratings={ratings} />}
       {top_selling_products && top_selling_products.length > 0 && (
         <ProductSlider

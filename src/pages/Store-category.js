@@ -36,6 +36,7 @@ quis vel."
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="All Categories" />
+          {(!categories || categories.length < 1) && <h3>No Category Found</h3>}
           <Row className="stores-list">
             {categories &&
               categories.map((category) => {
@@ -45,9 +46,6 @@ quis vel."
                   </Col>
                 );
               })}
-            {(!categories || categories.length < 1) && (
-              <h3>No Category Found</h3>
-            )}
           </Row>
         </Container>
       </section>

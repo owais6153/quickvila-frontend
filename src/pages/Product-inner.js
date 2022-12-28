@@ -16,12 +16,11 @@ const ProductInner = () => {
 
   const [products, setProducts] = useState();
   const [product, setProduct] = useState(false);
-  const [searching, setSearching] = useState(true);
   const [reviews, setReviews] = useState(false);
   const [averageRating, setAverageRating] = useState(false);
   const [options, setOptions] = useState(false);
 
-  const { sendRequest } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,15 +36,13 @@ const ProductInner = () => {
           setAverageRating(responseData.average_rating);
           setOptions(responseData.product_options);
         }
-      } catch (err) {
-        setSearching(false);
-      }
+      } catch (err) {}
     };
     fetchData();
   }, [store_id, product_id]);
   return (
     <StaticPage>
-      {!searching && !product && <Component404 />}
+      {!isLoading && !product && <Component404 />}
       {product && (
         <div>
           <PrdouctDetail
