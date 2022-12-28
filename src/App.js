@@ -1,33 +1,33 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useLoading } from "./shared/hooks/loader-hook";
 import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
 import Loader from "./shared/components/loader";
-import Shop from "./pages/Shop";
-import MainHome from "./pages/MainHome";
-import Search from "./pages/Search";
-import Store from "./pages/Store";
-import Product from "./pages/Product";
-import PageNotFound from "./pages/404";
-import ProductInner from "./pages/Product-inner";
-import StoreInner from "./pages/Store-inner";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import StoreProducts from "./pages/Store-products";
-import Account from "./pages/Account";
-import OrderInner from "./pages/OrderInner";
-import CategoryStore from "./pages/Category-store";
-import StoreCategories from "./pages/Store-category";
-import PaymentSuccess from "./pages/Payment-success";
-import PaymentCancel from "./pages/Payment-cancel";
-
 import "./App.css";
+
+const Shop = lazy(() => import("./pages/Shop"));
+const MainHome = lazy(() => import("./pages/MainHome"));
+const Search = lazy(() => import("./pages/Search"));
+const Store = lazy(() => import("./pages/Store"));
+const Product = lazy(() => import("./pages/Product"));
+const PageNotFound = lazy(() => import("./pages/404"));
+const ProductInner = lazy(() => import("./pages/Product-inner"));
+const StoreInner = lazy(() => import("./pages/Store-inner"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const StoreProducts = lazy(() => import("./pages/Store-products"));
+const Account = lazy(() => import("./pages/Account"));
+const OrderInner = lazy(() => import("./pages/OrderInner"));
+const CategoryStore = lazy(() => import("./pages/Category-store"));
+const StoreCategories = lazy(() => import("./pages/Store-category"));
+const PaymentSuccess = lazy(() => import("./pages/Payment-success"));
+const PaymentCancel = lazy(() => import("./pages/Payment-cancel"));
 
 const App = () => {
   const { isLoading } = useLoading(false);
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       {isLoading && <Loader />}
       <Header />
       <Routes>
@@ -64,7 +64,7 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
-    </>
+    </Suspense>
   );
 };
 
