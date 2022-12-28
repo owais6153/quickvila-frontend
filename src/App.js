@@ -25,7 +25,7 @@ import PaymentCancel from "./pages/Payment-cancel";
 import "./App.css";
 
 const App = () => {
-  const { isLoading } = useLoading(true);
+  const { isLoading } = useLoading(false);
   return (
     <>
       {isLoading && <Loader />}

@@ -1,17 +1,12 @@
 import { homeUrl } from "../shared/helper";
 import StaticPage from "../shared/components/staticpages";
-import { useLoading } from "../shared/hooks/loader-hook";
-import "./main-home.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import "./main-home.css";
 const MainHome = () => {
-  const { setIsLoading } = useLoading(true);
-  const onPageLoad = (value) => {
-    setIsLoading(value);
-  };
   return (
-    <StaticPage onPageLoad={onPageLoad}>
+    <StaticPage>
       <Helmet>
         <title>Home | QuiclVila</title>
         <meta

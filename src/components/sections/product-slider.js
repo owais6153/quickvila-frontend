@@ -6,7 +6,11 @@ import Carousel from "react-multi-carousel";
 const ProductSlider = (props) => {
   return (
     <section className="home-sec-two container slider-section">
-      <HeadingRow title={props.title} url={props.url} />
+      <HeadingRow
+        title={props.title}
+        url={props.url}
+        urlTitle={props.urlTitle}
+      />
       <Carousel
         customButtonGroup={<CarouselButtonGroup />}
         additionalTransfrom={0}

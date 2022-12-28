@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import Component404 from "../shared/components/component-404";
@@ -6,9 +6,12 @@ import StaticPage from "../shared/components/staticpages";
 import ProductSlider from "../components/sections/product-slider";
 import { useParams } from "react-router-dom";
 import StoreDetail from "../components/store/detail";
+import { AppContext } from "../shared/context/app-context";
 import "./Store-inner.css";
 
 const StoreInner = () => {
+  const { geolocation, hasGeoLocation } = useContext(AppContext);
+
   const store_id = useParams().sid;
   const [featured_products, setFeaturedProducts] = useState();
   const [top_selling_products, setTopSellinggProducts] = useState();
@@ -17,7 +20,7 @@ const StoreInner = () => {
   const [searching, setSearching] = useState(true);
 
   const { sendRequest } = useHttpClient();
-  const getData = () => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const responseData = await sendRequest(apiUrl(`stores/${store_id}`));
@@ -32,10 +35,10 @@ const StoreInner = () => {
         setSearching(false);
       }
     };
-    fetchData();
-  };
+    if (hasGeoLocation) fetchData();
+  }, [geolocation, hasGeoLocation]);
   return (
-    <StaticPage getData={getData}>
+    <StaticPage>
       {!searching && !store && <Component404 />}
       {store && <StoreDetail store={store} ratings={ratings} />}
       {top_selling_products && top_selling_products.length > 0 && (
@@ -43,6 +46,7 @@ const StoreInner = () => {
           products={top_selling_products}
           title="Top Selling Products"
           url={`/stores/${store.id}/products`}
+          urlTitle="See All Products"
         />
       )}
       {featured_products && featured_products.length > 0 && (
@@ -50,6 +54,7 @@ const StoreInner = () => {
           products={featured_products}
           title="Featured Products"
           url={`/stores/${store.id}/products`}
+          urlTitle="See All Products"
         />
       )}
     </StaticPage>

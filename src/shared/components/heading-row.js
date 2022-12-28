@@ -8,7 +8,7 @@ const HeadingRow = (props) => {
       </Col>
       {props.url && (
         <Col md={6} sm={6}>
-          {props.url && <Link to={props.url}>See All</Link>}
+          {props.url && <Link to={props.url}>{props.urlTitle}</Link>}
         </Col>
       )}
     </Row>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { Container, Row, Col } from "react-bootstrap";
@@ -8,31 +8,31 @@ import StoreItem from "../components/store/item";
 import Pagination from "../shared/components/pagination";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { AppContext } from "../shared/context/app-context";
 const CategoryStore = () => {
   const cat_id = useParams().cid;
   const { sendRequest } = useHttpClient();
 
+  const { geolocation, hasGeoLocation } = useContext(AppContext);
   const [stores, setStores] = useState(false);
   const [currentPage, setCurrentPages] = useState(1);
   const [pagination, setPagination] = useState(false);
 
-  const getData = () => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
+        var url = `categories/stores?lat=${geolocation.latitude}&long=${geolocation.longitude}`;
+
         var formdata = new FormData();
         formdata.append("categories[]", cat_id);
-        const responseData = await sendRequest(
-          apiUrl("categories/stores"),
-          "POST",
-          formdata
-        );
+        const responseData = await sendRequest(apiUrl(url), "POST", formdata);
         setStores(responseData.stores.data);
         setPagination(responseData.stores.links);
         setCurrentPages(responseData.stores.current_page);
       } catch (err) {}
     };
-    fetchData();
-  };
+    if (hasGeoLocation) fetchData();
+  }, [geolocation, hasGeoLocation]);
 
   const chanePage = (e) => {
     e.preventDefault();
@@ -58,7 +58,7 @@ const CategoryStore = () => {
   };
 
   return (
-    <StaticPage getData={getData}>
+    <StaticPage>
       <Helmet>
         <title>Category | QuiclVila</title>
         <meta

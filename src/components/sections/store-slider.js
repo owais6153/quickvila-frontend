@@ -6,7 +6,11 @@ import CarouselButtonGroup from "../../shared/components/carousel-button-group";
 const StoreSlider = (props) => {
   return (
     <section className="home-sec-one slider-section container">
-      <HeadingRow title={props.title} url={props.url} />
+      <HeadingRow
+        title={props.title}
+        url={props.url}
+        urlTitle={props.urlTitle}
+      />
       <Carousel
         customButtonGroup={<CarouselButtonGroup />}
         additionalTransfrom={0}

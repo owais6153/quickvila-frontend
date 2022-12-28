@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../shared/context/app-context";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "../shared/hooks/form-hook";
-import { useLoading } from "../shared/hooks/loader-hook";
 import { apiUrl } from "../shared/helper";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { VALIDATOR_REQUIRE, VALIDATOR_EMAIL } from "../shared/util/validation";
@@ -18,11 +17,7 @@ import { Helmet } from "react-helmet";
 const Checkout = () => {
   const { isLogin, auth, cart, identifier, geolocation } =
     useContext(AppContext);
-  const { setIsLoading } = useLoading(true);
   const { sendRequest } = useHttpClient();
-  const onPageLoad = (value) => {
-    setIsLoading(value);
-  };
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -116,7 +111,7 @@ const Checkout = () => {
     } catch (err) {}
   };
   return (
-    <StaticPage onPageLoad={onPageLoad}>
+    <StaticPage>
       <Helmet>
         <title>Checkout | QuiclVila</title>
         <meta

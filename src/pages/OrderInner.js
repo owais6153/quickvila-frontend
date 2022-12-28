@@ -9,41 +9,9 @@ import HeadingRow from "../shared/components/heading-row";
 
 const OrderInner = () => {
   const order_id = useParams().order_id;
-  const [order, setOrder] = useState();
-  const [searching, setSearching] = useState(true);
-
-  const { sendRequest } = useHttpClient();
-  const { auth, isLogin } = useContext(AppContext);
-
-  // const getData = () => {
-  //   const fetchData = async () => {
-  //     console.log(auth);
-  //     try {
-  //       const responseData = await sendRequest(
-  //         apiUrl(`orders/${order_id}`),
-  //         "GET",
-  //         null,
-  //         {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${auth._token}`,
-  //         }
-  //       );
-  //       if (responseData.status == 200) {
-  //         setOrder(responseData.order);
-  //       }
-  //       console.log("working");
-  //       setSearching(false);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // };
 
   return (
     <StaticPage>
-      {/* {(!searching && !order) || (!isLogin && <Component404 />)} */}
-
       <div id="error-boundry">
         <div className="catch">
           <h1>Thanks for your order.</h1>

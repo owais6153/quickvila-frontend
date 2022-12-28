@@ -123,7 +123,7 @@ const Footer = () => {
           <Verify />
         </ModalPopup>
       )}
-      {!hasGeoLocation && !loginModal && (
+      {!hasGeoLocation && (
         <ModalPopup size="lg" title="Login" show={true}>
           <div
             className="col-10"
@@ -135,16 +135,6 @@ const Footer = () => {
               below.
             </p>
             <LocationForm />
-            <div className="mt-3 text-right">
-              Or you can{" "}
-              <a
-                href="#"
-                className=" d-inline-block"
-                onClick={toggleLoginModal}
-              >
-                Login here
-              </a>
-            </div>
           </div>
         </ModalPopup>
       )}

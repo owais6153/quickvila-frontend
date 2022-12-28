@@ -64,11 +64,7 @@ const ProductInner = () => {
             />
           )}
           {products && products.length > 0 && (
-            <ProductSlider
-              products={products}
-              title="Related products "
-              url="/products"
-            />
+            <ProductSlider products={products} title="Related products" />
           )}
         </div>
       )}

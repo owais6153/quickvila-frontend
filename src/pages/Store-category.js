@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { Container, Row, Col } from "react-bootstrap";
@@ -11,7 +11,7 @@ const StoreCategories = () => {
 
   const [categories, setCategories] = useState(false);
 
-  const getData = () => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const responseData = await sendRequest(apiUrl("categories/stores"));
@@ -19,10 +19,10 @@ const StoreCategories = () => {
       } catch (err) {}
     };
     fetchData();
-  };
+  }, []);
 
   return (
-    <StaticPage getData={getData}>
+    <StaticPage>
       <Helmet>
         <title>Categories | QuiclVila</title>
         <meta

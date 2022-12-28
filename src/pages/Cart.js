@@ -7,8 +7,6 @@ import CartItem from "../components/cart/cart-item";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import CartTotalTable from "../components/cart/cart-total-table";
-
-import { useLoading } from "../shared/hooks/loader-hook";
 import { Link } from "react-router-dom";
 const Cart = () => {
   const { cart, isLogin, emptyCart } = useContext(AppContext);
@@ -17,10 +15,6 @@ const Cart = () => {
     if (responseData.status == 200) {
       toast.success(`Cart is Empty`);
     }
-  };
-  const { setIsLoading } = useLoading(true);
-  const onPageLoad = (value) => {
-    setIsLoading(value);
   };
 
   const style = {
@@ -31,7 +25,7 @@ const Cart = () => {
   };
 
   return (
-    <StaticPage onPageLoad={onPageLoad}>
+    <StaticPage>
       <Helmet>
         <title>Cart | QuiclVila</title>
         <meta

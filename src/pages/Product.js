@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { Container, Row, Col } from "react-bootstrap";
@@ -7,24 +7,30 @@ import StaticPage from "../shared/components/staticpages";
 import ProductItem from "../components/product/item";
 import Pagination from "../shared/components/pagination";
 import { Helmet } from "react-helmet";
+import { AppContext } from "../shared/context/app-context";
 const Product = () => {
-  const { sendRequest } = useHttpClient();
+  const { geolocation, hasGeoLocation } = useContext(AppContext);
 
+  const { sendRequest } = useHttpClient();
   const [products, setProducts] = useState(false);
   const [currentPage, setCurrentPages] = useState(1);
   const [pagination, setPagination] = useState(false);
 
-  const getData = () => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl("products"));
+        const responseData = await sendRequest(
+          apiUrl(
+            `products?lat=${geolocation.latitude}&long=${geolocation.longitude}`
+          )
+        );
         setProducts(responseData.products.data);
         setPagination(responseData.products.links);
         setCurrentPages(responseData.products.current_page);
       } catch (err) {}
     };
-    fetchData();
-  };
+    if (hasGeoLocation) fetchData();
+  }, [geolocation, hasGeoLocation]);
 
   const chanePage = (e) => {
     e.preventDefault();
@@ -40,7 +46,11 @@ const Product = () => {
 
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl(`products?page=${page}`));
+        const responseData = await sendRequest(
+          apiUrl(
+            `products?page=${page}&lat=${geolocation.latitude}&long=${geolocation.longitude}`
+          )
+        );
         setProducts(responseData.products.data);
         setPagination(responseData.products.links);
         setCurrentPages(responseData.products.current_page);
@@ -51,11 +61,11 @@ const Product = () => {
         });
       } catch (err) {}
     };
-    fetchData();
+    if (hasGeoLocation) fetchData();
   };
 
   return (
-    <StaticPage getData={getData}>
+    <StaticPage>
       <Helmet>
         <title>All Products | QuiclVila</title>
         <meta

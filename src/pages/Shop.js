@@ -27,12 +27,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        var url;
-
-        if (hasGeoLocation)
-          url = `home?lat=${geolocation.latitude}&long=${geolocation.longitude}`;
-        else url = `home`;
-
+        var url = `home?lat=${geolocation.latitude}&long=${geolocation.longitude}`;
         const responseData = await sendRequest(apiUrl(url));
         if (responseData.status == 200) {
           setFeaturedProducts(responseData.featured_products);
@@ -46,7 +41,7 @@ const Shop = () => {
         }
       } catch (err) {}
     };
-    fetchData();
+    if (hasGeoLocation) fetchData();
   }, [geolocation, hasGeoLocation]);
 
   return (
@@ -67,12 +62,14 @@ quis vel."
           categories={categories}
           title="Categories"
           url="/categories"
+          urlTitle="See All Categories"
         />
       )}
       {nearby_stores && nearby_stores.length > 0 && (
         <StoreSlider
           title="Stores near you"
           url="/stores"
+          urlTitle="See All Stores"
           stores={nearby_stores}
         />
       )}
@@ -80,6 +77,7 @@ quis vel."
         <StoreSlider
           title="Stores you have purchased from"
           url="/stores"
+          urlTitle="See All Stores"
           stores={stores_purchased_from}
         />
       )}
@@ -87,15 +85,12 @@ quis vel."
         <StoreSlider
           title="Featured Stores"
           url="/stores"
+          urlTitle="See All Stores"
           stores={featured_stores}
         />
       )}
       {featured_products && featured_products.length > 0 && (
-        <ProductSlider
-          products={featured_products}
-          title="Featured Products"
-          url="/products"
-        />
+        <ProductSlider products={featured_products} title="Featured Products" />
       )}
 
       {banners && banners.length > 0 && <AdvBanners banners={banners} />}
