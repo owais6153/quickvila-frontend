@@ -1,9 +1,6 @@
 import { Helmet } from "react-helmet";
-// import { useContext } from "react";
-// import { AppContext } from "../context/app-context";
+import { Link } from "react-router-dom";
 const Component404 = () => {
-  // const { setLayout } = useContext(AppContext);
-  // setLayout(() => false);
   return (
     <div id="error-boundry">
       <Helmet>
@@ -19,9 +16,9 @@ quis vel."
       <div className="catch">
         <h1>Opps! Page not found.</h1>
         <p>The page you are looking for is not found on this url.</p>
-        <a href="/" className="btn btn-primary">
+        <Link to="/" className="btn btn-primary">
           Go to Home
-        </a>
+        </Link>
       </div>
     </div>
   );

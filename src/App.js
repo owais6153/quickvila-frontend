@@ -18,11 +18,12 @@ const Cart = lazy(() => import("./pages/Cart"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const StoreProducts = lazy(() => import("./pages/Store-products"));
 const Account = lazy(() => import("./pages/Account"));
-const OrderInner = lazy(() => import("./pages/OrderInner"));
+const OrderInner = lazy(() => import("./pages/Order-inner"));
 const CategoryStore = lazy(() => import("./pages/Category-store"));
 const StoreCategories = lazy(() => import("./pages/Store-category"));
 const PaymentSuccess = lazy(() => import("./pages/Payment-success"));
 const PaymentCancel = lazy(() => import("./pages/Payment-cancel"));
+const CategoryProducts = lazy(() => import("./pages/Categroy-products"));
 
 const App = () => {
   const { isLoading } = useLoading(false);
@@ -39,6 +40,11 @@ const App = () => {
           <Route path="/stores" exact element={<Store />} />
           <Route path="/stores/:sid" exact element={<StoreInner />} />
           <Route
+            path="/stores/:sid/categories/:cid"
+            exact
+            element={<CategoryProducts />}
+          />
+          <Route
             path="/stores/:sid/products"
             exact
             element={<StoreProducts />}
@@ -52,18 +58,13 @@ const App = () => {
           <Route path="/categories/:cid" exact element={<CategoryStore />} />
           <Route path="/payment-suceess" exact element={<PaymentSuccess />} />
           <Route path="/payment-cancel" exact element={<PaymentCancel />} />
+          <Route path="/cart" exact element={<Cart />} />
+          <Route path="/checkout" exact element={<Checkout />} />
+          <Route path="/order/:order_id" exact element={<OrderInner />} />
 
           {/* Need Auth */}
-          <Route path="/cart" exact element={<Cart />} />
-          <Route path="/order/:order_id" exact element={<OrderInner />} />
-          <Route path="/checkout" exact element={<Checkout />} />
           <Route path="/my-account" exact element={<Account />} />
           <Route path="/my-account/orders" exact element={<h1>Orders</h1>} />
-          <Route
-            path="/my-account/following"
-            exact
-            element={<h1>Following</h1>}
-          />
 
           {/* This should be last route of the app */}
           <Route path="*" element={<PageNotFound />} />

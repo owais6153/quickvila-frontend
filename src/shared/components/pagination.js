@@ -41,19 +41,21 @@ const Pagination = ({ links, onPageChange }) => {
     return elem;
   };
   return (
-    <nav aria-label="Store navigation">
-      {links && (
-        <ul className="pagination justify-content-center">
-          {links.map((link, index) => {
-            return (
-              <li className="page-item" key={index}>
-                {getPageLink(link.label, link.active, link.url, index)}
-              </li>
-            );
-          })}
-        </ul>
+    <>
+      {links && links.length > 3 && (
+        <nav aria-label="Store navigation">
+          <ul className="pagination justify-content-center">
+            {links.map((link, index) => {
+              return (
+                <li className="page-item" key={index}>
+                  {getPageLink(link.label, link.active, link.url, index)}
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       )}
-    </nav>
+    </>
   );
 };
 export default Pagination;
