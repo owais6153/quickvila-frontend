@@ -69,10 +69,11 @@ quis vel."
       <section className="no-banner">
         <Container>
           <HeadingRow lg title={`You have searched for "${term}"`} />
-          {!products && !isLoading && (
+
+          {(!products || products.length < 1) && !isLoading && (
             <h3>No Product Found Matching Your Search</h3>
           )}
-          {products && (
+          {products && products.length > 0 && (
             <Row className="products-list">
               {products.map((product) => {
                 return (
@@ -83,7 +84,7 @@ quis vel."
               })}
             </Row>
           )}
-          {products && pagination && (
+          {products && products.length > 0 && pagination && (
             <Pagination links={pagination} onPageChange={chanePage} />
           )}
         </Container>

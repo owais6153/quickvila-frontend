@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 import { AppContext } from "../shared/context/app-context";
 const StoreProducts = () => {
   const store_id = useParams().sid;
-  const { sendRequest } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
   const { geolocation, hasGeoLocation } = useContext(AppContext);
   const [products, setProducts] = useState(false);
   const [currentPage, setCurrentPages] = useState(1);
@@ -75,8 +75,12 @@ quis vel."
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="All Products" />
+          {(!products || products.length < 1) && !isLoading && (
+            <h3>No Product Found</h3>
+          )}
           <Row className="products-list">
             {products &&
+              products.length > 0 &&
               products.map((product) => {
                 return (
                   <Col md={6} xl={3} key={product.id}>
@@ -84,9 +88,8 @@ quis vel."
                   </Col>
                 );
               })}
-            {!products && <h3>No Product Found</h3>}
           </Row>
-          {pagination && (
+          {products && products.length > 0 && pagination && (
             <Pagination links={pagination} onPageChange={chanePage} />
           )}
         </Container>

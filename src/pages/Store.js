@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 import { AppContext } from "../shared/context/app-context";
 
 const Store = () => {
-  const { sendRequest } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
   const { geolocation, hasGeoLocation } = useContext(AppContext);
 
   const [stores, setStores] = useState(false);
@@ -70,8 +70,12 @@ quis vel."
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="All Stores" />
+          {(!stores || stores.length < 1) && !isLoading && (
+            <h3>No Store Found</h3>
+          )}
           <Row className="stores-list">
             {stores &&
+              stores.length > 0 &&
               stores.map((store) => {
                 return (
                   <Col md={6} xl={4} key={store.id}>
@@ -79,9 +83,8 @@ quis vel."
                   </Col>
                 );
               })}
-            {!stores && <h3>No Store Found</h3>}
           </Row>
-          {pagination && (
+          {stores && stores.length > 0 && pagination && (
             <Pagination links={pagination} onPageChange={chanePage} />
           )}
         </Container>

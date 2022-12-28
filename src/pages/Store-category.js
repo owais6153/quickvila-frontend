@@ -7,7 +7,7 @@ import StaticPage from "../shared/components/staticpages";
 import CategoryItem from "../components/category/item";
 import { Helmet } from "react-helmet";
 const StoreCategories = () => {
-  const { sendRequest } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
 
   const [categories, setCategories] = useState(false);
 
@@ -36,9 +36,12 @@ quis vel."
       <section className="no-banner">
         <Container>
           <HeadingRow lg title="All Categories" />
-          {(!categories || categories.length < 1) && <h3>No Category Found</h3>}
+          {(!categories || categories.length < 1) && !isLoading && (
+            <h3>No Category Found</h3>
+          )}
           <Row className="stores-list">
             {categories &&
+              categories.length > 0 &&
               categories.map((category) => {
                 return (
                   <Col md={3} xl={2} key={category.id}>
