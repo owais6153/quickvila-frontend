@@ -19,7 +19,7 @@ const StoreSlider = (props) => {
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="container"
+        containerClass=""
         dotListClass=""
         draggable={false}
         focusOnSelect={false}

@@ -47,7 +47,7 @@ const StoreInner = () => {
   return (
     <StaticPage>
       {!isLoading && !store && <Component404 />}
-      <div className="store-detail">
+      <div className="storedetail">
         {store && (
           <>
             <StoreDetail store={store} ratings={ratings} />

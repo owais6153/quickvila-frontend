@@ -2,6 +2,14 @@ form.baner-form {
   background-color: #ffffff;
   padding: 10px;
   border-radius: 8px;
+  box-shadow: 0 0.2rem 1rem rgb(0 0 0 / 12%);
+}
+.modal form.baner-form {
+  box-shadow: none;
+}
+form.baner-form .get-address input,
+form.baner-form .btn {
+  height: 55px;
 }
 .geo-loc {
   position: relative;

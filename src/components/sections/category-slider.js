@@ -19,7 +19,7 @@ const CategorySlider = (props) => {
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="container"
+        containerClass=""
         dotListClass=""
         draggable={false}
         focusOnSelect={false}
@@ -38,7 +38,7 @@ const CategorySlider = (props) => {
               min: 1199,
             },
             items: 7,
-            partialVisibilityGutter: 5,
+            partialVisibilityGutter: 0,
           },
           tablet: {
             breakpoint: {

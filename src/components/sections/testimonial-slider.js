@@ -15,7 +15,7 @@ const Testimonials = (props) => {
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="container"
+        containerClass=""
         dotListClass=""
         draggable={false}
         focusOnSelect={false}
@@ -34,7 +34,7 @@ const Testimonials = (props) => {
               min: 767,
             },
             items: 2,
-            partialVisibilityGutter: 30,
+            partialVisibilityGutter: 0,
           },
           mobile: {
             breakpoint: {
