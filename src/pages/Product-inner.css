@@ -108,12 +108,15 @@ section.product-inner-main {
 }
 .product-inner-main ul {
   list-style: none;
+}
+.product-inner-main .rating ul {
+  list-style: none;
   padding-left: 0px;
   display: flex;
   position: relative;
 }
 
-.product-inner-main ul li {
+.product-inner-main .rating ul li {
   margin-left: 7px;
   margin-right: 7px;
 }
@@ -144,7 +147,7 @@ section.product-inner-main {
   section.product-inner-main h2 {
     margin-top: 30px;
   }
-  .product-inner-main ul {
+  .product-inner-main .rating ul {
     flex-direction: column;
     gap: 20px;
   }

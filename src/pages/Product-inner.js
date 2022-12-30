@@ -50,7 +50,7 @@ const ProductInner = () => {
             averageRating={averageRating}
             options={options}
             std={store_id}
-            pd={product_id}
+            pd={product.id}
           />
           {reviews && reviews.data.length > 0 && (
             <Reviews

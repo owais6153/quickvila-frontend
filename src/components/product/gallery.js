@@ -1,11 +1,11 @@
 import Carousel from "react-multi-carousel";
 
-const ProductGallery = ({ gallery, changeImage }) => {
+const ProductGallery = ({ gallery, changeImage, name }) => {
   return (
     <Carousel
       customButtonGroup={false}
       additionalTransfrom={0}
-      arrows={false}
+      arrows={true}
       partialVisible={false}
       autoPlaySpeed={3000}
       centerMode={false}
@@ -65,6 +65,7 @@ const ProductGallery = ({ gallery, changeImage }) => {
             key={index}
             onClick={() => changeImage(image)}
             className="pointer"
+            alt={name}
           />
         );
       })}

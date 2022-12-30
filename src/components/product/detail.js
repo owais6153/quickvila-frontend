@@ -18,7 +18,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
 
   useEffect(() => {
     setProductImage(product.image);
-  }, []);
+  }, [pd]);
 
   const { addToCart } = useContext(AppContext);
 
@@ -60,6 +60,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                 <ProductGallery
                   gallery={product.gallery}
                   changeImage={setProductImage}
+                  name={product.name}
                 />
               )}
             </div>

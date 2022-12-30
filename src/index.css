@@ -68,6 +68,12 @@ a {
   width: 100%;
   border: solid 3px #f3f3f3;
 }
+.react-multiple-carousel__arrow--left {
+  left: 0px;
+}
+.react-multiple-carousel__arrow--right {
+  right: 0px;
+}
 .modal-backdrop.show {
   backdrop-filter: blur(5px);
   opacity: 1;
