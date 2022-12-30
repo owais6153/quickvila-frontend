@@ -15,7 +15,7 @@ const CategorySlider = (props) => {
         customButtonGroup={<CarouselButtonGroup />}
         additionalTransfrom={0}
         arrows={false}
-        partialVisible={true}
+        partialVisible={false}
         autoPlaySpeed={3000}
         centerMode={false}
         className=""

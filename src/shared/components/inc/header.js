@@ -51,20 +51,20 @@ const Header = (props) => {
         </Col>
         <Col md={4} className="header-btn">
           <div className="header-btn-group">
-            <a
-              href="/"
+            <Link
+              to="/"
               // onClick={changeMode("rider")}
               className={`btn px-4 active`}
             >
               Deliver
-            </a>
-            <a
-              href="/shop"
+            </Link>
+            <Link
+              to="/shop"
               // onClick={changeMode("customer")}
               className={`btn px-4 `}
             >
               Order
-            </a>
+            </Link>
           </div>
         </Col>
         <Col md={4}>

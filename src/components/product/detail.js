@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Variations from "./variation";
 import { toast } from "react-toastify";
 import { AppContext } from "../../shared/context/app-context";
+import ProductGallery from "./gallery";
 
 const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
   const [addToCartFlag, setAddToCartFlag] = useState(true);
@@ -13,6 +14,12 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
   const [salePrice, setSalePrice] = useState(false);
   const [variationId, setVariationID] = useState(false);
   const [productName, setProductName] = useState(false);
+  const [productImage, setProductImage] = useState(false);
+
+  useEffect(() => {
+    setProductImage(product.image);
+  }, []);
+
   const { addToCart } = useContext(AppContext);
 
   const updateDetail = (
@@ -48,7 +55,13 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-md-12 mb-sm-5">
-              <img src={product.image} alt={product.name} />
+              <img src={productImage} alt={product.name} />
+              {product.gallery.length > 0 && (
+                <ProductGallery
+                  gallery={product.gallery}
+                  changeImage={setProductImage}
+                />
+              )}
             </div>
             <div className="col-lg-8 col-md-12">
               <div className="store-detail">

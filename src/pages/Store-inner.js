@@ -51,10 +51,12 @@ const StoreInner = () => {
         {store && (
           <>
             <StoreDetail store={store} ratings={ratings} />
-            <ProductCategories
-              id={store.id}
-              product_categories={product_categories}
-            />
+            {product_categories && product_categories.length > 0 && (
+              <ProductCategories
+                id={store.id}
+                product_categories={product_categories}
+              />
+            )}
           </>
         )}
         {top_selling_products && top_selling_products.length > 0 && (

@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../shared/context/app-context";
 import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "../shared/hooks/form-hook";
@@ -17,6 +18,7 @@ import { Helmet } from "react-helmet";
 const Checkout = () => {
   const { isLogin, auth, cart, identifier, geolocation } =
     useContext(AppContext);
+  const navigate = useNavigate();
   const { sendRequest } = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
@@ -105,7 +107,7 @@ const Checkout = () => {
       });
 
       if (responseData.status === 200) {
-        window.location.replace(`order/${responseData.order.id}`);
+        navigate(`/order/${responseData.order.id}`);
       }
       return true;
     } catch (err) {}
