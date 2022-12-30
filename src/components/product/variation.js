@@ -1,4 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
+const NotInStock = () => (
+  <p style={{ color: "red" }}>
+    Sorry! The selected options are not in the stock.
+  </p>
+);
 
 const VariationInput = ({ item, labelname, changeHandler, className }) => {
   return (
@@ -17,6 +23,7 @@ const VariationInput = ({ item, labelname, changeHandler, className }) => {
 
 const Variations = ({ options, variations, updateDetail }) => {
   const [selected, setSelected] = useState([]);
+  const [render, reRender] = useState(false);
   const [displayError, setDisplayError] = useState(false);
 
   const updatePricing = (buttonFlag) => {
@@ -24,12 +31,12 @@ const Variations = ({ options, variations, updateDetail }) => {
     var price = 0;
     var saleprice = 0;
     var name = "";
-    var id = 0;
+    var id = null;
     for (let i in variations) {
       flag = null;
 
       let variants = variations[i].variants;
-      for (var key in selected) {
+      for (var key in variants) {
         if (flag !== false) {
           if (variants[key].name === selected[key]) {
             flag = true;
@@ -52,7 +59,11 @@ const Variations = ({ options, variations, updateDetail }) => {
       setDisplayError(false);
       updateDetail(buttonFlag, price, saleprice, id, name);
     } else {
-      setDisplayError(true);
+      let optionslength = Object.keys(options).length;
+      let selectedlegth = Object.keys(selected).length;
+      if (optionslength == selectedlegth) {
+        setDisplayError(true);
+      }
       updateDetail(false);
     }
   };
@@ -60,13 +71,10 @@ const Variations = ({ options, variations, updateDetail }) => {
     let s = selected;
     s[e.target.dataset.labelname] = e.target.value;
     setSelected(() => s);
+    reRender(!render);
 
-    // let optionslength = Object.keys(options).length;
-    // let selectedlegth = Object.keys(selected).length;
-
-    // if (optionslength == selectedlegth) {
+    console.log(selected);
     updatePricing(true);
-    // }
   };
 
   const checkForClasses = (key, i) => {
@@ -85,14 +93,10 @@ const Variations = ({ options, variations, updateDetail }) => {
 
   return (
     <div id="variations">
-      {displayError && (
-        <p style={{ color: "red" }}>
-          Sorry! The selected options are not in the stock.
-        </p>
-      )}
-      {Object.keys(options).map((key) => {
+      {displayError && <NotInStock />}
+      {Object.keys(options).map((key, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             <p>{key}</p>
             <div
               key={options[key][0].name}
@@ -110,7 +114,7 @@ const Variations = ({ options, variations, updateDetail }) => {
                 );
               })}
             </div>
-          </>
+          </React.Fragment>
         );
       })}
     </div>

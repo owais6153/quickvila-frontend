@@ -14,7 +14,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
   const [salePrice, setSalePrice] = useState(false);
   const [variationId, setVariationID] = useState(false);
   const [productName, setProductName] = useState(false);
-  const [productImage, setProductImage] = useState(false);
+  const [productImage, setProductImage] = useState(undefined);
 
   useEffect(() => {
     setProductImage(product.image);
