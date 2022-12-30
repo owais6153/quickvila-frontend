@@ -18,6 +18,9 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
 
   useEffect(() => {
     setProductImage(product.image);
+    setPrice(product.price_to_display);
+    setSalePrice(product.sale_price_to_display);
+    setProductName(product.name);
   }, [pd]);
 
   const { addToCart } = useContext(AppContext);
@@ -71,7 +74,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                   <p>{product.store.name}</p>
                 </Link>
               </div>
-              <h2>{productName !== false ? productName : product.name}</h2>
+              <h2>{productName}</h2>
               <p>{product.short_description}</p>
               <div className="rating">
                 <ul>
@@ -87,11 +90,11 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                 </ul>
               </div>
               <h2 className="c-two">
-                {(salePrice || product.sale_price_to_display) && (
+                {salePrice && (
                   <span>
                     <span>
                       <Currency />
-                      {salePrice || product.sale_price_to_display}
+                      {salePrice}
                     </span>
                     <del
                       style={{
@@ -101,15 +104,15 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                       }}
                     >
                       <Currency />
-                      {price || product.price_to_display}
+                      {price}
                     </del>
                   </span>
                 )}
 
-                {!salePrice && !product.sale_price_to_display && (
+                {!salePrice && (
                   <span>
                     <Currency />
-                    {price || product.price_to_display}
+                    {price}
                   </span>
                 )}
               </h2>
