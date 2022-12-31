@@ -4,10 +4,10 @@ import { useLoading } from "./shared/hooks/loader-hook";
 import Header from "./shared/components/inc/header";
 import Footer from "./shared/components/inc/footer";
 import Loader from "./shared/components/loader";
+import MainHome from "./pages/MainHome";
 import "./App.css";
 
 const Shop = lazy(() => import("./pages/Shop"));
-const MainHome = lazy(() => import("./pages/MainHome"));
 const Search = lazy(() => import("./pages/Search"));
 const Store = lazy(() => import("./pages/Store"));
 const Product = lazy(() => import("./pages/Product"));

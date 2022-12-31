@@ -12,19 +12,19 @@ class PlacesInput extends React.Component {
   }
 
   handleChange = (address) => {
-    this.setState({ address, isTouched: true });
+    this.props.setAddress(address);
   };
 
   handleSelect = (address) => {
-    this.setState({ address });
+    this.props.setAddress(address);
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
-        this.props.setGeolocation(() => ({
+        this.props.setGeolocation({
           latitude: latLng.lat,
           longitude: latLng.lng,
           address: address,
-        }));
+        });
       })
       .catch((error) => console.error("Error", error));
   };
@@ -32,11 +32,7 @@ class PlacesInput extends React.Component {
   render() {
     return (
       <PlacesAutocomplete
-        value={
-          this.state.isTouched === true
-            ? this.state.address
-            : this.props.address
-        }
+        value={this.props.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
@@ -47,11 +43,7 @@ class PlacesInput extends React.Component {
                 placeholder: "Enter your full address",
                 className: "form-control",
               })}
-              value={
-                this.state.isTouched === true
-                  ? this.state.address
-                  : this.props.address
-              }
+              value={this.props.address}
             />
             <div className="autocomplete-dropdown-container">
               {loading && (
@@ -64,7 +56,7 @@ class PlacesInput extends React.Component {
                   Loading...
                 </div>
               )}
-              {suggestions.map((suggestion) => {
+              {suggestions.map((suggestion, index) => {
                 const className = suggestion.active
                   ? "suggestion-item--active"
                   : "suggestion-item";
@@ -78,6 +70,7 @@ class PlacesInput extends React.Component {
                       className,
                       style,
                     })}
+                    key={index}
                   >
                     <span>
                       <Icon icon="fa fa-map-marker" aria-hidden="true"></Icon>

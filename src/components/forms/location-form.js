@@ -3,26 +3,41 @@ import { useNavigate } from "react-router-dom";
 import { homeUrl } from "../../shared/helper";
 import { Row, Col } from "react-bootstrap";
 import { AppContext } from "../../shared/context/app-context";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./location-form.css";
 
 const LocationForm = () => {
   const { getLocationByNavigator, setGeolocation, geolocation } =
     useContext(AppContext);
   const navigate = useNavigate();
+  const [address, setAddress] = useState("");
+  useEffect(() => {
+    if (geolocation) setAddress(geolocation.address);
+  }, [geolocation]);
+
+  const setUserGeolocation = (value) => {
+    setGeolocation(value);
+    setAddress(value.address);
+  };
+
+  const requestBrowserLocation = () => {
+    getLocationByNavigator(true, true);
+  };
+
   return (
     <form className="baner-form">
       <Row>
         <Col xs={9} style={{ paddingRight: 0 }}>
           <div className="geo-loc">
             <PlacesInput
-              setGeolocation={setGeolocation}
-              address={geolocation ? geolocation.address : ""}
+              setGeolocation={setUserGeolocation}
+              address={address}
+              setAddress={setAddress}
             />
             {"geolocation" in navigator && (
               <div
-                className="ser-icon"
-                onClick={() => getLocationByNavigator(true, true)}
+                className="ser-icon pointer"
+                onClick={requestBrowserLocation}
               >
                 <img
                   src={homeUrl("images/Vectory (1).png")}
