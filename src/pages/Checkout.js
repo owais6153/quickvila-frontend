@@ -19,8 +19,15 @@ import CartBox from "../components/cart/cart-box";
 import { Helmet } from "react-helmet";
 
 const Checkout = () => {
-  const { isLogin, auth, cart, identifier, geolocation, toggleLoginModal } =
-    useContext(AppContext);
+  const {
+    isLogin,
+    auth,
+    cart,
+    setCart,
+    identifier,
+    geolocation,
+    toggleLoginModal,
+  } = useContext(AppContext);
   const navigate = useNavigate();
   const { sendRequest } = useHttpClient();
   const [formState, inputHandler, setFormData] = useForm(
@@ -82,6 +89,7 @@ const Checkout = () => {
       });
 
       if (responseData.status === 200) {
+        setCart({});
         navigate(`/order/${responseData.order.id}`);
       }
       return true;
@@ -130,7 +138,7 @@ quis vel."
                           ]}
                           initialValid={isLogin && auth.user.name}
                           initialValue={auth.user.name}
-                          readOnly={isLogin}
+                          readOnly={isLogin && auth.user.name}
                         />
                       </div>
                     </Col>
@@ -149,7 +157,7 @@ quis vel."
                           ]}
                           initialValid={isLogin && auth.user.email}
                           initialValue={auth.user.email}
-                          readOnly={isLogin}
+                          readOnly={isLogin && auth.user.email}
                         />
                       </div>
                     </Col>
@@ -175,7 +183,7 @@ quis vel."
                           ]}
                           initialValid={isLogin && auth.user.phone}
                           initialValue={auth.user.phone}
-                          readOnly={isLogin}
+                          readOnly={isLogin && auth.user.phone}
                         />
                       </div>
                     </Col>

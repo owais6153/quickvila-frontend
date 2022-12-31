@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { Container, Row, Col } from "react-bootstrap";
@@ -6,20 +6,26 @@ import HeadingRow from "../shared/components/heading-row";
 import StaticPage from "../shared/components/staticpages";
 import CategoryItem from "../components/category/item";
 import { Helmet } from "react-helmet";
+import { AppContext } from "../shared/context/app-context";
 const StoreCategories = () => {
   const { isLoading, sendRequest } = useHttpClient();
+  const { geolocation, hasGeoLocation } = useContext(AppContext);
 
   const [categories, setCategories] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseData = await sendRequest(apiUrl("categories/stores"));
+        const responseData = await sendRequest(
+          apiUrl(
+            `categories/stores?lat=${geolocation.latitude}&long=${geolocation.longitude}`
+          )
+        );
         setCategories(responseData.categories);
       } catch (err) {}
     };
     fetchData();
-  }, []);
+  }, [geolocation, hasGeoLocation]);
 
   return (
     <StaticPage>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useHttpClient } from "../shared/hooks/http-hook";
@@ -8,6 +8,7 @@ import HeadingRow from "../shared/components/heading-row";
 import ProductItem from "../components/product/item";
 import Pagination from "../shared/components/pagination";
 import { Helmet } from "react-helmet";
+import { AppContext } from "../shared/context/app-context";
 
 const Search = () => {
   const term = useParams().term;
@@ -16,18 +17,23 @@ const Search = () => {
   const [currentPage, setCurrentPages] = useState(1);
   const [pagination, setPagination] = useState(false);
   const { isLoading, sendRequest } = useHttpClient();
+  const { geolocation, hasGeoLocation } = useContext(AppContext);
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
         setProducts();
-        const responseData = await sendRequest(apiUrl(`search/${term}`));
+        const responseData = await sendRequest(
+          apiUrl(
+            `search/${term}?lat=${geolocation.latitude}&long=${geolocation.longitude}`
+          )
+        );
         setProducts(responseData.products.data);
         setPagination(responseData.products.links);
         setCurrentPages(responseData.products.current_page);
       } catch (err) {}
     };
     fetchPlaces();
-  }, [sendRequest, term]);
+  }, [term, geolocation, hasGeoLocation]);
 
   const chanePage = (e) => {
     e.preventDefault();
@@ -44,7 +50,9 @@ const Search = () => {
     const fetchData = async () => {
       try {
         const responseData = await sendRequest(
-          apiUrl(`search/${term}/?page=${page}`)
+          apiUrl(
+            `search/${term}/?page=${page}&lat=${geolocation.latitude}&long=${geolocation.longitude}`
+          )
         );
         setProducts(responseData.products.data);
         setPagination(responseData.products.links);

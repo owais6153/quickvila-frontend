@@ -21,7 +21,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
     setPrice(product.price_to_display);
     setSalePrice(product.sale_price_to_display);
     setProductName(product.name);
-    setAddToCartFlag(true);
+    setAddToCartFlag(product.product_type === "simple");
   }, [pd]);
 
   const { addToCart } = useContext(AppContext);

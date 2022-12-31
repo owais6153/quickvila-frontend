@@ -18,7 +18,7 @@ import { apiUrl } from "../shared/helper";
 
 const LoginForm = ({ swithHandler }) => {
   const { sendRequest, error, clearError } = useHttpClient();
-  const { auth } = useContext(AppContext);
+  const { auth, geolocation, hasGeoLocation } = useContext(AppContext);
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
@@ -100,6 +100,9 @@ const LoginForm = ({ swithHandler }) => {
       data = JSON.stringify({
         email: formState.inputs.email.value,
         password: formState.inputs.password.value,
+        address: geolocation.address,
+        latitude: geolocation.latitude,
+        longitude: geolocation.longitude,
       });
     } else {
       url = apiUrl("register");
@@ -110,6 +113,9 @@ const LoginForm = ({ swithHandler }) => {
         first_name: formState.inputs.first_name.value,
         last_name: formState.inputs.last_name.value,
         phone: formState.inputs.phone.value,
+        address: geolocation.address,
+        latitude: geolocation.latitude,
+        longitude: geolocation.longitude,
       });
     }
     clearError();

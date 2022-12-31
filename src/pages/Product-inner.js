@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import ProductSlider from "../components/sections/product-slider";
 import Component404 from "../shared/components/component-404";
 import Reviews from "../components/reviews/reviews";
 import PrdouctDetail from "../components/product/detail";
+import { AppContext } from "../shared/context/app-context";
 
 import "./Product-inner.css";
 
@@ -21,13 +22,16 @@ const ProductInner = () => {
   const [options, setOptions] = useState(false);
 
   const { isLoading, sendRequest } = useHttpClient();
+  const { geolocation, hasGeoLocation } = useContext(AppContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setProducts(false);
         const responseData = await sendRequest(
-          apiUrl(`stores/${store_id}/products/${product_id}`)
+          apiUrl(
+            `stores/${store_id}/products/${product_id}?lat=${geolocation.latitude}&long=${geolocation.longitude}`
+          )
         );
         if (responseData.status == 200) {
           setProduct(responseData.product);
@@ -39,7 +43,8 @@ const ProductInner = () => {
       } catch (err) {}
     };
     fetchData();
-  }, [store_id, product_id]);
+    if (hasGeoLocation) fetchData();
+  }, [store_id, product_id, geolocation, hasGeoLocation]);
   return (
     <StaticPage>
       {!isLoading && !product && <Component404 />}

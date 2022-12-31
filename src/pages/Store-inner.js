@@ -3,17 +3,21 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 import { apiUrl } from "../shared/helper";
 import { AppContext } from "../shared/context/app-context";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Component404 from "../shared/components/component-404";
 import StaticPage from "../shared/components/staticpages";
 import ProductSlider from "../components/sections/product-slider";
 import StoreSlider from "../components/sections/store-slider";
 import StoreDetail from "../components/store/detail";
 import ProductCategories from "../components/store/product-categories";
+import ModalPopup from "../shared/components/modal";
+import Button from "../shared/components/form-elements/button";
 
 import "./Store-inner.css";
 
 const StoreInner = () => {
   const { geolocation, hasGeoLocation } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const store_id = useParams().sid;
   const [featured_products, setFeaturedProducts] = useState();
@@ -22,6 +26,7 @@ const StoreInner = () => {
   const [ratings, setRatings] = useState(0);
   const [nearby_stores, setNearbyStores] = useState();
   const [product_categories, setProductCategories] = useState();
+  const [is18, setIs18] = useState(undefined);
 
   const { isLoading, sendRequest } = useHttpClient();
   useEffect(() => {
@@ -33,9 +38,9 @@ const StoreInner = () => {
           )
         );
         if (responseData.status == 200) {
+          setStore(responseData.store);
           setFeaturedProducts(responseData.featured_products);
           setTopSellinggProducts(responseData.top_selling_products);
-          setStore(responseData.store);
           setRatings(responseData.ratings);
           setProductCategories(responseData.product_categories);
           setNearbyStores(responseData.nearby_stores);
@@ -44,12 +49,49 @@ const StoreInner = () => {
     };
     if (hasGeoLocation) fetchData();
   }, [geolocation, hasGeoLocation]);
+
+  const clickHandler = (flag) => {
+    if (flag) {
+      setIs18(true);
+    } else {
+      navigate("/shop");
+    }
+  };
+
   return (
     <StaticPage>
       {!isLoading && !store && <Component404 />}
       <div className="storedetail">
         {store && (
           <>
+            {!is18 && store.type === "vape" && (
+              <ModalPopup size="md" title="Login" show={true}>
+                <div
+                  className="col-10"
+                  style={{ margin: "auto", padding: "40px 0px" }}
+                >
+                  <h3>Are you 18+?</h3>
+                  <p>Please confirm that you are 18+.</p>
+
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      clickHandler(true);
+                    }}
+                    className="btn-primary"
+                    text="Confirm"
+                  />
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      clickHandler(false);
+                    }}
+                    className="btn-primary mx-3"
+                    text="Cancel"
+                  />
+                </div>
+              </ModalPopup>
+            )}
             <StoreDetail store={store} ratings={ratings} />
             {product_categories && product_categories.length > 0 && (
               <ProductCategories

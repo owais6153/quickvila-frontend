@@ -49,7 +49,9 @@ const CategoryStore = () => {
     const fetchData = async () => {
       try {
         const responseData = await sendRequest(
-          apiUrl(`categories/stores?page=${page}`)
+          apiUrl(
+            `categories/stores?page=${page}&lat=${geolocation.latitude}&long=${geolocation.longitude}`
+          )
         );
         setStores(responseData.stores.data);
         setPagination(responseData.stores.links);
