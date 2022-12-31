@@ -21,6 +21,7 @@ export const AppContext = createContext({
   searchHandler: () => {},
 
   cart: {},
+  setCart: () => {},
   identifier: false,
   updateItem: () => {},
   addToCart: () => {},
@@ -37,9 +38,18 @@ export const AppProvider = ({ children }) => {
   const [loginModal, setLoginModal] = useState(false);
   const { geolocation, setGeolocation, getLocationByNavigator } =
     useGeoLoacation();
+
   const { token, login, logout, userId, user, verified } = useAuth();
-  const { cart, identifier, addToCart, emptyCart, updateItem, removeItem } =
-    useCart(!!token, token);
+
+  const {
+    cart,
+    setCart,
+    identifier,
+    addToCart,
+    emptyCart,
+    updateItem,
+    removeItem,
+  } = useCart(!!token, token);
 
   // Search
   const navigate = useNavigate();
@@ -76,6 +86,7 @@ export const AppProvider = ({ children }) => {
         addToCart,
         identifier,
         cart,
+        setCart,
 
         hasGeoLocation: !!geolocation,
         geolocation,

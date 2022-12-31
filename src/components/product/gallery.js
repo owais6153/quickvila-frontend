@@ -5,7 +5,7 @@ const ProductGallery = ({ gallery, changeImage, name }) => {
     <Carousel
       customButtonGroup={false}
       additionalTransfrom={0}
-      arrows={true}
+      arrows={gallery.length > 5}
       partialVisible={false}
       autoPlaySpeed={3000}
       centerMode={false}

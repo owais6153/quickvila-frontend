@@ -4,6 +4,7 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_PASSWORD,
   VALIDATOR_CONFIRM_PASSWORD,
+  VALIDATOR_REQUIRE,
 } from "../shared/util/validation";
 import { useForm } from "../shared/hooks/form-hook";
 import Button from "../shared/components/form-elements/button";
@@ -147,6 +148,7 @@ const ForgetForm = ({ swithHandler }) => {
               placeholder="Email"
               onInput={inputHandler}
               validators={[
+                VALIDATOR_REQUIRE("Email is required."),
                 VALIDATOR_EMAIL("Please enter a valid email address."),
               ]}
             />
@@ -160,6 +162,7 @@ const ForgetForm = ({ swithHandler }) => {
               onInput={inputHandler}
               checkMaxLimit={checkMaxLimit}
               validators={[
+                VALIDATOR_REQUIRE("Code is required."),
                 VALIDATOR_MINLENGTH(6, "Please enter a valid code."),
               ]}
             />
@@ -171,7 +174,10 @@ const ForgetForm = ({ swithHandler }) => {
               name="password"
               placeholder="New Password"
               onInput={inputHandler}
-              validators={[VALIDATOR_PASSWORD()]}
+              validators={[
+                VALIDATOR_REQUIRE("Password is required."),
+                VALIDATOR_PASSWORD(),
+              ]}
             />
           )}
         </div>
@@ -184,6 +190,7 @@ const ForgetForm = ({ swithHandler }) => {
               placeholder="Confirm Password"
               onInput={inputHandler}
               validators={[
+                VALIDATOR_REQUIRE("Confirm Password is required."),
                 VALIDATOR_CONFIRM_PASSWORD(
                   formState.inputs.password.value,
                   "Password should be same as password"

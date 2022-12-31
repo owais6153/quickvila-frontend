@@ -68,12 +68,11 @@ const Variations = ({ options, variations, updateDetail }) => {
     }
   };
   const changeHandler = (e) => {
-    let s = selected;
+    let s = [...selected];
     s[e.target.dataset.labelname] = e.target.value;
     setSelected(() => s);
     reRender(!render);
 
-    console.log(selected);
     updatePricing(true);
   };
 

@@ -21,6 +21,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
     setPrice(product.price_to_display);
     setSalePrice(product.sale_price_to_display);
     setProductName(product.name);
+    setAddToCartFlag(true);
   }, [pd]);
 
   const { addToCart } = useContext(AppContext);
@@ -131,18 +132,14 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                     updateDetail={updateDetail}
                   />
                 )}
-              <ul>
-                <li>
-                  <button
-                    key={product.id}
-                    className="btn btn-primary"
-                    onClick={onClickHandler}
-                    disabled={!addToCartFlag}
-                  >
-                    Add To Cart
-                  </button>
-                </li>
-              </ul>
+              <button
+                key={product.id}
+                className="btn btn-primary"
+                onClick={onClickHandler}
+                disabled={!addToCartFlag}
+              >
+                Add To Cart
+              </button>
             </div>
           </div>
         </div>

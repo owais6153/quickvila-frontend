@@ -5,9 +5,12 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "../shared/hooks/form-hook";
 import { apiUrl } from "../shared/helper";
 import { useHttpClient } from "../shared/hooks/http-hook";
-import { VALIDATOR_REQUIRE, VALIDATOR_EMAIL } from "../shared/util/validation";
-import { toast } from "react-toastify";
-
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_MAXLENGTH,
+} from "../shared/util/validation";
 import Input from "../shared/components/form-elements/input";
 import Button from "../shared/components/form-elements/button";
 import StaticPage from "../shared/components/staticpages";
@@ -16,11 +19,10 @@ import CartBox from "../components/cart/cart-box";
 import { Helmet } from "react-helmet";
 
 const Checkout = () => {
-  const { isLogin, auth, cart, identifier, geolocation } =
+  const { isLogin, auth, cart, identifier, geolocation, toggleLoginModal } =
     useContext(AppContext);
   const navigate = useNavigate();
   const { sendRequest } = useHttpClient();
-
   const [formState, inputHandler, setFormData] = useForm(
     {
       name: {
@@ -41,47 +43,19 @@ const Checkout = () => {
       },
       address1: {
         value: "",
-        isValid: false,
+        isValid: true,
       },
       address2: {
         value: "",
         isValid: false,
       },
+      tip: {
+        value: "",
+        isValid: true,
+      },
     },
     false
   );
-
-  useEffect(() => {
-    setFormData(
-      {
-        name: {
-          value: "",
-          isValid: false,
-        },
-        email: {
-          value: "",
-          isValid: false,
-        },
-        phone: {
-          value: "",
-          isValid: false,
-        },
-        note: {
-          value: "",
-          isValid: true,
-        },
-        address1: {
-          value: geolocation ? geolocation.address : "",
-          isValid: true,
-        },
-        address2: {
-          value: "",
-          isValid: false,
-        },
-      },
-      false
-    );
-  }, [geolocation]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -95,10 +69,11 @@ const Checkout = () => {
       name: formState.inputs.name.value,
       phone: formState.inputs.phone.value,
       note: formState.inputs.note.value,
-      address1: formState.inputs.note.address1,
-      address2: formState.inputs.note.address2,
+      address1: formState.inputs.address1.value,
+      address2: formState.inputs.address2.value,
       latitude: geolocation.latitude,
       longitude: geolocation.longitude,
+      tip: formState.inputs.tip.value,
     });
     try {
       var responseData = await sendRequest(url, "POST", data, {
@@ -144,10 +119,18 @@ quis vel."
                           type="text"
                           id="name"
                           name="name"
-                          readOnly="readonly"
                           className="form-control"
                           placeholder="Full Name"
-                          validators={[VALIDATOR_REQUIRE("Name is required.")]}
+                          validators={[
+                            VALIDATOR_REQUIRE("Name is required."),
+                            VALIDATOR_MINLENGTH(
+                              3,
+                              "Please enter a valid name."
+                            ),
+                          ]}
+                          initialValid={isLogin && auth.user.name}
+                          initialValue={auth.user.name}
+                          readOnly={isLogin}
                         />
                       </div>
                     </Col>
@@ -160,11 +143,13 @@ quis vel."
                           name="email"
                           className="form-control"
                           placeholder="Email"
-                          readOnly="readonly"
                           validators={[
                             VALIDATOR_REQUIRE("Email is required."),
                             VALIDATOR_EMAIL("Please enter a valid email"),
                           ]}
+                          initialValid={isLogin && auth.user.email}
+                          initialValue={auth.user.email}
+                          readOnly={isLogin}
                         />
                       </div>
                     </Col>
@@ -177,7 +162,20 @@ quis vel."
                           name="phone"
                           className="form-control"
                           placeholder="Phone Number"
-                          validators={[VALIDATOR_REQUIRE("Phone is required.")]}
+                          validators={[
+                            VALIDATOR_REQUIRE("Phone is required."),
+                            VALIDATOR_MINLENGTH(
+                              3,
+                              "Please enter a valid phone."
+                            ),
+                            VALIDATOR_MAXLENGTH(
+                              14,
+                              "Please enter a valid phone."
+                            ),
+                          ]}
+                          initialValid={isLogin && auth.user.phone}
+                          initialValue={auth.user.phone}
+                          readOnly={isLogin}
                         />
                       </div>
                     </Col>
@@ -186,7 +184,7 @@ quis vel."
                     </Col>
                     <Col md={12}>
                       <div className="form-group">
-                        <input
+                        <Input
                           onInput={inputHandler}
                           type="text"
                           name="address1"
@@ -195,7 +193,8 @@ quis vel."
                           placeholder="Address 1"
                           disabled="disabled"
                           readOnly="readonly"
-                          value={geolocation.address}
+                          initialValue={geolocation.address}
+                          initialValid={true}
                         />
                       </div>
                     </Col>
@@ -210,7 +209,12 @@ quis vel."
                           placeholder="Address 2"
                           validators={[
                             VALIDATOR_REQUIRE("Address 2 is required."),
+                            VALIDATOR_MINLENGTH(
+                              3,
+                              "Please enter a valid address."
+                            ),
                           ]}
+                          initialValid={false}
                         />
                       </div>
                     </Col>
@@ -226,6 +230,7 @@ quis vel."
                           id="note"
                           className="form-control"
                           placeholder="Order Note"
+                          initialValid={true}
                         />
                       </div>
                     </Col>
@@ -234,15 +239,42 @@ quis vel."
                 <Col lg={4}>
                   <h3>Cart Info</h3>
                   <CartBox cart={cart} login={isLogin} />
-                  <Button
-                    type="submit"
-                    className="btn-primary w-100 mt-3"
-                    text="Checkout"
-                    disable={true}
-                  />
-                  {/* <div className="alert alert-danger">
-                    No Payment Method is set.
-                  </div> */}
+
+                  <div className="form-group mt-4">
+                    <Input
+                      onInput={inputHandler}
+                      type="number"
+                      name="tip"
+                      id="tip"
+                      min={0}
+                      className="form-control"
+                      placeholder="Want to give Tip?"
+                      initialValid={true}
+                    />
+                  </div>
+                  {!isLogin && (
+                    <Button
+                      type="button"
+                      onClick={toggleLoginModal}
+                      className="btn-primary w-100 mt-4"
+                      text="Login"
+                    />
+                  )}
+                  {!auth.verified && isLogin && (
+                    <Button
+                      type="button"
+                      onClick={toggleLoginModal}
+                      className="btn-primary w-100 mt-4"
+                      text="Verify your account"
+                    />
+                  )}
+                  {auth.verified && isLogin && (
+                    <Button
+                      type="submit"
+                      className="btn-primary w-100 mt-4"
+                      text="Pay now"
+                    />
+                  )}
                 </Col>
               </form>
             </Row>

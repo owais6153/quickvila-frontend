@@ -5,7 +5,10 @@ import Alert from "../shared/components/alert";
 import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import { AppContext } from "../shared/context/app-context";
-import { VALIDATOR_MINLENGTH } from "../shared/util/validation";
+import {
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../shared/util/validation";
 import { toast } from "react-toastify";
 import { apiUrl } from "../shared/helper";
 const Verify = () => {
@@ -86,7 +89,10 @@ const Verify = () => {
             placeholder="CODE"
             checkMaxLimit={checkMaxLimit}
             onInput={inputHandler}
-            validators={[VALIDATOR_MINLENGTH(6, "Please enter a valid code.")]}
+            validators={[
+              VALIDATOR_REQUIRE("Code is required."),
+              VALIDATOR_MINLENGTH(6, "Please enter a valid code."),
+            ]}
           />
         </div>
         <div className="form-group">

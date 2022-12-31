@@ -14,12 +14,14 @@ export const useCart = (isLogin, token) => {
       };
     else return {};
   }, [isLogin, identifier]);
+
   useEffect(() => {
     var cartidentifier = cart.identifier ? cart.identifier : false;
     if (!cartidentifier) {
       if (cartidentifier != identifier) {
         localStorage.removeItem("cart");
         setIdentifier(() => cartidentifier);
+        console.log("removing cart 1");
       }
     } else {
       if (cartidentifier != identifier) {
@@ -30,6 +32,7 @@ export const useCart = (isLogin, token) => {
             identifier: cartidentifier,
           })
         );
+        console.log("adding cart 1");
       }
     }
   }, [cart]);
@@ -38,6 +41,7 @@ export const useCart = (isLogin, token) => {
     const storedCart = JSON.parse(localStorage.getItem("cart"));
     if (storedCart && storedCart.identifier) {
       setIdentifier(() => storedCart.identifier);
+      console.log("setting id 1");
     }
   }, []);
 
@@ -52,14 +56,18 @@ export const useCart = (isLogin, token) => {
           getHeaders()
         );
         if (responseData.status === 200) {
-          if (responseData.cart !== null) setCart(responseData.cart);
-          else {
+          if (responseData.cart !== null) {
+            setCart(responseData.cart);
+            console.log("adding cart 2", token);
+          } else {
             localStorage.removeItem("cart");
+
+            console.log("removing cart 2");
           }
         }
       } catch (err) {}
     };
-    if (!!token || identifier) fetchData();
+    if ((!!token || identifier) && token !== null) fetchData();
   }, [identifier, token]);
 
   const addToCart = useCallback(
@@ -150,6 +158,7 @@ export const useCart = (isLogin, token) => {
   return {
     removeItem,
     updateItem,
+    setCart,
     emptyCart,
     addToCart,
     identifier,

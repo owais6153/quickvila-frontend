@@ -20,7 +20,7 @@ const Cart = () => {
   const style = {
     background: "#fff",
     border: "1px solid whitesmoke",
-    boxShadow: "0 0.2rem 1rem rgb(0 0 0 / 12%);",
+    boxShadow: "0 0.2rem 1rem rgb(0 0 0 / 12%)",
     padding: "20px",
   };
 

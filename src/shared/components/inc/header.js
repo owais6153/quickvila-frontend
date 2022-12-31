@@ -14,7 +14,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "./header.css";
 import { useHttpClient } from "../../hooks/http-hook";
 const Header = (props) => {
-  const { cart, isLogin, toggleLoginModal, auth, layout } =
+  const { cart, isLogin, toggleLoginModal, auth, layout, setCart } =
     useContext(AppContext);
   const { sendRequest } = useHttpClient();
   const [cartdropdown, setCartDropdown] = useState(false);
@@ -34,6 +34,8 @@ const Header = (props) => {
         });
         if (responseData.status == 200) {
           auth.logout();
+          setCart({});
+
           toast.success(`Logout Successfully`);
         }
       } catch (err) {}

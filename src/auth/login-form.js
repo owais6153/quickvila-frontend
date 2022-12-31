@@ -208,6 +208,7 @@ const LoginForm = ({ swithHandler }) => {
             placeholder="Email"
             onInput={inputHandler}
             validators={[
+              VALIDATOR_REQUIRE("Email is required."),
               VALIDATOR_EMAIL("Please enter a valid email address."),
             ]}
           />
@@ -219,7 +220,10 @@ const LoginForm = ({ swithHandler }) => {
             name="password"
             placeholder="Password"
             onInput={inputHandler}
-            validators={[VALIDATOR_PASSWORD()]}
+            validators={[
+              VALIDATOR_REQUIRE("Password is required."),
+              VALIDATOR_PASSWORD(),
+            ]}
           />
         </div>
         {!isLoginMode && (
@@ -231,6 +235,7 @@ const LoginForm = ({ swithHandler }) => {
               placeholder="Confirm Password"
               onInput={inputHandler}
               validators={[
+                VALIDATOR_REQUIRE("Confirm Password is required."),
                 VALIDATOR_CONFIRM_PASSWORD(
                   formState.inputs.password.value,
                   "Confirm Password should be same as password."

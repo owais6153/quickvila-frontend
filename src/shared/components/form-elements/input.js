@@ -32,7 +32,8 @@ const Input = (props) => {
   const { value, isValid } = inputState;
 
   useEffect(() => {
-    onInput(id, value, isValid.isValid);
+    let check = isValid.isValid != undefined ? isValid.isValid : isValid;
+    onInput(id, value, check);
   }, [id, value, isValid, onInput]);
 
   const changeHandler = (event) => {
@@ -57,7 +58,8 @@ const Input = (props) => {
           onBlur={touchHandler}
           placeholder={props.placeholder}
           className={`form-control ${props.className || undefined} ${
-            !inputState.isValid.isValid &&
+            (inputState.isValid.isValid === false ||
+              inputState.isValid === false) &&
             inputState.isTouched &&
             "form-control--invalid"
           }`}
@@ -66,7 +68,8 @@ const Input = (props) => {
           id={props.id}
           value={inputState.value}
         />
-        {!inputState.isValid.isValid &&
+        {(inputState.isValid.isValid === false ||
+          inputState.isValid === false) &&
           inputState.isTouched &&
           inputState.isValid.errors &&
           inputState.isValid.errors.map((error, index) => {
@@ -85,7 +88,8 @@ const Input = (props) => {
           onBlur={touchHandler}
           onInput={props.checkMaxLimit}
           className={`form-control ${props.className || undefined} ${
-            !inputState.isValid.isValid &&
+            (inputState.isValid.isValid === false ||
+              inputState.isValid === false) &&
             props.type !== "search" &&
             inputState.isTouched &&
             "form-control--invalid"
@@ -94,8 +98,28 @@ const Input = (props) => {
           placeholder={props.placeholder}
           name={props.name}
           id={props.id}
+          readOnly={props.readOnly}
+          min={props.min}
+          max={props.max}
         />
-        {!inputState.isValid.isValid &&
+        {(inputState.isValid.isValid === true || inputState.isValid === true) &&
+          props.id === "tip" &&
+          inputState.value > 0 && (
+            <p
+              style={{
+                fontSize: "14px",
+                marginTop: "4px",
+                marginBottom: "0px",
+                fontWeight: 600,
+                color: "green",
+              }}
+            >
+              Thank you for the Tip!
+            </p>
+          )}
+
+        {(inputState.isValid.isValid === false ||
+          inputState.isValid === false) &&
           inputState.isTouched &&
           inputState.isValid.errors &&
           inputState.isValid.errors.map((error, index) => {
