@@ -1,17 +1,15 @@
 #header {
-  padding: 10px 0;
+  padding: 0;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   background-color: #fff;
   z-index: 1;
   border: 1px solid #f3f3f3;
-  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.05));
+  box-shadow: 0 0.2rem 1rem rgb(0 0 0 / 12%);
 }
-#header .container .row > div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+.dropdown-menu.show {
+  right: 0;
 }
 .nav-link {
   color: #fe0000;
@@ -21,9 +19,6 @@
   color: #fe0000;
 }
 
-.header-btn {
-  justify-content: center;
-}
 .header-btn-group {
   background: #f3f3f3;
   border-radius: 7px;
@@ -66,18 +61,119 @@ span.cart-count {
 .header-cart {
   width: 350px;
   animation: cartDropdown 0.3s forwards;
-  position: absolute;
-  right: 0;
   transition: 0.3s;
   opacity: 0;
+  transform: translateX(40px);
+  position: absolute;
+  right: 0;
   top: 40px;
-  transform: translateX(60px);
+}
+header#header .mainhead {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+header#header .mainhead .header-brand {
+  flex: 0 0 15%;
+  max-width: 15%;
+  align-items: baseline;
+  justify-content: flex-start;
 }
 
+.header-btn {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+.header-searchform {
+  flex: 0 0 30%;
+  max-width: 30%;
+  padding: 0 36px;
+}
+
+header#header .mainhead > div.header-links {
+  flex: 0 0 8%;
+  justify-content: space-between;
+  padding: 20px;
+  border: none;
+}
+.header-locationform {
+  position: relative;
+}
+.header-locationform form.baner-form .get-address input,
+.header-locationform form.baner-form .btn {
+  height: 45px;
+}
+
+.header-locationform form.baner-form {
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  width: 130%;
+  padding: 10px;
+  border-radius: 0;
+  right: 0;
+  min-width: 450px;
+  animation: cartDropdown 0.3s forwards;
+  transition: 0.3s;
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.header-locationform .ser-icon {
+  top: 10px;
+}
+
+.header-locationform p {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+header#header .mainhead > div {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 1px #f3f3f3;
+}
+.header-locationform i {
+  color: #f90000;
+  border-radius: 100%;
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.header-locationform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0px 36px;
+}
+header#header .mainhead .header-brand img {
+  max-width: 160px;
+}
+header#header .mainhead .header-brand {
+  min-width: 160px;
+}
+
+.header-locationform p b {
+  font-weight: 500;
+  font-size: 16px;
+}
 @keyframes cartDropdown {
   from {
     opacity: 0;
-    transform: translateX(60px);
+    transform: translateX(40px);
   }
   to {
     opacity: 1;
@@ -85,61 +181,119 @@ span.cart-count {
   }
 }
 
-@media screen and (max-width: 991px) {
-  header#header .row > div:nth-child(1),
-  header#header .row > div:nth-child(2) {
-    width: 50%;
-    text-align: center;
+@media screen and (max-width: 1264px) {
+  header#header .mainhead .header-brand {
+    flex: 0 0 25%;
+    order: 1;
+    max-width: 25%;
+    padding: 0 0 0 36px;
   }
 
-  header#header .row > div.header-brand img {
-    max-width: 200px;
-  }
-
-  .header-btn {
-    text-align: right;
-  }
-
-  .header-btn-group {
-    margin-left: auto;
-  }
-
-  header#header .row > div:nth-child(3),
-  header#header .row > div:nth-child(5) {
-    width: 50%;
-    justify-content: space-evenly;
-    margin-top: 13px;
-  }
-  header#header {
-    padding-top: 0%;
-  }
-  header#header:after {
-    background: #fff;
-    border-top: solid 1px #efef;
-    content: "";
+  .header-locationform form.baner-form {
     width: 100%;
-    height: 70px;
-    position: absolute;
-    bottom: 0;
-    z-index: -1;
   }
-  header#header .row > div:nth-child(4) {
-    display: none;
+  .header-btn {
+    order: 2;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  header#header .mainhead > div.header-links {
+    order: 4;
+    flex: 0 0 20%;
+    justify-content: space-around;
+    border-bottom: solid 1px #f3f3f3;
+  }
+
+  header#header .mainhead > div.header-locationform {
+    order: 5;
+    flex: 0 0 100%;
+    max-width: 100%;
+    border: none;
+    justify-content: left;
+  }
+
+  .header-searchform {
+    order: 3;
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+
+  header#header .mainhead > div {
+    border-bottom: solid 1px #f3f3f3;
+  }
+
+  header#header .mainhead {
+    padding: 0;
+  }
+
+  header#header .container-fluid {
+    padding: 0;
   }
 }
 
-@media screen and (max-width: 426px) {
-  header#header .row > div:nth-child(1),
-  header#header .row > div:nth-child(2) {
-    width: 50%;
-    text-align: center;
-    margin: 10px 0;
+@media screen and (max-width: 1024px) {
+  header#header .mainhead > div.header-links {
+    order: 5;
+  }
+
+  header#header .mainhead > div.header-locationform {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+
+  .header-searchform {
+    max-width: 40%;
+    flex: 0 0 40%;
+  }
+  .header-btn {
+    order: 2;
+    flex: 0 0 35%;
+    max-width: 35%;
+  }
+}
+@media screen and (max-width: 991px) {
+  header#header .mainhead > div {
+    border-right: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  header#header .mainhead > div.header-locationform {
+    display: none;
+  }
+
+  header#header .mainhead .header-brand,
+  .header-btn {
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+
+  header#header .mainhead > div.header-btn {
+    justify-content: flex-end;
+    padding: 20px;
+  }
+
+  .header-searchform {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+  header#header {
+    position: static;
+  }
+}
+@media screen and (max-width: 500px) {
+  header#header .mainhead > div {
+    border: none;
+  }
+
+  header#header {
+    padding-top: 5px;
   }
   .header-btn-group {
     max-width: min-content;
   }
-  header#header .row > div.header-brand img {
-    margin-bottom: 10px;
+  header#header .mainhead > div.header-links {
+    flex: 0 0 30%;
   }
   .header-cart {
     width: calc(100vw - 20px);

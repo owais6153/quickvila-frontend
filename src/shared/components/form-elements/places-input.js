@@ -6,11 +6,6 @@ import PlacesAutocomplete, {
 import Icon from "../font-awesome-icon";
 
 class PlacesInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { address: false, isTouched: false };
-  }
-
   handleChange = (address) => {
     this.props.setAddress(address);
   };
