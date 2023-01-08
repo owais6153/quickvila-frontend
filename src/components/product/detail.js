@@ -7,6 +7,8 @@ import Variations from "./variation";
 import { toast } from "react-toastify";
 import { AppContext } from "../../shared/context/app-context";
 import ProductGallery from "./gallery";
+import ModalPopup from "../../shared/components/modal";
+import Button from "../../shared/components/form-elements/button";
 
 const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
   const [addToCartFlag, setAddToCartFlag] = useState(true);
@@ -15,6 +17,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
   const [variationId, setVariationID] = useState(false);
   const [productName, setProductName] = useState(false);
   const [productImage, setProductImage] = useState(undefined);
+  const [emptyCartWarning, toggleEmptyCartWarning] = useState(false);
 
   useEffect(() => {
     setProductImage(product.image);
@@ -39,12 +42,22 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
     setVariationID(id);
     setProductName(pName);
   };
-
-  const onClickHandler = async (e) => {
+  const addToCartHandler = async () => {
+    toggleEmptyCartWarning(false);
+    const res = await addToCart(product, variationId);
+    if (res.status == 200) {
+      toast.success(`${product.name} added to Cart!`);
+    }
+  };
+  const onCancel = () => {
+    toggleEmptyCartWarning(false);
+  };
+  const onAddToCart = (e) => {
     try {
-      const res = await addToCart(product, variationId);
-      if (res.status == 200) {
-        toast.success(`${product.name} added to Cart!`);
+      if (product.store.type !== "pharmacy") {
+        addToCartHandler();
+      } else {
+        toggleEmptyCartWarning(true);
       }
     } catch (err) {}
   };
@@ -135,7 +148,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
               <button
                 key={product.id}
                 className="btn btn-primary"
-                onClick={onClickHandler}
+                onClick={onAddToCart}
                 disabled={!addToCartFlag}
               >
                 Add To Cart
@@ -144,6 +157,32 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
           </div>
         </div>
       </section>
+      {emptyCartWarning && (
+        <ModalPopup size="lg" show={true}>
+          <div
+            className="col-10"
+            style={{ margin: "auto", padding: "40px 0px" }}
+          >
+            <h3>All the items from other stores will be removed!</h3>
+            <p>
+              Its is required to remove other stores items from cart before
+              adding pharmacy product.
+            </p>
+            <Button
+              type="button"
+              onClick={addToCartHandler}
+              className="btn-primary"
+              text="Continue"
+            />
+            <Button
+              type="button"
+              onClick={onCancel}
+              className="btn-primary mx-3"
+              text="Cancel"
+            />
+          </div>
+        </ModalPopup>
+      )}
     </React.Fragment>
   );
 };

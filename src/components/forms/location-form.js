@@ -52,7 +52,7 @@ const LocationForm = () => {
             type="submit"
             onClick={(e) => {
               e.preventDefault();
-              navigate(`/stores`);
+              // navigate(`/stores`);
             }}
             className="btn btn-primary w-100"
             value="Search"

@@ -70,9 +70,17 @@ const Header = (props) => {
         >
           <p>
             <Icon icon="fa fa-map-marker" aria-hidden="true"></Icon>
-            <b>Delivering to: </b>
-            {hasGeoLocation ? geolocation.address : "Select your Location"}
-            <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg">
+            <b>Delivering to: </b>{" "}
+            <svg
+              style={{
+                stroke: "#fe0000",
+                transform: `rotate(${locationdropdown ? "-90" : "90"}deg)`,
+                margin: "0 10px",
+              }}
+              width="12"
+              height="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 class="svg-stroke-container"
                 stroke-linejoin="round"
@@ -82,6 +90,7 @@ const Header = (props) => {
                 d="m3.5,1.5l5,5.5l-5,5.5"
               ></path>
             </svg>
+            {hasGeoLocation ? geolocation.address : "Select your Location"}
           </p>
           {locationdropdown && (
             <div
@@ -121,16 +130,14 @@ const Header = (props) => {
               <span onClick={dropdownToggler}>
                 <Icon url={homeUrl("images/account.png")} />
               </span>
-              {dropdown && (
-                <Dropdown.Menu show>
-                  <Link className="nav-link" to="/my-account">
-                    Account
-                  </Link>
-                  <a className="nav-link pointer" onClick={logoutHandler}>
-                    Logout
-                  </a>
-                </Dropdown.Menu>
-              )}
+              <Dropdown.Menu show={dropdown}>
+                <Link className="nav-link" to="/my-account">
+                  Account
+                </Link>
+                <a className="nav-link pointer" onClick={logoutHandler}>
+                  Logout
+                </a>
+              </Dropdown.Menu>
             </Dropdown>
           ) : (
             <span onClick={toggleLoginModal}>

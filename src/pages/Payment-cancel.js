@@ -1,6 +1,23 @@
 import StaticPage from "../shared/components/staticpages";
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
+import { apiUrl } from "../shared/helper";
+import { useHttpClient } from "../shared/hooks/http-hook";
+import { useLocation } from "react-router-dom";
 const PaymentCancel = () => {
+  const { sendRequest } = useHttpClient();
+  const location = useLocation();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const paymentId = new URLSearchParams(location.search).get("paymentId");
+        const responseData = await sendRequest(
+          apiUrl(`paymentCancel?paymentId=${paymentId}`)
+        );
+      } catch (err) {}
+    };
+    fetchData();
+  }, []);
   return (
     <StaticPage>
       <div id="error-boundry">

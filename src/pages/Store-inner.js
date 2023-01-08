@@ -27,6 +27,7 @@ const StoreInner = () => {
   const [nearby_stores, setNearbyStores] = useState();
   const [product_categories, setProductCategories] = useState();
   const [is18, setIs18] = useState(undefined);
+  const [prescriptionModal, togglePrescriptionModal] = useState(false);
 
   const { isLoading, sendRequest } = useHttpClient();
   useEffect(() => {
@@ -44,11 +45,15 @@ const StoreInner = () => {
           setRatings(responseData.ratings);
           setProductCategories(responseData.product_categories);
           setNearbyStores(responseData.nearby_stores);
+
+          if (store.type === "pharmacy") {
+            togglePrescriptionModal(true);
+          }
         }
       } catch (err) {}
     };
     if (hasGeoLocation) fetchData();
-  }, [geolocation, hasGeoLocation]);
+  }, [geolocation, hasGeoLocation, store_id]);
 
   const clickHandler = (flag) => {
     if (flag) {
@@ -64,34 +69,6 @@ const StoreInner = () => {
       <div className="storedetail">
         {store && (
           <>
-            {!is18 && store.type === "vape" && (
-              <ModalPopup size="md" title="Login" show={true}>
-                <div
-                  className="col-10"
-                  style={{ margin: "auto", padding: "40px 0px" }}
-                >
-                  <h3>Are you 18+?</h3>
-                  <p>Please confirm that you are 18+.</p>
-
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      clickHandler(true);
-                    }}
-                    className="btn-primary"
-                    text="Confirm"
-                  />
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      clickHandler(false);
-                    }}
-                    className="btn-primary mx-3"
-                    text="Cancel"
-                  />
-                </div>
-              </ModalPopup>
-            )}
             <StoreDetail store={store} ratings={ratings} />
             {product_categories && product_categories.length > 0 && (
               <ProductCategories
@@ -126,6 +103,62 @@ const StoreInner = () => {
           stores={nearby_stores}
         />
       )}
+      {!is18 && store.type === "vape" && (
+        <ModalPopup size="md" show={true}>
+          <div
+            className="col-10"
+            style={{ margin: "auto", padding: "40px 0px" }}
+          >
+            <h3>Are you 18+?</h3>
+            <p>Please confirm that you are 18+.</p>
+
+            <Button
+              type="button"
+              onClick={() => {
+                clickHandler(true);
+              }}
+              className="btn-primary"
+              text="Confirm"
+            />
+            <Button
+              type="button"
+              onClick={() => {
+                clickHandler(false);
+              }}
+              className="btn-primary mx-3"
+              text="Cancel"
+            />
+          </div>
+        </ModalPopup>
+      )}
+      {/* {!prescriptionModal && store.type === "pharmacy" && (
+        <ModalPopup size="md"  show={true}>
+          <div
+            className="col-10"
+            style={{ margin: "auto", padding: "40px 0px" }}
+          >
+            <h3>Have Prescription?</h3>
+            <p>Request your prescription price.</p>
+
+            <Button
+              type="button"
+              onClick={() => {
+                clickHandler(true);
+              }}
+              className="btn-primary"
+              text="I have"
+            />
+            <Button
+              type="button"
+              onClick={() => {
+                clickHandler(false);
+              }}
+              className="btn-primary mx-3"
+              text="See products"
+            />
+          </div>
+        </ModalPopup>
+      )} */}
     </StaticPage>
   );
 };

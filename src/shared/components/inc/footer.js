@@ -104,27 +104,17 @@ const Footer = () => {
         </Container>
       </Container>
       {!isLogin && (
-        <ModalPopup
-          size="md"
-          title="Login"
-          show={loginModal}
-          onHide={toggleLoginModal}
-        >
+        <ModalPopup size="md" show={loginModal} onHide={toggleLoginModal}>
           <Auth />
         </ModalPopup>
       )}
       {isLogin && !auth.verified && (
-        <ModalPopup
-          size="md"
-          title="Login"
-          show={loginModal}
-          onHide={toggleLoginModal}
-        >
+        <ModalPopup size="md" show={loginModal} onHide={toggleLoginModal}>
           <Verify />
         </ModalPopup>
       )}
       {!hasGeoLocation && (
-        <ModalPopup size="lg" title="Login" show={true}>
+        <ModalPopup size="lg" show={true}>
           <div
             className="col-10"
             style={{ margin: "auto", padding: "40px 0px" }}

@@ -90,7 +90,9 @@ const Checkout = () => {
 
       if (responseData.status === 200) {
         setCart({});
-        navigate(`/order/${responseData.order.id}`);
+        if (responseData.payment_link != undefined)
+          window.location.replace(responseData.payment_link);
+        else navigate(`/order/${responseData.order.id}`);
       }
       return true;
     } catch (err) {}
