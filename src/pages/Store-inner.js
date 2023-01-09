@@ -16,7 +16,8 @@ import Button from "../shared/components/form-elements/button";
 import "./Store-inner.css";
 
 const StoreInner = () => {
-  const { geolocation, hasGeoLocation } = useContext(AppContext);
+  const { geolocation, hasGeoLocation, toggleLoginModal, isLogin, auth } =
+    useContext(AppContext);
   const navigate = useNavigate();
 
   const store_id = useParams().sid;
@@ -26,7 +27,6 @@ const StoreInner = () => {
   const [ratings, setRatings] = useState(0);
   const [nearby_stores, setNearbyStores] = useState();
   const [product_categories, setProductCategories] = useState();
-  const [is18, setIs18] = useState(undefined);
   const [prescriptionModal, togglePrescriptionModal] = useState(false);
 
   const { isLoading, sendRequest } = useHttpClient();
@@ -57,7 +57,8 @@ const StoreInner = () => {
 
   const clickHandler = (flag) => {
     if (flag) {
-      setIs18(true);
+      if (!isLogin) toggleLoginModal();
+      else navigate("/my-account/verify-idnetity");
     } else {
       navigate("/shop");
     }
@@ -103,34 +104,34 @@ const StoreInner = () => {
           stores={nearby_stores}
         />
       )}
-      {!is18 && store.type === "vape" && (
-        <ModalPopup size="md" show={true}>
-          <div
-            className="col-10"
-            style={{ margin: "auto", padding: "40px 0px" }}
-          >
-            <h3>Are you 18+?</h3>
-            <p>Please confirm that you are 18+.</p>
+      {(!isLogin || (isLogin && !auth.user.is_identity_card_verified)) &&
+        store.type === "vape" && (
+          <ModalPopup size="md" show={true}>
+            <div
+              className="col-10"
+              style={{ margin: "auto", padding: "40px 0px" }}>
+              <h3>Are you 18+?</h3>
+              <p>Please confirm that you are 18+.</p>
 
-            <Button
-              type="button"
-              onClick={() => {
-                clickHandler(true);
-              }}
-              className="btn-primary"
-              text="Confirm"
-            />
-            <Button
-              type="button"
-              onClick={() => {
-                clickHandler(false);
-              }}
-              className="btn-primary mx-3"
-              text="Cancel"
-            />
-          </div>
-        </ModalPopup>
-      )}
+              <Button
+                type="button"
+                onClick={() => {
+                  clickHandler(true);
+                }}
+                className="btn-primary"
+                text="Confirm"
+              />
+              <Button
+                type="button"
+                onClick={() => {
+                  clickHandler(false);
+                }}
+                className="btn-primary mx-3"
+                text="Cancel"
+              />
+            </div>
+          </ModalPopup>
+        )}
       {/* {!prescriptionModal && store.type === "pharmacy" && (
         <ModalPopup size="md"  show={true}>
           <div

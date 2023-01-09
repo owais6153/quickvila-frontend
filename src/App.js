@@ -17,13 +17,16 @@ const StoreInner = lazy(() => import("./pages/Store-inner"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const StoreProducts = lazy(() => import("./pages/Store-products"));
-const Account = lazy(() => import("./pages/Account"));
 const OrderInner = lazy(() => import("./pages/Order-inner"));
 const CategoryStore = lazy(() => import("./pages/Category-store"));
 const StoreCategories = lazy(() => import("./pages/Store-category"));
 const PaymentSuccess = lazy(() => import("./pages/Payment-success"));
 const PaymentCancel = lazy(() => import("./pages/Payment-cancel"));
 const CategoryProducts = lazy(() => import("./pages/Categroy-products"));
+const Account = lazy(() => import("./pages/Account"));
+const AccountIdentityVerification = lazy(() =>
+  import("./pages/Account-identity-verification")
+);
 
 const App = () => {
   const { isLoading } = useLoading(false);
@@ -60,11 +63,20 @@ const App = () => {
           <Route path="/payment-cancel" exact element={<PaymentCancel />} />
           <Route path="/cart" exact element={<Cart />} />
           <Route path="/checkout" exact element={<Checkout />} />
-          <Route path="/order/:order_id" exact element={<OrderInner />} />
 
           {/* Need Auth */}
           <Route path="/my-account" exact element={<Account />} />
+          <Route
+            path="/my-account/verify-idnetity"
+            exact
+            element={<AccountIdentityVerification />}
+          />
           <Route path="/my-account/orders" exact element={<h1>Orders</h1>} />
+          <Route
+            path="/my-account/orders/:order_id"
+            exact
+            element={<OrderInner />}
+          />
 
           {/* This should be last route of the app */}
           <Route path="*" element={<PageNotFound />} />

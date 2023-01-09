@@ -19,7 +19,7 @@ export const AppContext = createContext({
   loginModal: false,
   toggleLoginModal: () => {},
   searchHandler: () => {},
-
+  updateUserInfo: () => {},
   cart: {},
   setCart: () => {},
   identifier: false,
@@ -39,7 +39,8 @@ export const AppProvider = ({ children }) => {
   const { geolocation, setGeolocation, getLocationByNavigator } =
     useGeoLoacation();
 
-  const { token, login, logout, userId, user, verified } = useAuth();
+  const { token, login, logout, userId, user, verified, updateUserInfo } =
+    useAuth();
 
   const {
     cart,
@@ -75,6 +76,7 @@ export const AppProvider = ({ children }) => {
           login,
           logout,
         },
+        updateUserInfo,
         layout,
         setLayout,
         toggleLoginModal,
@@ -92,8 +94,7 @@ export const AppProvider = ({ children }) => {
         geolocation,
         getLocationByNavigator,
         setGeolocation,
-      }}
-    >
+      }}>
       {children}
     </AppContext.Provider>
   );

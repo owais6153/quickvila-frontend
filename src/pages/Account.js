@@ -10,7 +10,7 @@ const Account = () => {
 
   return (
     <StaticPage>
-      <section className="no-banner">
+      <section className="no-banner account-pages">
         <Container>
           <HeadingRow lg title="My Account" />
           <Row>
@@ -18,7 +18,7 @@ const Account = () => {
               <Sidebar />
             </Col>
             <Col md={9}>
-              <h4>Hello {auth.user.name}!</h4>
+              <h2>Hello {auth.user.name}!</h2>
             </Col>
           </Row>
         </Container>

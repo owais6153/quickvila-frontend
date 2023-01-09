@@ -28,6 +28,13 @@ export const useAuth = (onLogin, onLogout) => {
     );
   }, []);
 
+  const updateUserInfo = useCallback((userdata) => {
+    setUser(userdata);
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    storedData.user = userdata;
+    localStorage.setItem("userData", JSON.stringify(storedData));
+  }, []);
+
   const logout = useCallback(() => {
     localStorage.removeItem("userData");
     setToken(null);
@@ -64,5 +71,5 @@ export const useAuth = (onLogin, onLogout) => {
     }
   }, [login]);
 
-  return { token, login, logout, userId, user, verified };
+  return { token, login, logout, userId, user, verified, updateUserInfo };
 };

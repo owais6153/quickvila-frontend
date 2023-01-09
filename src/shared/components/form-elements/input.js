@@ -101,6 +101,8 @@ const Input = (props) => {
           readOnly={props.readOnly}
           min={props.min}
           max={props.max}
+          ref={props.useref}
+          accept={props.accept}
         />
         {(inputState.isValid.isValid === true || inputState.isValid === true) &&
           props.id === "tip" &&
@@ -112,8 +114,7 @@ const Input = (props) => {
                 marginBottom: "0px",
                 fontWeight: 600,
                 color: "green",
-              }}
-            >
+              }}>
               Thank you for the Tip!
             </p>
           )}

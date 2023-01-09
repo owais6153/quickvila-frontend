@@ -46,6 +46,15 @@ div#error-boundry h1 {
   line-height: 16px;
   height: 45px;
 }
+input[type="file"].form-control:focus,
+input[type="file"].form-control {
+  padding: 15px;
+}
+.form-group label {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 0;
+}
 a.btn {
   display: inline-flex;
   justify-content: center;

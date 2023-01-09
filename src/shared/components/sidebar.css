@@ -1,14 +1,16 @@
 div#sidebar {
-  background: #f3f3f3;
-  padding: 20px 30px 8px;
+  background: #fe0000;
 }
-
 div#sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
-
 div#sidebar ul li a {
-  padding: 5px 10px;
-  display: inline-block;
+  padding: 15px 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  border-bottom: solid 1px #efefef;
 }

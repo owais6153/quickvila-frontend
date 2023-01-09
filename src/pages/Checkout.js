@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../shared/context/app-context";
 import { Container, Row, Col } from "react-bootstrap";
@@ -92,7 +92,7 @@ const Checkout = () => {
         setCart({});
         if (responseData.payment_link != undefined)
           window.location.replace(responseData.payment_link);
-        else navigate(`/order/${responseData.order.id}`);
+        else navigate(`/my-account/orders/${responseData.order.id}`);
       }
       return true;
     } catch (err) {}

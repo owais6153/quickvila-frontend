@@ -37,8 +37,7 @@ const LocationForm = () => {
             {"geolocation" in navigator && (
               <div
                 className="ser-icon pointer"
-                onClick={requestBrowserLocation}
-              >
+                onClick={requestBrowserLocation}>
                 <img
                   src={homeUrl("images/Vectory (1).png")}
                   alt="Get Geolocation"
