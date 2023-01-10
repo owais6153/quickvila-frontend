@@ -77,9 +77,11 @@ const AccountIdentityVerification = () => {
   };
 
   return (
-    <StaticPage>
+    <StaticPage isLogin={isLogin} authRequired={true}>
       <Helmet>
-        <title>My Account - Verify Identity| QuiclVila</title>
+        <title>
+          Verify Identity - My Account | {process.env.REACT_APP_MY_APP}
+        </title>
         <meta
           name="description"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -65,7 +65,9 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>{product.name} - Product | QuiclVila</title>
+        <title>
+          {product.name} - Product | {process.env.REACT_APP_MY_APP}
+        </title>
         <meta name="description" content={product.short_description} />
       </Helmet>
       <section className="product-inner-main">
@@ -115,8 +117,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                         marginLeft: "10px",
                         fontSize: "60%",
                         color: "#000",
-                      }}
-                    >
+                      }}>
                       <Currency />
                       {price}
                     </del>
@@ -149,8 +150,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
                 key={product.id}
                 className="btn btn-primary"
                 onClick={onAddToCart}
-                disabled={!addToCartFlag}
-              >
+                disabled={!addToCartFlag}>
                 Add To Cart
               </button>
             </div>
@@ -161,8 +161,7 @@ const PrdouctDetail = ({ product, averageRating, options, std, pd }) => {
         <ModalPopup size="lg" show={true}>
           <div
             className="col-10"
-            style={{ margin: "auto", padding: "40px 0px" }}
-          >
+            style={{ margin: "auto", padding: "40px 0px" }}>
             <h3>All the items from other stores will be removed!</h3>
             <p>
               Its is required to remove other stores items from cart before

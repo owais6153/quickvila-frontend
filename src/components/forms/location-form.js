@@ -1,5 +1,5 @@
 import PlacesInput from "../../shared/components/form-elements/places-input";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { homeUrl } from "../../shared/helper";
 import { Row, Col } from "react-bootstrap";
 import { AppContext } from "../../shared/context/app-context";
@@ -9,7 +9,7 @@ import "./location-form.css";
 const LocationForm = () => {
   const { getLocationByNavigator, setGeolocation, geolocation } =
     useContext(AppContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [address, setAddress] = useState("");
   useEffect(() => {
     if (geolocation) setAddress(geolocation.address);

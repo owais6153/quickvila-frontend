@@ -250,9 +250,7 @@ const LoginForm = ({ swithHandler }) => {
         )}
         {isLoginMode && (
           <div className="text-right" style={{ marginBottom: "30px" }}>
-            <a href="#" onClick={swithHandler}>
-              Forget Password?
-            </a>
+            <a onClick={swithHandler}>Forget Password?</a>
           </div>
         )}
         <div className="form-group">

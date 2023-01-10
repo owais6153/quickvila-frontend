@@ -23,7 +23,7 @@ const PaymentSuccess = () => {
     <StaticPage>
       <div id="error-boundry">
         <Helmet>
-          <title>Order Confirmed - QuiclVila</title>
+          <title>Payment Successfull - {process.env.REACT_APP_MY_APP}</title>
           <meta
             name="description"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.

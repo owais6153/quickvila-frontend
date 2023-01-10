@@ -4,7 +4,7 @@ const Component404 = () => {
   return (
     <div id="error-boundry">
       <Helmet>
-        <title>Opps! Page not found | QuiclVila</title>
+        <title>Opps! Page not found | {process.env.REACT_APP_MY_APP}</title>
         <meta
           name="description"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -47,7 +47,7 @@ const Shop = () => {
   return (
     <StaticPage>
       <Helmet>
-        <title>Shop | QuiclVila</title>
+        <title>Shop | {process.env.REACT_APP_MY_APP}</title>
         <meta
           name="description"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -6,15 +6,16 @@ const StoreDetail = ({ store, ratings }) => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>{store.name} | QuiclVila</title>
+        <title>
+          {store.name} | {process.env.REACT_APP_MY_APP}
+        </title>
         <meta name="description" content={store.description} />
       </Helmet>
       <section
         className="inner-banner"
         style={{
           backgroundImage: `url('${store.cover}')`,
-        }}
-      ></section>
+        }}></section>
       <section className="in-sec-one-C">
         <div className="container">
           <div className="row out-row align-items-sm-baseline">

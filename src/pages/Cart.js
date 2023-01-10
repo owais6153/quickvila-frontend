@@ -27,7 +27,7 @@ const Cart = () => {
   return (
     <StaticPage>
       <Helmet>
-        <title>Cart | QuiclVila</title>
+        <title>Cart | {process.env.REACT_APP_MY_APP}</title>
         <meta
           name="description"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -74,8 +74,7 @@ quis vel."
               <Col
                 lg="4"
                 md={6}
-                className="offset-lg-8 offset-md-6 cart-box main-cart"
-              >
+                className="offset-lg-8 offset-md-6 cart-box main-cart">
                 <Row>
                   <Col sm={12}>
                     <h3>Cart</h3>

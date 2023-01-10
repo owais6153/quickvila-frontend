@@ -8,7 +8,7 @@ const MainHome = () => {
   return (
     <StaticPage>
       <Helmet>
-        <title>Home | QuiclVila</title>
+        <title>Home | {process.env.REACT_APP_MY_APP}</title>
         <meta
           name="description"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -19,8 +19,7 @@ quis vel."
       </Helmet>
       <section
         className="rider-banner"
-        style={{ background: `url('${homeUrl("images/ridder-banner.png")}')` }}
-      >
+        style={{ background: `url('${homeUrl("images/ridder-banner.png")}')` }}>
         <img src={homeUrl("images/Group 16.png")} alt="videoplayer" />
       </section>
       <section className="flow-section">

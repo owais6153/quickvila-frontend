@@ -100,7 +100,7 @@ const Checkout = () => {
   return (
     <StaticPage>
       <Helmet>
-        <title>Checkout | QuiclVila</title>
+        <title>Checkout | {process.env.REACT_APP_MY_APP}</title>
         <meta
           name="description"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.

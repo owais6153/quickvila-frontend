@@ -22,7 +22,7 @@ const PaymentCancel = () => {
     <StaticPage>
       <div id="error-boundry">
         <Helmet>
-          <title>Payment Canceled - QuiclVila</title>
+          <title>Payment Canceled - {process.env.REACT_APP_MY_APP}</title>
           <meta
             name="description"
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.

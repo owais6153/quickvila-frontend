@@ -64,7 +64,7 @@ const CategoryStore = () => {
   return (
     <StaticPage>
       <Helmet>
-        <title>Category | QuiclVila</title>
+        <title>Category | {process.env.REACT_APP_MY_APP}</title>
         <meta
           name="description"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
