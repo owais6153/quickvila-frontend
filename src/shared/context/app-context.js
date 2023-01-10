@@ -36,11 +36,11 @@ export const AppContext = createContext({
 export const AppProvider = ({ children }) => {
   const [layout, setLayout] = useState(true);
   const [loginModal, setLoginModal] = useState(false);
-  const { geolocation, setGeolocation, getLocationByNavigator } =
-    useGeoLoacation();
 
   const { token, login, logout, userId, user, verified, updateUserInfo } =
     useAuth();
+  const { geolocation, setGeolocation, getLocationByNavigator } =
+    useGeoLoacation();
 
   const {
     cart,

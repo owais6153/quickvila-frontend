@@ -22,8 +22,14 @@ export const useHttpClient = (displayErrors = true) => {
   const activeHttpRequests = useRef([]);
 
   const sendRequest = useCallback(
-    async (url, method = "GET", body = null, headers = {}) => {
-      setIsLoading(true);
+    async (
+      url,
+      method = "GET",
+      body = null,
+      headers = {},
+      displayLoader = true
+    ) => {
+      if (displayLoader) setIsLoading(true);
       const httpAbortCtrl = new AbortController();
       activeHttpRequests.current.push(httpAbortCtrl);
       var responseData;
@@ -35,7 +41,7 @@ export const useHttpClient = (displayErrors = true) => {
           signal: httpAbortCtrl.signal,
         });
 
-        setIsLoading(false);
+        if (displayLoader) setIsLoading(false);
         responseData = await response.json();
 
         activeHttpRequests.current = activeHttpRequests.current.filter(
@@ -48,7 +54,7 @@ export const useHttpClient = (displayErrors = true) => {
 
         return responseData;
       } catch (err) {
-        setIsLoading(false);
+        if (displayLoader) setIsLoading(false);
         if (
           responseData != undefined &&
           responseData.errors &&

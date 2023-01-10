@@ -50,7 +50,8 @@ export const useCart = (isLogin, token) => {
           apiUrl(`cart${params}`),
           "GET",
           null,
-          getHeaders()
+          getHeaders(),
+          false
         );
         if (responseData.status === 200) {
           if (responseData.cart !== null) {

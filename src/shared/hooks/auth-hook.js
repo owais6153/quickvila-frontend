@@ -1,75 +1,77 @@
 import { useState, useCallback, useEffect } from "react";
+import { useHttpClient } from "./http-hook";
+import { apiUrl } from "../helper";
 
-let logoutTimer;
-
-export const useAuth = (onLogin, onLogout) => {
+export const useAuth = () => {
   const [token, setToken] = useState(false);
-  const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
   const [verified, setVerified] = useState(false);
   const [user, setUser] = useState(false);
-  const login = useCallback((uid, user, token, verified, expirationDate) => {
+  const { sendRequest } = useHttpClient();
+
+  const login = useCallback((uid, user, token, verified) => {
     setToken(token);
     setUserId(uid);
     setVerified(verified);
     setUser(user);
-    const tokenExpirationDate =
-      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60 * 60);
-    setTokenExpirationDate(tokenExpirationDate);
-    localStorage.setItem(
+
+    sessionStorage.setItem(
       "userData",
       JSON.stringify({
         verified,
         userId: uid,
         user,
-        token,
-        expiration: tokenExpirationDate.toISOString(),
       })
     );
+    localStorage.setItem("token", JSON.stringify({ token }));
   }, []);
 
   const updateUserInfo = useCallback((userdata) => {
     setUser(userdata);
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    storedData.user = userdata;
-    localStorage.setItem("userData", JSON.stringify(storedData));
+    const sessionData = JSON.parse(sessionStorage.getItem("userData"));
+    sessionData.user = userdata;
+    sessionStorage.setItem("userData", JSON.stringify(sessionData));
   }, []);
 
   const logout = useCallback(() => {
-    localStorage.removeItem("userData");
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("userData");
     setToken(null);
     setUser(false);
-    setTokenExpirationDate(null);
     setUserId(null);
     setVerified(null);
   }, []);
 
   useEffect(() => {
-    if (token && tokenExpirationDate) {
-      const remainingTime =
-        tokenExpirationDate.getTime() - new Date().getTime();
-      logoutTimer = setTimeout(logout, remainingTime);
-    } else {
-      clearTimeout(logoutTimer);
-    }
-  }, [token, logout, tokenExpirationDate]);
-
-  useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (
-      storedData &&
-      storedData.token &&
-      new Date(storedData.expiration) > new Date()
-    ) {
-      login(
-        storedData.userId,
-        storedData.user,
-        storedData.token,
-        storedData.verified,
-        new Date(storedData.expiration)
-      );
-    }
-  }, [login]);
+    const fetchData = async () => {
+      try {
+        const storedData = JSON.parse(localStorage.getItem("token"));
+        var url = `me`;
+        const responseData = await sendRequest(
+          apiUrl(url),
+          "GET",
+          null,
+          {
+            Authorization: `Bearer ${storedData.token}`,
+          },
+          false
+        );
+        if (responseData && responseData.status == 200) {
+          login(
+            responseData.me.id,
+            responseData.me,
+            storedData.token,
+            responseData.verified
+          );
+        } else {
+          logout();
+        }
+      } catch (err) {
+        alert(err);
+      }
+    };
+    fetchData();
+  }, []);
 
   return { token, login, logout, userId, user, verified, updateUserInfo };
 };
