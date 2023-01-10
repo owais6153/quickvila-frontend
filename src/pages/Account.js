@@ -25,10 +25,10 @@ quis vel."
         <Container>
           <HeadingRow lg title="My Account" />
           <Row>
-            <Col md={3}>
+            <Col lg={3}>
               <Sidebar />
             </Col>
-            <Col md={9}>
+            <Col lg={9}>
               <h2>Hello {auth.user.name}!</h2>
             </Col>
           </Row>

@@ -7,7 +7,7 @@ export const useAuth = () => {
   const [userId, setUserId] = useState(false);
   const [verified, setVerified] = useState(false);
   const [user, setUser] = useState(false);
-  const { sendRequest } = useHttpClient();
+  const { sendRequest } = useHttpClient(false);
 
   const login = useCallback((uid, user, token, verified) => {
     setToken(token);

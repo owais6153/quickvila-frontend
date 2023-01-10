@@ -13,6 +13,30 @@ import Button from "../shared/components/form-elements/button";
 import { toast } from "react-toastify";
 import { VALIDATOR_REQUIRE } from "../shared/util/validation";
 
+const VerificationStatusText = ({ auth }) => {
+  if (auth.user.is_identity_card_verified) {
+    return (
+      <>
+        <h2>Your identity is verified.</h2>
+        <p>Thankyou for verifying your identity.</p>
+      </>
+    );
+  } else if (
+    !auth.user.is_identity_card_verified &&
+    auth.user.identity_card !== null
+  ) {
+    return (
+      <>
+        <h2>Your identity card verification is under process.</h2>
+        <p>
+          Please be patient, We are reviewing your identity card, We will update
+          you soon.
+        </p>
+      </>
+    );
+  }
+};
+
 const AccountIdentityVerification = () => {
   const { auth, isLogin, updateUserInfo } = useContext(AppContext);
   const [shouldDisplayForm, setShouldDisplayForm] = useState(false);
@@ -41,19 +65,6 @@ const AccountIdentityVerification = () => {
       setShouldDisplayForm(true);
     }
   }, [auth]);
-
-  const getVerificationStatusText = () => {
-    if (auth.user.is_identity_card_verified) {
-      return "Verified";
-    } else if (
-      !auth.user.is_identity_card_verified &&
-      auth.user.identity_card !== null
-    ) {
-      return "under review";
-    } else {
-      return "not verified";
-    }
-  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -92,16 +103,17 @@ quis vel."
       </Helmet>
       <section className="no-banner account-pages">
         <Container>
-          <HeadingRow lg title="My Account" />
+          <HeadingRow lg title="Verify Identity" />
           <Row>
-            <Col md={3}>
+            <Col lg={3}>
               <Sidebar />
             </Col>
-            <Col md={9}>
-              <h2>Your account is {getVerificationStatusText()}</h2>
-              {shouldDisplayForm && (
-                <form className="mt-4" onSubmit={submitHandler}>
-                  <div className="form-group col-12 col-md-6">
+            <Col lg={9}>
+              {!shouldDisplayForm ? (
+                <VerificationStatusText auth={auth} />
+              ) : (
+                <form className="mt-0" onSubmit={submitHandler}>
+                  <div className="form-group col-12 col-lg-6">
                     <label for="identity_card">
                       Please verify your identity
                     </label>
@@ -120,7 +132,7 @@ quis vel."
                     />
                   </div>
 
-                  <div className="form-group col-12 col-md-6">
+                  <div className="form-group col-12 col-lg-6">
                     <Button
                       type="submit"
                       className="btn-primary w-100 mt-4"
