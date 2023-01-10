@@ -67,7 +67,7 @@ export const useAuth = () => {
           logout();
         }
       } catch (err) {
-        alert(err);
+        logout();
       }
     };
     fetchData();
