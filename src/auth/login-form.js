@@ -39,19 +39,19 @@ const LoginForm = ({ swithHandler }) => {
     setFormData(
       {
         email: {
-          value: "",
-          isValid: false,
+          value: formState.inputs.email.value,
+          isValid: formState.inputs.email.isValid,
         },
         password: {
-          value: "",
-          isValid: false,
+          value: formState.inputs.password.value,
+          isValid: formState.inputs.password.isValid,
         },
         first_name: undefined,
         last_name: undefined,
         phone: undefined,
         confirm_password: undefined,
       },
-      formState.inputs.email.isValid && formState.inputs.email
+      formState.inputs.email.isValid && formState.inputs.password.isValid
     );
     setLoginMode(true);
   };
@@ -60,12 +60,12 @@ const LoginForm = ({ swithHandler }) => {
     setFormData(
       {
         email: {
-          value: "",
-          isValid: false,
+          value: formState.inputs.email.value,
+          isValid: formState.inputs.email.isValid,
         },
         password: {
-          value: "",
-          isValid: false,
+          value: formState.inputs.password.value,
+          isValid: formState.inputs.password.isValid,
         },
         first_name: {
           value: "",
@@ -143,15 +143,13 @@ const LoginForm = ({ swithHandler }) => {
           <Button
             type="button"
             onClick={setModeLogin}
-            className={`btn ${isLoginMode && "btn-primary"}`}
-          >
+            className={`btn ${isLoginMode && "btn-primary"}`}>
             Login
           </Button>
           <Button
             type="button"
             onClick={setSignupMode}
-            className={`btn ${!isLoginMode && "btn-primary"}`}
-          >
+            className={`btn ${!isLoginMode && "btn-primary"}`}>
             Signup
           </Button>
         </div>

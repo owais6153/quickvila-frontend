@@ -10,7 +10,6 @@ import Logo from "./logo";
 import Icon from "../font-awesome-icon";
 import SearchForm from "../../../components/forms/search-form";
 import CartBox from "../../../components/cart/cart-box";
-import Dropdown from "react-bootstrap/Dropdown";
 import { useHttpClient } from "../../hooks/http-hook";
 import LocationForm from "../../../components/forms/location-form";
 import "./header.css";
@@ -66,8 +65,7 @@ const Header = (props) => {
         </div>
         <div
           className="header-locationform pointer"
-          onClick={locDropdownToggler}
-        >
+          onClick={locDropdownToggler}>
           <p>
             <Icon icon="fa fa-map-marker" aria-hidden="true"></Icon>
             <b>Delivering to: </b>{" "}
@@ -79,16 +77,14 @@ const Header = (props) => {
               }}
               width="12"
               height="14"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
-                class="svg-stroke-container"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                fill-rule="evenodd"
+                className="svg-stroke-container"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                fillRule="evenodd"
                 fill="none"
-                d="m3.5,1.5l5,5.5l-5,5.5"
-              ></path>
+                d="m3.5,1.5l5,5.5l-5,5.5"></path>
             </svg>
             {hasGeoLocation ? geolocation.address : "Select your Location"}
           </p>
@@ -97,8 +93,7 @@ const Header = (props) => {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-              }}
-            >
+              }}>
               <LocationForm />
             </div>
           )}
@@ -111,34 +106,34 @@ const Header = (props) => {
             <Link
               to="/"
               // onClick={changeMode("rider")}
-              className={`btn px-4 active`}
-            >
+              className={`btn px-4 active`}>
               Deliver
             </Link>
             <Link
               to="/shop"
               // onClick={changeMode("customer")}
-              className={`btn px-4 `}
-            >
+              className={`btn px-4 `}>
               Order
             </Link>
           </div>
         </div>
         <div className="header-links">
           {isLogin && auth.verified ? (
-            <Dropdown id={`dropdown-variants-`}>
+            <div id="dropdown-variants-" className="dropdown">
               <span onClick={dropdownToggler}>
                 <Icon url={homeUrl("images/account.png")} />
               </span>
-              <Dropdown.Menu show={dropdown}>
-                <Link className="nav-link" to="/my-account">
-                  Account
-                </Link>
-                <a className="nav-link pointer" onClick={logoutHandler}>
-                  Logout
-                </a>
-              </Dropdown.Menu>
-            </Dropdown>
+              {dropdown && (
+                <div x-placement="bottom-start" className="dropdown-menu show">
+                  <Link className="nav-link" to="/my-account">
+                    Account
+                  </Link>
+                  <a className="nav-link pointer" onClick={logoutHandler}>
+                    Logout
+                  </a>
+                </div>
+              )}
+            </div>
           ) : (
             <span onClick={toggleLoginModal}>
               <Icon url={homeUrl("images/account.png")} />
